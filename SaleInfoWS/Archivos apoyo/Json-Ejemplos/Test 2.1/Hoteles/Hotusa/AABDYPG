@@ -1,0 +1,168 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABDYPG",
+			"dateLocator": "2021-03-12T15:42:25",
+			"EntityBook": {
+				"codeEntity": 33873,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "222",
+				"AgencyCodeClient": "5287",
+				"InvoiceInfoClient": {
+					"name": "FERNANDA HERNANDEZ",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "229295298",
+					"movilePhone": "",
+					"address": "Morande 835 oficina 615",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "RENATA",
+				"lastName": "MATOS",
+				"codeUser": 231946,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "",
+				"codetravelReason": "",
+				"CenterCosts": [],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "ALAN",
+							"lastName": "MOYA",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 1,
+							"dateSent": "3/12/2021 3:42:44 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						},
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "YULEIMA",
+							"lastName": "VIVAS",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 2,
+							"dateSent": "3/12/2021 3:42:44 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						}
+					]
+				},
+				"UDIDS": []
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "36677241-33034949",
+					"AditionalLoc": "36677241-33034949",
+					"sourceName": "Hotusa",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "RENATA",
+						"lastName": "MATOS",
+						"codeUser": 231946,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-03-12T15:42:25",
+						"dateCheckin": "2021-03-15T00:00:00",
+						"dateCheckout": "2021-03-22T00:00:00",
+						"DeadlineBroker": "2021-03-12T15:40:27",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 116092.0,
+							"totalTax": 0.0,
+							"totalNetfare": 92873.55,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.2,
+							"ExchangeRate": 731.0
+						},
+						"Hotelcity": "RIO DE JANEIRO, RJ",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "OK",
+							"addressHotel": "SENADOR DANTAS 24",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 3,
+							"facilities": "",
+							"policy": "En caso de cancelación el hotel facturará 15 % de la estancia. ",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "http://www.hotelresb2b.com/images/hoteles/924936_foto_1.jpg",
+							"codeHotel": "702232",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "DOBLE STANDARD",
+								"mealTable": "CAMA Y DESAYUNO",
+								"totalPax": 159.0,
+								"numAdt": 2,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 159.0,
+									"totalTax": 0.0,
+									"totalNetfare": 127.0
+								},
+								"policyRoom": "En caso de cancelación el hotel facturará 15 % de la estancia. ",
+								"paxes": [
+									{
+										"name": "ROCIO ",
+										"lastName": "FLIES ",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "CESAR ",
+										"lastName": "RODRIGUEZ ",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

@@ -1,0 +1,3090 @@
+<Books>
+	<!-- Informacion de cada reserva -->
+	<Book>
+		<!--localizador interno OBT -->
+		<InternalLocator>AAAHYRT</InternalLocator>
+		<!-- fecha en la que se hizo la primer reserva -->
+		<dateLocator>2018-09-23</dateLocator>
+		<!--Codigo numerico de ideas asociado a la transaccion master Agosto 27 2021 -->
+		<transactionCode>67384984</transactionCode>
+		<EntityBook>
+			<!-- Codigo de la entidad en el OBT -->
+			<codeEntity>2345</codeEntity>
+			<!-- Nombre de la entidad  en el OBT -->
+			<nameEntity>IdeasFractal</nameEntity>
+			<!-- Codigo fibooksReserva.xmlscal (RUT/NIT/CPJ/IdTax/Cedula/CUIT -->
+			<idfiscal>10023030</idfiscal> 
+			<!--Mayo 7 2021, se agrega el campo country para indicar el pais, esto para las agencias estan en varios paises -->
+			<!-- Codigo del pais en ISO2, se toma del parametro ISOPAIS -->
+			<AgencyCountry>CL</AgencyCountry>			
+			<AgencyCodeClient>BC626373</AgencyCodeClient>			
+			<!--Informacion para cliente B2C -->
+			<invoiceInfoClient>
+				<name>Pedro</name>
+				<lastname>Vargas</lastname>
+				<!-- CC: Cedula, NI: Nit, PA:Pasaporte, RT: RUT, CE: Cedula extranjeria,, CN: CNPJ, CP: CPNJ -->
+				<documentType>CC</documentType>
+				<documentNumber>100230828</documentNumber>
+				<phone>5763372749</phone>
+				<movilePhone>573103902521</movilePhone>
+				<address>cra 55 19-20 torre 2 apto 703</address>
+				<email>pedro@gmail.com</email>
+			</invoiceInfoClient>        
+		</EntityBook>
+		<!-- Usuario que hizo la reserva principal o la primera reserva dentro localizador interno -->
+		<UserBook>
+			<!-- Usuario del OBT que hizo primera reserva en el localizador principal -->
+			<loginBook>hdario</loginBook>
+			<nameBook>Pedro</nameBook>
+			<lastName>Vargas</lastName>
+			<!-- Codigo del usuario en la herramienta de reservas-->
+			<codeUser>4562</codeUser>
+			<!-- Email del usuario que hizo la reserva -->
+			<emailUser>pepe@gmail.com</emailUser>
+			<!--Firma que el usuario tiene en el GDS, es util cuando el que hace la reserva es un consultor/asesor -->
+			<references>
+				<reference>
+					<code>1A</code>
+					<valued>HKI</valued>
+				</reference>
+				<reference>
+					<code>1S</code>
+					<valued>HKI</valued>
+				</reference>
+				<reference>
+					<code>1G</code>
+					<valued>HKI</valued>
+				</reference>
+			</references>
+		</UserBook>
+		<!--Informacion corporativa de la reserva -->
+		<CorporateInfo>
+			<!-- motivo del viaje -->
+			<travelReason>Trabajo</travelReason>
+			<!-- Codigo del motivo del viaje -->
+			<codetravelReason>TR</codetravelReason>
+
+			<CenterCosts>
+				<CenterCost>
+					<!--Codigo del ceco en el OBT -->
+					<codeOBT>2455</codeOBT>
+					<!-- Codigo del ceco en el backoffice de la agencia -->
+					<codeBackoffice>98</codeBackoffice>
+					<!-- Codigo del cliente del centro de costo -->
+					<codeClient>BTCECO</codeClient>
+					<!--Nombre descripcion del ceco -->
+					<nameCeco>Produccion</nameCeco>
+					<!--Porcentaje que asumio el ceco en la reserva -->
+					<percent>50</percent>
+				</CenterCost>
+				<CenterCost>
+					<!--Codigo del ceco en el OBT-->
+					<codeOBT>2455</codeOBT>
+					<!-- Codigo del ceco en el backoffice de la agencia -->
+					<codeBackoffice>98</codeBackoffice>
+					<!-- Codigo del cliente del centro de costo -->
+					<codeCliente>BTCECO</codeCliente>
+					<!--Nombre descripcion del ceco -->
+					<nameCeco>Produccion</nameCeco>
+					<!--Porcentaje que asumio el ceco en la reserva -->
+					<percent>50</percent>
+				</CenterCost>
+			</CenterCosts>
+			<!--Informacion del proceso de aprobacion -->
+			<aprovalProcess>
+				<!-- indica si cumple o no la politica  YES NO-->
+				<Politicy>YES</Politicy>
+				<!--nombre de la razon de no cumplimiento -->
+				<noComplaint>Ultima hora</noComplaint>
+				<CodenoComplaint>Ultima hora</CodenoComplaint>
+				<!-- default | paralel Secuential -->
+				<processflow>default</processflow>
+				<!--informacion adicional del flujo , ejemplo si se disparo flujo de no cumplimiento -->
+				<Additionalprocessflow/>
+				<!--Informacion de los aprobadores involucrados en la reserva -->
+				<approvers>
+					<approver>
+						<!--Email del aprobador -->
+						<mailApprover>aprobador1@gmail.com</mailApprover>
+						<!--Nombre del aprobador -->
+						<nameApprover>Pedro</nameApprover>
+						<!--Apellido del aprobador -->
+						<lastName>Vargas</lastName>
+						<!--Login del aprobador en el OBT -->
+						<login>pedro@gmail.com</login>
+						<!--Observacion que ingreso el aprobador al aprobar-->
+						<CommentApprover>Aprobado por cumplir</CommentApprover>
+						<!--Indica si aprobo o no YES|NOT-->
+						<Approved>YES</Approved>
+						<!--Numero de secuencia en que se le envio el correo o aprobo -->
+						<sequence>1</sequence>
+						<!--fecha y hora en la que se hizo el envio para aprobar -->
+						<dateSent>2017-12-22 T 23:15</dateSent>
+						<!--fecha y hora en la que se hizo la aprobacion -->
+						<dateApproved>2017-12-23 T 23:15</dateApproved>
+					</approver>
+					<approver>
+						<!--Email del aprobador -->
+						<mailApprover>aprobador1@gmail.com</mailApprover>
+						<!--Nombre del aprobador -->
+						<nameApprover>Pedro</nameApprover>
+						<!--Apellido del aprobador -->
+						<lastName>Vargas</lastName>
+						<!--Login del aprobador en el OBT -->
+						<login>pedro@gmail.com</login>
+						<!--Observacion que ingreso el aprobador al aprobar-->
+						<CommentApprover>Aprobado por cumplir</CommentApprover>
+						<!--Indica si aprobo o no YES|NOT-->
+						<Approved>YES</Approved>
+						<!--Numero de secuencia en que se le envio el correo o aprobo -->
+						<sequence>1</sequence>
+						<!--fecha y hora en la que se hizo el envio para aprobar -->
+						<dateSent>2017-12-22 T 23:15</dateSent>
+						<!--fecha y hora en la que se hizo la aprobacion -->
+						<dateApproved>2017-12-23 T 23:15</dateApproved>
+					</approver>
+				</approvers>
+			</aprovalProcess>
+			<!--Informacion de los UDIDS o campos adicionales -->
+			<UDIDS>
+				<udid>
+					<!--Codigo del UDID en el OBT-->
+					<codeUDID>2345</codeUDID>
+					<!--Nombre del UDID, tambien conocido como nemotecnico -->
+					<name>OrdenCompra</name>
+					<!--Titulo con el que se muestra el UDID al usuario -->
+					<alias>Numero de orden de compra</alias>
+					<!--codigo del UDID en el backoffice  o el remark configurado-->
+					<codeBackOffice>234</codeBackOffice>
+					<!--Codigo que el cliente maneja para el UDID enviar el mismo de OBT-->
+					<codeClient>J6363</codeClient>
+					<!--Informacion ingresada por el usuario  en el UDID -->
+					<value>234</value>
+				</udid>			
+				<udid>
+					<!--Codigo del UDID en el OBT-->
+					<codeUDID>89384</codeUDID>
+					<!--Nombre del UDID, tambien conocido como nemotecnico -->
+					<name>idVendedor</name>
+					<!--Titulo con el que se muestra el UDID al usuario -->
+					<alias>idVendedor</alias>
+					<!--codigo del UDID en el backoffice  o el remark configurado-->
+					<codeBackOffice>83838</codeBackOffice>
+					<!--Codigo que el cliente maneja para el UDID enviar el mismo de OBT-->
+					<codeClient>J6363</codeClient>
+					<!--Informacion ingresada en el UDID -->
+					<value>AMG</value>
+				</udid>
+				<udid>
+					<!--Codigo del UDID en el OBT-->
+					<codeUDID>456</codeUDID>
+					<!--Nombre del UDID, tambien conocido como nemotecnico -->
+					<name>Proyecto</name>
+					<!--Titulo con el que se muestra el UDID al usuario -->
+					<alias>Proyecto del viaje</alias>
+					<!--codigo del UDID en el backoffice -->
+					<codeBackOffice>234</codeBackOffice>
+					<!--Codigo que el cliente maneja para el UDID -->
+					<codeClient>73874</codeClient>
+					<!--Informacion ingresada en el UDID -->
+					<value>Montaje oficinas</value>
+				</udid>
+				<udid>
+					<!--Codigo del UDID en el OBT-->
+					<codeUDID>454</codeUDID>
+					<!--Nombre del UDID, tambien conocido como nemotecnico -->
+					<name>Proyecto</name>
+					<!--Titulo con el que se muestra el UDID al usuario -->
+					<alias>Area desempaque</alias>
+					<!--codigo del UDID en el backoffice -->
+					<codeBackOffice>456</codeBackOffice>
+					<!--Codigo que el cliente maneja para el UDID -->
+					<codeClient>Jy767</codeClient>
+					<!--Informacion ingresada en el UDID -->
+					<value>KJU7689</value>
+				</udid>
+			</UDIDS>
+		</CorporateInfo>
+
+		<!--Informacion de los vuelos vendidos en la reserva -->
+		<!--Conjunto de vuelos-->
+		<BookInfoFlights>
+			<BookInfoFlight><!--Avianca Pago esta dirgido a la aerolinea  -->
+				<dateBook>2017-01-23</dateBook>
+				<!-- Codigo del localizador del source-->
+				<locSource>JSHDKDI</locSource>
+				<!--  OCC OCA OAA OAC  FAA FAC  O: Online F: Offline  C: Cliente  A: Asesor-->
+				<userOrigin>OCA</userOrigin>
+				<!-- WS | WEB| Mobile|OFF(hizo por fuera y se recupero en el sistema)-->
+				<channel>WS</channel>
+				<ip>200.23.23.45</ip>
+				<!-- Windows | Linux | IOS | Android -->
+				<operatingSystem>Windows</operatingSystem>
+				<!-- Chrome IE Mozila | Safari  Other></!-->
+				<Browser>IE</Browser>
+				<!--informacion relaciona con el tema de puntos para el manejo cuando hay temas de redencion de puntos-->
+				<fidelidad>
+					<Campana/>
+					<codCompany/>
+					<factorpoints/>
+					<sessionPoints/>
+					<codeAux/>
+				</fidelidad>
+				<!-- -Informacion de los vuelos-->
+				<inter>Yes</inter>
+				<!--Cia con  la que se hizo la validacion del boleto -->
+				<airCompanyIssue>
+					<numericalCode>134</numericalCode>
+					<iataCode>AV</iataCode>
+				</airCompanyIssue>
+				<!--1A(Amadeus) 1S(Sabre) 1G(Travelport) FX(Farelogix), AV(Avianca NDC)  -->
+				<Source>1A</Source>
+				<maxfare>63636</maxfare>
+				<minFare>6363</minFare>
+				<publicfare>7373</publicfare>
+				<fareConstruction/>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0<fareConstruction/>
+				<tourcode>ESFE15</tourcode>
+				<!-- Primera parada del quiebre tarifario-->
+				<fisrtStop>ATH</fisrtStop>
+				<!--Ruta completa del itinerario -->
+				<route>AJU/GRU/FCO/ATH/FCO/GRU/AJU</route>
+				<!--Yes | Not -->
+				<segments>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>1</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>
+
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Pereira</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent>America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+
+						<!-- informacion de llegada -->
+						<ArrivalCity>Pereira</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>1</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>2</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>
+
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Panama</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent> America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+						<!-- informacion de llegada -->
+						<ArrivalCity>Panama</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>2</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+				</segments>
+				<Paxes>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+								    <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI TP(UATP)  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>                  
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade+ ancillary-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+							<!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario-->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>SEAT</nameAncillary>
+									<valAncillary>100000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>SEAT-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>2</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>            
+					</pax>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!--Tipo identificacion -->
+						<documentTypePax>CC</documentTypePax>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela -->
+									<channelProcess/>
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+							<!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario-->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>
+					</pax>
+				</Paxes>
+				<remarks>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+				</remarks>
+			</BookInfoFlight>
+			<BookInfoFlight><!--LAN Pago esta dirgido a la aerolinea-->
+				<dateBook>2017-01-23</dateBook>
+				<!-- Codigo del localizador del source-->
+				<locSource>JSHDKDI</locSource>
+				<!--  OCC OCA OAA OAC  FAA FAC  O: Online F: Offline  C: Cliente  A: Asesor-->
+				<userOrigin>OCA</userOrigin>
+				<!-- WS | WEB| Mobile|OFF(hizo por fuera y se recupero en el sistema)-->
+				<channel>WS</channel>
+				<ip>200.23.23.45</ip>
+				<!-- Windows | Linux | IOS | Android -->
+				<operatingSystem>Windows</operatingSystem>
+				<!-- Chrome IE Mozila | Safari  Other></!-->
+				<Browser>IE</Browser>
+				<!--informacion relaciona con el tema de puntos para el manejo cuando hay temas de redencion de puntos-->
+				<fidelidad>
+					<Campana/>
+					<codCompany/>
+					<factorpoints/>
+					<sessionPoints/>
+					<codeAux/>
+				</fidelidad>
+				<!-- -Informacion de los vuelos-->
+
+				<inter>Yes</inter>
+				<!--Cia con  la que se hizo la validacion del boleto -->
+				<airCompanyIssue>
+					<numericalCode>134</numericalCode>
+					<iataCode>AV</iataCode>
+				</airCompanyIssue>
+				<!--1A(Amadeus) 1S(Sabre) 1G(Travelport) FX(Farelogix), -->
+				<Source>1A</Source>
+				<maxfare>63636</maxfare>
+				<minFare>6363</minFare>
+				<publicfare>7373</publicfare>
+				<fareConstruction/>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0<fareConstruction/>
+				<tourcode>ESFE15</tourcode>
+				<!-- Primera parada del quiebre tarifario-->
+				<fisrtStop>ATH</fisrtStop>
+				<!--Ruta completa del itinerario -->
+				<route>AJU/GRU/FCO/ATH/FCO/GRU/AJU</route>
+				<!--Yes | Not -->
+				<segments>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>1</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>            
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Panama</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent>America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+						<!-- informacion de llegada -->
+						<ArrivalCity>Panama</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>1</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>2</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>            
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Panama</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent> America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+						<!-- informacion de llegada -->
+						<ArrivalCity>Panama</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>1</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+				</segments>
+				<Paxes>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+								 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela -->
+									<channelProcess/>
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade+ ancillary-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+							<!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario-->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>2</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>
+					</pax>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+								 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela -->
+									<channelProcess/>
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+							<!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario-->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>
+					</pax>
+				</Paxes>
+				<remarks>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+				</remarks>
+			</BookInfoFlight>
+			<BookInfoFlight> <!--VivaAir Pago esta dirgido a la agencia-->
+				<dateBook>2017-01-23</dateBook>
+				<!-- Codigo del localizador del source-->
+				<locSource>JSHDKDI</locSource>
+				<!--  OCC OCA OAA OAC  FAA FAC  O: Online F: Offline  C: Cliente  A: Asesor-->
+				<userOrigin>OCA</userOrigin>
+				<!-- WS | WEB| Mobile|OFF(hizo por fuera y se recupero en el sistema)-->
+				<channel>WS</channel>
+				<ip>200.23.23.45</ip>
+				<!-- Windows | Linux | IOS | Android -->
+				<operatingSystem>Windows</operatingSystem>
+				<!-- Chrome IE Mozila | Safari  Other></!-->
+				<Browser>IE</Browser>
+				<!--informacion relaciona con el tema de puntos para el manejo cuando hay temas de redencion de puntos-->
+				<fidelidad>
+					<Campana/>
+					<codCompany/>
+					<factorpoints/>
+					<sessionPoints/>
+					<codeAux/>
+				</fidelidad>
+				<!-- -Informacion de los vuelos-->
+
+				<inter>Yes</inter>
+				<!--Cia con  la que se hizo la validacion del boleto -->
+				<airCompanyIssue>
+					<numericalCode>134</numericalCode>
+					<iataCode>AV</iataCode>
+				</airCompanyIssue>
+				<!--1A(Amadeus) 1S(Sabre) 1G(Travelport) FX(Farelogix), -->
+				<Source>1A</Source>
+				<maxfare>63636</maxfare>
+				<minFare>6363</minFare>
+				<publicfare>7373</publicfare>
+				<fareConstruction/>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0<fareConstruction/>
+				<tourcode>ESFE15</tourcode>
+				<!-- Primera parada del quiebre tarifario-->
+				<fisrtStop>ATH</fisrtStop>
+				<!--Ruta completa del itinerario -->
+				<route>AJU/GRU/FCO/ATH/FCO/GRU/AJU</route>
+				<!--Yes | Not -->
+				<segments>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>1</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>            
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Panama</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent>America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+						<!-- informacion de llegada -->
+						<ArrivalCity>Panama</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>1</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+					<segment>
+						<!-- Numero de segmento -->
+						<segmentNumber>2</segmentNumber>
+						<!-- E(Economic) B(Bussines) F(First) P(premiun economic) -->
+						<cabine>E</cabine>
+						<!--Segment type YES(Nacional) NO(Internacional)-->
+						<DomesticalSegment>YES</DomesticalSegment>
+						<familifare>flexi</familifare>
+						<baggage>1P</baggage>
+						<additionalInfo>23k</additionalInfo>
+						<Record>YHSTSS</Record>
+						<Class>F</Class>
+						<airlineOperator>AV</airlineOperator>
+						<airlineaMarketing>AV</airlineaMarketing>
+						<DurationFligth/>
+						<terminal>1E</terminal>
+						<fareBase>FXHHWH</fareBase>
+						<!-- informacion de salida -->
+						<departureCity>Panama</departureCity>
+						<DepartureIata>PEI</DepartureIata>
+						<DepartureAirport>Aeropuerto internacional matecana</DepartureAirport>
+						<DepartureCountry>CO</DepartureCountry>
+						<DepartureContinent> America Sur</DepartureContinent>
+						<DepartureDate>2016-10-23 T 23:15</DepartureDate>
+						<!-- informacion de llegada -->
+						<ArrivalCity>Panama</ArrivalCity>
+						<ArrivalIata>PEI</ArrivalIata>
+						<ArrivalAirport>Aeropuerto internacional matecana</ArrivalAirport>
+						<ArrivalCountry>CO</ArrivalCountry>
+						<ArrivalContinent> America Sur</ArrivalContinent>
+						<ArrivalDate>2016-10-23 T 23:15</ArrivalDate>
+						<!-- teminarl de salida del vuelo-->
+						<terminalArrived>1E</terminalArrived>
+						<!-- teminarl de llegada del vuelo-->
+						<terminalDeparture>1E</terminalDeparture>
+						<!--A que grupo de segmentos pertenece-->
+						<groupSegment>1</groupSegment>
+						<!-- Informacion del carbono emitido -->
+						<CarbonEmission>KPP 88.656383</CarbonEmission>
+						<!-- Informacion de las millas voladas -->
+						<milesflight>2000</milesflight>
+					</segment>
+				</segments>
+				<Paxes>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+								 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela -->
+									<channelProcess/>
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade+ ancillary-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+							<!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario-->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>2</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>
+					</pax>
+					<pax>
+						<!--Nombre del pasajero -->
+						<name>pedro</name>
+						<!--Apellido del pasajero-->
+						<lastName>Vargas</lastName>
+						<!-- tipo de pasajero(PTC) ADT|CHD|INF -->
+						<paxtype>ADT</paxtype>
+						<!-- IDentificacion del pasajero -->
+						<identification>10020303</identification>
+						<!--Email del pasajero -->
+						<email>pedro@gmail.com</email>
+						<!--Telefono ingresado en la reserva -->
+						<phonePax>324234234</phonePax>
+						<frecuentFlyer>1249459595</frecuentFlyer>
+						<ticketNumber>1351234567890</ticketNumber>
+						<!-- Usuario que hizo emision/anulacion -->
+						<UserIssue>
+							<!-- Usuario del OBT que hizo la reserva -->
+							<loginBook>hdario</loginBook>
+							<nameBook>Pedro</nameBook>
+							<lastName>Vargas</lastName>
+							<!-- Codigo del usuario en la herramienta de reservas-->
+							<codeUser>4562</codeUser>
+							<!-- Email del usuario que hizo la reserva -->
+							<emailUser>pepe@gmail.com</emailUser>
+							<references>
+								<reference>
+									<code>1A</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1S</code>
+									<valued>HKI</valued>
+								</reference>
+								<reference>
+									<code>1G</code>
+									<valued>HKI</valued>
+								</reference>
+							</references>
+						</UserIssue>
+						<!-- Book | Issue| Void-->
+						<status>ISSUED</status>
+						<!-- valor de la comision -->
+						<commision>1</commision>
+						<!--Codigo de tourcode o acuerdo aplicado -->
+						<tourcode>Ys7</tourcode>
+						<!--Numero de boleto usado como parte de pago -->
+						<ReissueticketNumber>1351234567890</ReissueticketNumber>
+						<!-- forma de pago o comando del pago -->
+						<!--Informacion de los pagos del boleto -->
+						<payments>
+							<payment>
+								<!-- Cash  TC-->
+								<fop>FPCASH</fop>
+								<valuePay>73747585</valuePay>
+							</payment>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+								 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+									<!--Ultimos digitos de la TC -->
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<!--Codigo de aprobacion de la transacion-->
+									<approvalCode>6363</approvalCode>
+									<!--Codigo auxiliar de aprobacion de la transacion-->
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+									<channelProcess>GDS</channelProcess>
+								</creditCardInfo>
+							</payment>
+						</payments>
+						<!--informacion de los fees cobrados -->
+						<fees>
+							<!-- Valor total del fee cobrado entre los diferentes tipos de fee-->
+							<totalValue>120000</totalValue>
+							<monedaFee>COP</monedaFee>
+							<payment>
+								<!-- Cash  TC-->
+								<type>TC</type>
+								<valuePay>73747585</valuePay>
+								<creditCardInfo>
+									<lastCreditDigit>XXXX4567</lastCreditDigit>
+									<!--VI CA AX DI  -->
+									<flag>VI</flag>
+									<approvalCode>6363</approvalCode>
+									<AdditionalCode>6363</AdditionalCode>
+									<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela -->
+									<channelProcess/>
+								</creditCardInfo>
+							</payment>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Basico</typeFee>
+								<valueFee>70000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Aditional</typeFee>
+								<valueFee>20000</valueFee>
+							</fee>
+							<fee>
+								<!--Indica el tipo de fee: BASICO(El acordado)  Aditional(fee oculto o gestion)  Gestion  -->
+								<typeFee>Gestion</typeFee>
+								<valueFee>30000</valueFee>
+							</fee>
+						</fees>
+						<!--IInformacion de los valores del boleto-->
+						<fare>
+							<!-- valor de la tarifa en la moneda original, normalmente puede ser USD, EUR-->
+							<baseFare>300</baseFare>
+							<currencyFare>USD</currencyFare>
+							<!-- Es el valor completo del boleto tarifa+taxas+penalidade-->
+							<totalTicket>1750000</totalTicket>
+							<!-- Valor de la tarifa en la moneda  local-->
+							<localfare>900000</localfare>
+							<localCurrency>COP</localCurrency>
+							<TotalTax>325000</TotalTax>
+                           <!--Total penalidad -->
+							<penalityValue>200000</penalityValue>
+							<!--Total servicios adicionales anciliar-->
+							<totalAncillary>300000</totalAncillary>
+							<!--Valor del TRM(tasa de cambio de la moneda usada -->
+							<ExchangeRate>3000</ExchangeRate>
+							<!--Tarifas de referencia-->
+							<!--Tarifa maxima de la recomendacion-->
+							<maxFare>1250000</maxFare>
+							<!--Tarifa minima de la recomendacion  -->
+							<minFare>850000</minFare>
+							<!--tarifa publica -->
+							<publicFare>1050000</publicFare>
+							<!--Estructura del quiebre tarifario-->
+							<fareConstruction>AJU LA X/SAO AZ X/ROM AZ ATH 772.00TLPXBR /-ROM AZ X/SAO LA AJU 686.50NLPXBR NUC1458.50END ROE1.0</fareConstruction>
+							<!--Primer parada del quiebre tarifario -->
+							<firsStop>ATH</firsStop>
+							<taxes>
+								<tax>
+									<codeTax>CO</codeTax>
+									<valtax>50000</valtax>
+								</tax>
+								<tax>
+									<codeTax>YS</codeTax>
+									<valtax>20000</valtax>
+								</tax>name
+								<tax>
+									<codeTax>YQ</codeTax>
+									<valtax>75000</valtax>
+								</tax>
+							</taxes>
+							<penalities>
+								<penality>
+									<codePenality>Cambio</codePenality>
+									<valPenality>130000</valPenality>
+								</penality>
+								<penality>
+									<codePenality>Cambio clase</codePenality>
+									<valPenality>70000</valPenality>
+								</penality>
+							</penalities>
+							<ancillaries>
+								<Ancillary>
+									<nameAncillary>SEAT</nameAncillary>
+									<valAncillary>100000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>SEAT-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+								<Ancillary>
+									<nameAncillary>baggage</nameAncillary>
+									<valAncillary>200000</valAncillary>
+									<!--Codigo del anciliarie -->
+									<codeAncillary>baggage-3</codeAncillary>
+									<!-- NUmero de documento, en caso de GDS EMD-->
+									<numDocument>12349494</numDocument>
+								</Ancillary>
+							</ancillaries>
+						</fare>
+						<Seats>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+							<seat>
+								<segmentNumber>1</segmentNumber>
+								<seatSelected>23A</seatSelected>
+							</seat>
+						</Seats>
+					</pax>
+				</Paxes>
+				<remarks>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+					<remark>
+						<!--OSI | RM|RIR | SSR-->
+						<type>RM</type>
+						<!--Cuando el remark-osi esta asociado al pasajero-->
+						<paxAsociate>2</paxAsociate>
+						<value>rm</value>
+						<text/>
+						<segment/>
+						<number/>
+					</remark>
+				</remarks>
+			</BookInfoFlight>
+		</BookInfoFlights>
+		<!--Informacion de hoteles -->
+		<bookInfoHotels>
+			<!--Informacion de un hotel-->
+			<bookInfoHotel>		
+			    <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica para algunos brokers)-->
+				<status>Book</status>
+				<!--Localizador del proveedor de hotel -->
+				<locSource>HS-626363</locSource>
+				<!--Localizador adicional del proveedor de hotel -->
+				<AditionalLoc>6725353</AditionalLoc>
+				<!--Nombre del source Hotelbeds, Tourico , Restel, otro-->
+				<sourceName>hotelbeds</sourceName>
+				<!--Codigo del proveedor en el backoffice de la agencia -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>
+				<!-- Mayo 7 2021 Herney-->
+				<!--Informacion del codigo de acuerd utilizado en al reserva y busqueda-->
+				<AgreementCode>CO234</AgreementCode>
+				<!--Mayo 7 2021 Herney -->
+				<UserBook>
+					<!-- Usuario del OBT que hizo la reserva -->
+					<loginBook>hdario</loginBook>
+					<nameBook>Pedro</nameBook>
+					<lastName>Vargas</lastName>
+					<!-- Codigo del usuario en la herramienta de reservas-->
+					<codeUser>4562</codeUser>
+					<!-- Email del usuario que hizo la reserva -->
+					<emailUser>pepe@gmail.com</emailUser>
+					<references>
+						<reference>
+							<code>1A</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1S</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1G</code>
+							<valued>HKI</valued>
+						</reference>
+					</references>
+				</UserBook>
+				<InfoBook>
+				    <!--Ciudad donde se va a tomar el hotel-->
+					<Hotelcity>Pereira</Hotelcity>
+					<!--Pais del hotel -->
+					<CountryHotel>CO</CountryHotel>
+					<!--Continente donde esta el hotel-->
+					<continent>America del sur</continent>
+					<!--COdigo que tiene el destino en el broker -->
+					<CodeCityBroker>35353</CodeCityBroker>
+					<!--Fecha en la que se hizo la reserva -->
+					<DateBook>2018-12-23 T 12:12</DateBook>
+					<!--Fecha de ingreso al hotel-->
+					<dateCheckin>2019-02-14</dateCheckin>
+					<!--Fecha de salid del hotel -->
+					<dateCheckout>2019-02-18</dateCheckout>
+					<!-- Numero de noches solicitadas-->
+					 <numberNigths>4</numberNigths>
+					<!--- plazo limite para gastos en el hotel -->
+					<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+					<!--Plazo limite de la agencia -->
+					<DeadlineAgency>2019-01-12</DeadlineAgency>
+					<!-- Hora de checkin -->
+					<timeCheckin>15:00</timeCheckin>
+					<!--Hora de checkout-->
+					<timeCheckout>11:00</timeCheckout>					
+					<!--COdigo que tiene el destino en el broker -->
+					<CodeCityBroker>35353</CodeCityBroker>
+					<fareHotel>
+						<currencyFare>USD</currencyFare>
+						<!--Valor completo de la venta de toda la reserva-->
+						<totalSellFare>548</totalSellFare>
+						<!--Valor de las taxas de toda la reserva -->
+						<totalTax>20</totalTax>
+						<!--Total neto de la reserva -->
+						<totalNetfare>500</totalNetfare>
+						<!--Valor del fee, esto aplica adicional a los valores comisionables, algunas agencias adicional al markkup cobran un fee -->
+						<feeValue>20000</feeValue>
+						<currencyFee>COP</currencyFee>
+						<!---Indica si la tarifa es pagada en destino(HotelCollect) o si la tarifa es pagada en la agencia (PREPAID) o si es pagada por el cliente (CLIENTPAID)-->
+						<paidType>PREPAID</paidType>
+						<!-- Comision que la agencia tiene para esa venta, ejemplo 20% -->
+						<markup>0.2</markup>
+						<!--Valor del TRM(tasa de cambio de la moneda usada -->
+						<ExchangeRate>3000</ExchangeRate>
+						<!--*********Campos agregados abril 2021 -->
+						<!--Informacion agregada Abril 2021-->
+						<!--Indica en que moneda originalmente venia la tarifa del proveedor -->
+						<OriginalCurrency>USD</OriginalCurrency>
+						<!--valor neto en la moneda original en la que vino la tarifa del proveedor -->
+						<originalTotalNet>500</originalTotalNet>
+						<!--valor de venta  en la moneda original en la que vino la tarifa del proveedor -->
+						<originalTotalSale>548</originalTotalSale>
+						<!--*********Fin Campos agregados abril 2021 -->
+					</fareHotel>
+					<hotelInfo>
+						<!--nombre del hotel -->
+						<hotelName>Cadena regata</hotelName>
+						<!--Direccion del hotel-->
+						<addressHotel>cra 26 Bi No 45-65</addressHotel>
+						<!--Telefono del hotel -->
+						<phoneHotel>57 6 3372749</phoneHotel>
+						<!-- latitud del hotel-->
+						<latitud/>
+						<!--longitud del hotel-->
+						<longitud/>
+						<!--Numero de estrellas del hotel-->
+						<starts>4</starts>
+						<!--Servicios que tiene el hotel o descripcion -->
+						<facilities>Pool, air, meeting room</facilities>
+						<!--Informacion de la politica del hotel-->
+						<policy>Si cancela antes del...</policy>
+						<!--Informacion adicional al hotel que viene en la politica -->
+						<aditionalInfo>La piscina esta en mantenimiento</aditionalInfo>
+						<!-- Posible valores que el hotel cobre en destino-->
+						<additionalfee>Valor 35 USD por uso de area</additionalfee>
+						<!--Codigo iata del hotel cuando es GDS -->
+						<codeIataChain>AX</codeIataChain>
+						<chain>Marriot</chain>
+						<!--Url de la imagen del hotel -->
+						<urlimage>www.marriot.com/media/hotel.jpg</urlimage>
+						<!--Esto aplica para cuando el hotel es cargado via tarifario y no es obtenido de un broker -->
+						<codeHotel>23783</codeHotel>
+						<!--Codigo tributario del hotel -->
+						<fiscalID>10024089</fiscalID>
+					</hotelInfo>
+					<rooms>
+						<room>
+							<!-- tipo de habitacion -->
+							<roomType>Standar</roomType>
+							<!--Tipo de alimentacion incluida-->
+							<mealTable>Breakfast</mealTable>
+							<totalPax>4</totalPax>
+							<numAdt>2</numAdt>
+							<numCHD>0</numCHD>
+							<fareRoom>
+								<!--Codigo de la tarifa aplicada-->
+								<codeFare/>
+								<totalSellFare>548</totalSellFare>
+								<!--Valor de las taxas de toda la reserva -->
+								<totalTax>20</totalTax>
+								<!--Total neto de la reserva -->
+								<totalNetfare>500</totalNetfare>
+							</fareRoom>
+							<!--Texto de la politica de la habitacion-->
+							<policyRoom>....</policyRoom><policyRoom/>
+							<paxes>
+								<pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>	
+                                <pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>										
+							</paxes>
+						</room>
+						<room>
+							<!-- tipo de habitacion -->
+							<roomType>Standar</roomType>
+							<!--Tipo de alimentacion incluida-->
+							<mealTable>Breakfast</mealTable>
+							<totalPax>4</totalPax>
+							<numAdt>2</numAdt>
+							<numCHD>0</numCHD>
+							<fareRoom>
+								<!--Codigo de la tarifa aplicada-->
+								<codeFare/>
+								<totalSellFare>548</totalSellFare>
+								<!--Valor de las taxas de toda la reserva -->
+								<totalTax>20</totalTax>
+								<!--Total neto de la reserva -->
+								<totalNetfare>500</totalNetfare>
+							</fareRoom>
+							<!--Texto de la politica de la habitacion-->
+							<policyRoom>....</policyRoom><policyRoom/>
+							<paxes>
+								<pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>	
+                                <pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>										
+							</paxes>
+						</room>
+					</rooms>
+				</InfoBook>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+						 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</bookInfoHotel>
+            <bookInfoHotel>	
+                <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica para algunos brokers)-->
+				<status>Book</status>			
+				<!--Localizador del proveedor de hotel -->
+				<locSource>HS-626363</locSource>
+				<!--Localizador adicional del proveedor de hotel -->
+				<AditionalLoc>6725353</AditionalLoc>
+				<!--Nombre del source Hotelbeds, Tourico , Restel, otro-->
+				<sourceName>hotelbeds</sourceName>
+				<!--Codigo del proveedor en el backoffice de la agencia -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>
+				<!-- Mayo 7 2021 Herney-->
+				<!--Informacion del codigo de acuerd utilizado en al reserva y busqueda-->
+				<AgreementCode>CO234</AgreementCode>
+				<!--Mayo 7 2021 Herney -->
+				<UserBook>
+					<!-- Usuario del OBT que hizo la reserva -->
+					<loginBook>hdario</loginBook>
+					<nameBook>Pedro</nameBook>
+					<lastName>Vargas</lastName>
+					<!-- Codigo del usuario en la herramienta de reservas-->
+					<codeUser>4562</codeUser>
+					<!-- Email del usuario que hizo la reserva -->
+					<emailUser>pepe@gmail.com</emailUser>
+					<references>
+						<reference>
+							<code>1A</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1S</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1G</code>
+							<valued>HKI</valued>
+						</reference>
+					</references>
+				</UserBook>
+				<InfoBook>
+				    <!--Ciudad donde se va a tomar el hotel-->
+					<Hotelcity>Pereira</Hotelcity>
+					<!--Pais del hotel -->
+					<CountryHotel>CO</CountryHotel>
+					<!--Continente donde esta el hotel-->
+					<continent>America del sur</continent>
+					<!--COdigo que tiene el destino en el broker -->
+					<CodeCityBroker>35353</CodeCityBroker>
+					<!--Fecha en la que se hizo la reserva -->
+					<DateBook>2018-12-23 T 12:12</DateBook>
+					<!--Fecha de ingreso al hotel-->
+					<dateCheckin>2019-02-14</dateCheckin>
+					<!--Fecha de salid del hotel -->
+					<dateCheckout>2019-02-18</dateCheckout>
+					<!-- Numero de noches solicitadas-->
+					 <numberNigths>4</numberNigths>
+					<!--- plazo limite para gastos en el hotel -->
+					<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+					<!--Plazo limite de la agencia -->
+					<DeadlineAgency>2019-01-12</DeadlineAgency>
+					<!-- Hora de checkin -->
+					<timeCheckin>15:00</timeCheckin>
+					<!--Hora de checkout-->
+					<timeCheckout>11:00</timeCheckout>					
+					<!--COdigo que tiene el destino en el broker -->
+					<CodeCityBroker>35353</CodeCityBroker>
+					<fareHotel>
+						<currencyFare>USD</currencyFare>
+						<!--Valor completo de la venta de toda la reserva-->
+						<totalSellFare>548</totalSellFare>
+						<!--Valor de las taxas de toda la reserva -->
+						<totalTax>20</totalTax>
+						<!--Total neto de la reserva -->
+						<totalNetfare>500</totalNetfare>
+						<!--Valor del fee, esto aplica adicional a los valores comisionables, algunas agencias adicional al markkup cobran un fee -->
+						<feeValue>20000</feeValue>
+						<currencyFee>COP</currencyFee>
+						<!---Indica si la tarifa es pagada en destino(HotelCollect) o si la tarifa es pagada en la agencia (PREPAID) o si es pagada por el cliente (CLIENTPAID)-->
+						<paidType>PREPAID</paidType>
+						<!-- Comision que la agencia tiene para esa venta, ejemplo 20% -->
+						<markup>0.2</markup>
+						<!--Valor del TRM(tasa de cambio de la moneda usada -->
+						<ExchangeRate>3000</ExchangeRate>
+						<!--*********Campos agregados abril 2021 -->
+						<!--Informacion agregada Abril 2021-->
+						<!--Indica en que moneda originalmente venia la tarifa del proveedor -->
+						<OriginalCurrency>USD</OriginalCurrency>
+						<!--valor neto en la moneda original en la que vino la tarifa del proveedor -->
+						<originalTotalNet>500</originalTotalNet>
+						<!--valor de venta  en la moneda original en la que vino la tarifa del proveedor -->
+						<originalTotalSale>548</originalTotalSale>
+						<!--*********Fin Campos agregados abril 2021 -->
+					</fareHotel>
+					<hotelInfo>
+						<!--nombre del hotel -->
+						<hotelName>Cadena regata</hotelName>
+						<!--Direccion del hotel-->
+						<addressHotel>cra 26 Bi No 45-65</addressHotel>
+						<!--Telefono del hotel -->
+						<phoneHotel>57 6 3372749</phoneHotel>
+						<!-- latitud del hotel-->
+						<latitud/>
+						<!--longitud del hotel-->
+						<longitud/>
+						<!--Numero de estrellas del hotel-->
+						<starts>4</starts>
+						<!--Servicios que tiene el hotel o descripcion -->
+						<facilities>Pool, air, meeting room</facilities>
+						<!--Informacion de la politica del hotel-->
+						<policy>Si cancela antes del...</policy>
+						<!--Informacion adicional al hotel que viene en la politica -->
+						<aditionalInfo>La piscina esta en mantenimiento</aditionalInfo>
+						<!-- Posible valores que el hotel cobre en destino-->
+						<additionalfee>Valor 35 USD por uso de area</additionalfee>
+						<!--Codigo iata del hotel cuando es GDS -->
+						<codeIataChain>AX</codeIataChain>
+						<chain>Marriot</chain>
+						<!--Url de la imagen del hotel -->
+						<urlimage>www.marriot.com/media/hotel.jpg</urlimage>
+						<!--Esto aplica para cuando el hotel es cargado via tarifario y no es obtenido de un broker -->
+						<codeHotel>23783</codeHotel>
+						<!--Codigo tributario del hotel -->
+						<fiscalID>10024089</fiscalID>
+					</hotelInfo>
+					<rooms>
+						<room>
+							<!-- tipo de habitacion -->
+							<roomType>Standar</roomType>
+							<!--Tipo de alimentacion incluida-->
+							<mealTable>Breakfast</mealTable>
+							<totalPax>4</totalPax>
+							<numAdt>2</numAdt>
+							<numCHD>0</numCHD>
+							<fareRoom>
+								<!--Codigo de la tarifa aplicada-->
+								<codeFare/>
+								<totalSellFare>548</totalSellFare>
+								<!--Valor de las taxas de toda la reserva -->
+								<totalTax>20</totalTax>
+								<!--Total neto de la reserva -->
+								<totalNetfare>500</totalNetfare>
+							</fareRoom>
+							<!--Texto de la politica de la habitacion-->
+							<policyRoom>....</policyRoom><policyRoom/>
+							<paxes>
+								<pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>	
+                                <pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>										
+							</paxes>
+						</room>
+						<room>
+							<!-- tipo de habitacion -->
+							<roomType>Standar</roomType>
+							<!--Tipo de alimentacion incluida-->
+							<mealTable>Breakfast</mealTable>
+							<totalPax>4</totalPax>
+							<numAdt>2</numAdt>
+							<numCHD>0</numCHD>
+							<fareRoom>
+								<!--Codigo de la tarifa aplicada-->
+								<codeFare/>
+								<totalSellFare>548</totalSellFare>
+								<!--Valor de las taxas de toda la reserva -->
+								<totalTax>20</totalTax>
+								<!--Total neto de la reserva -->
+								<totalNetfare>500</totalNetfare>
+							</fareRoom>
+							<!--Texto de la politica de la habitacion-->
+							<policyRoom>....</policyRoom><policyRoom/>
+							<paxes>
+								<pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>	
+                                <pax>
+									<name>Pedro</name>
+									<lastName>vargas</lastName>
+									<mailPax>pedro@gmail.com</mailPax>
+									<phonePax>3103902521</phonePax>
+									<!--Tipo identificacion -->
+						            <documentTypePax>CC</documentTypePax>
+									<!-- IDentificacion del pasajero -->
+									<identification>10020303</identification>
+									<!--Indica si es hombre o mujer  M(hombre) F(Femenino) -->
+									<Gender>M</Gender>
+									<typePax>ADT</typePax>
+									<age>12</age>
+									<frecuentGuest>1312312</frecuentGuest>
+								</pax>										
+							</paxes>
+						</room>
+					</rooms>
+				</InfoBook>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+						 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+									los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+									queda pagado ante el proveedor pero el cliente debe a la agencia-->
+								    <OwnerCrediCard>C</OwnerCrediCard>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</bookInfoHotel>			
+		</bookInfoHotels>	
+		<bookCars>
+			<bookCar>
+			     <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica para algunos brokers)-->
+				<status>Book</status>	
+				<!--Localizador en el source -->
+				<locSource>JHUYTH</locSource>
+				<!--Localizador en el proveedor -->
+				<locProvider>HS63537338</locProvider>
+				<!--Nombre del source que brinda el servicio -->
+				<sourceName>1A</sourceName>
+				<!--Codigo del proveedor en el backoffice -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>
+				<!--Codigo IATA de la rentadora -->
+				<IatarentalCar>HZ</IatarentalCar>
+				<!--Nombre de la rentadora -->
+				<nameRentaCar>Hertz</nameRentaCar>
+				<!--Fecha en la que se hizo la reserva -->
+				<DateBook>2018-12-23 T 12:12</DateBook>
+				<!--Fecha en la que se toma el vehiculo-->
+				<pickUpDate>2019-02-14</pickUpDate>
+				<!--Fecha en la que se entrega el vehiculo -->
+				<DropOffDate>2019-02-18</DropOffDate>
+				<!--- plazo limite para gastos con el auto -->
+				<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+				<!-- Hora de en la que se tomara el vehiculo -->
+				<pickupTime>15:00</pickupTime>
+				<!--Hora de checkout-->
+				<ReturnTime>11:00</ReturnTime>
+				<UserBook>
+					<!-- Usuario que hizo la reserva-->
+					<loginBook>hdario</loginBook>
+					<nameBook>Pedro</nameBook>
+					<lastName>Vargas</lastName>
+					<!-- Codigo del usuario en la herramienta de reservas-->
+					<codeUser>4562</codeUser>
+					<!-- Email del usuario que hizo la reserva -->
+					<emailUser>pepe@gmail.com</emailUser>
+					<references>
+						<reference>
+							<code>1A</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1S</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1G</code>
+							<valued>HKI</valued>
+						</reference>
+					</references>
+				</UserBook>
+
+				<pickupLocation>
+					<iataCodePickup>MIA</iataCodePickup>
+					<namePickupDestination>Miami</namePickupDestination>
+				</pickupLocation>
+				<DropOffLocation>
+					<iataCodeDropOff>MIA</iataCodeDropOff>
+					<nameDropOff>Miami</nameDropOff>
+				</DropOffLocation>
+				<fareCar>
+					<currencyFare>USD</currencyFare>
+					<!--Valor completo de la venta de toda la reserva-->
+					<totalSellFare>548</totalSellFare>
+					<!--Valor de las taxas de toda la reserva -->
+					<totalTax>20</totalTax>
+					<!--Total neto de la reserva -->
+					<totalNetfare>500</totalNetfare>
+					<!--Valor del fee, esto aplica adicional a los valores comisionables, algunas agencias adicional al markkup cobran un fee -->
+					<feeValue>20000</feeValue>
+					<currencyFee>COP</currencyFee>
+					<!---Indica si la tarifa es pagada en la agencia (PREPAID) o si es pagada por el cliente (CLIENTPAID) en destino-->
+					<paidType>PREPAID</paidType>
+					<!-- Comision que la agencia tiene para esa venta -->
+					<markup>10.5</markup>
+					<!--Valor del TRM(tasa de cambio de la moneda usada -->
+					<ExchangeRate>3000</ExchangeRate>
+					<!--Codigo de la tarifa aplicada a la reserva, es algo que la rentadora entrega-->
+					<rateCode>ADM</rateCode>
+					<!--Codigo del contrato con la rentadora-->
+					<corporateDiscount/>
+					<!--Codigo promocional aplicado a la tarifa de auto -->
+					<promocionalCode/>
+					<!-- valor a pagar a la agencia bien sea para pago en destino o prepago-->
+					<payAgency>234</payAgency>
+					<!-- valor a pagar en destino, esto para cuando hay dropoff(se tima en un estado/pais y se entrega en otro-->
+					<payDestination>234</payDestination>
+					<!--Tippo de vehiculo-->
+					<vehiculeType>ECAR</vehiculeType>
+					<rules>EST TTL INC LDW-LIS-TAX-ADD DRV-TRF-AP SVC CHG-VLCR-TUF</rules>
+				</fareCar>
+				<pax>
+					<name>Pedro</name>
+					<lastName>vargas</lastName>
+					<mailPax>pedro@gmail.com</mailPax>
+					<frecuentGuest>1312312</frecuentGuest>
+				</pax>
+				<inclusions>
+					<inclusion>
+						<nameInclusion>GPS</nameInclusion>
+						<!--1 Incluido 0 no incluido-->
+						<value>1</value>
+					</inclusion>
+					<inclusion>
+						<nameInclusion>AdditionaDrive</nameInclusion>
+						<value>0</value>
+					</inclusion>
+				</inclusions>
+				<SpecialEquipments>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat child</name>
+						<ReferenceValue>234</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat boy</name>
+						<ReferenceValue>35</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>SkyDrive</name>
+						<ReferenceValue>43</ReferenceValue>
+					</SpecialEquipment>
+				</SpecialEquipments>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+						 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+							los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+							queda pagado ante el proveedor pero el cliente debe a la agencia-->
+						    <OwnerCrediCard>C</OwnerCrediCard>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</bookCar>
+			<bookCar>
+			    <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica para algunos brokers)-->
+				<status>Book</status>	
+				<!--Localizador en el source -->
+				<locSource>JHUYTH</locSource>
+				<!--Localizador en el proveedor -->
+				<locProvider>HS63537338</locProvider>
+				<!--Nombre del source que brinda el servicio -->
+				<sourceName>1A</sourceName>
+				<!--Codigo del proveedor en el backoffice -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>
+				<!--Codigo IATA de la rentadora -->
+				<IatarentalCar>HZ</IatarentalCar>
+				<!--Nombre de la rentadora -->
+				<nameRentaCar>Hertz</nameRentaCar>
+				<!--Fecha en la que se hizo la reserva -->
+				<DateBook>2018-12-23 T 12:12</DateBook>
+				<!--Fecha en la que se toma el vehiculo-->
+				<pickUpDate>2019-02-14</pickUpDate>
+				<!--Fecha en la que se entrega el vehiculo -->
+				<DropOffDate>2019-02-18</DropOffDate>
+				<!--- plazo limite para gastos con el auto -->
+				<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+				<!-- Hora de en la que se tomara el vehiculo -->
+				<pickupTime>15:00</pickupTime>
+				<!--Hora de checkout-->
+				<ReturnTime>11:00</ReturnTime>
+				<UserBook>
+					<!-- Usuario que hizo la reserva-->
+					<loginBook>hdario</loginBook>
+					<nameBook>Pedro</nameBook>
+					<lastName>Vargas</lastName>
+					<!-- Codigo del usuario en la herramienta de reservas-->
+					<codeUser>4562</codeUser>
+					<!-- Email del usuario que hizo la reserva -->
+					<emailUser>pepe@gmail.com</emailUser>
+					<references>
+						<reference>
+							<code>1A</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1S</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1G</code>
+							<valued>HKI</valued>
+						</reference>
+					</references>
+				</UserBook>
+
+				<pickupLocation>
+					<iataCodePickup>MIA</iataCodePickup>
+					<namePickupDestination>Miami</namePickupDestination>
+				</pickupLocation>
+				<DropOffLocation>
+					<iataCodeDropOff>MIA</iataCodeDropOff>
+					<nameDropOff>Miami</nameDropOff>
+				</DropOffLocation>
+				<fareCar>
+					<currencyFare>USD</currencyFare>
+					<!--Valor completo de la venta de toda la reserva-->
+					<totalSellFare>548</totalSellFare>
+					<!--Valor de las taxas de toda la reserva -->
+					<totalTax>20</totalTax>
+					<!--Total neto de la reserva -->
+					<totalNetfare>500</totalNetfare>
+					<!--Valor del fee, esto aplica adicional a los valores comisionables, algunas agencias adicional al markkup cobran un fee -->
+					<feeValue>20000</feeValue>
+					<currencyFee>COP</currencyFee>
+					<!---Indica si la tarifa es pagada en la agencia (PREPAID) o si es pagada por el cliente (CLIENTPAID) en destino-->
+					<paidType>PREPAID</paidType>
+					<!-- Comision que la agencia tiene para esa venta -->
+					<markup>10.5</markup>
+					<!--Valor del TRM(tasa de cambio de la moneda usada -->
+					<ExchangeRate>3000</ExchangeRate>
+					<!--Codigo de la tarifa aplicada a la reserva, es algo que la rentadora entrega-->
+					<rateCode>ADM</rateCode>
+					<!--Codigo del contrato con la rentadora-->
+					<corporateDiscount/>
+					<!--Codigo promocional aplicado a la tarifa de auto -->
+					<promocionalCode/>
+					<!-- valor a pagar a la agencia bien sea para pago en destino o prepago-->
+					<payAgency>234</payAgency>
+					<!-- valor a pagar en destino, esto para cuando hay dropoff(se tima en un estado/pais y se entrega en otro-->
+					<payDestination>234</payDestination>
+					<!--Tippo de vehiculo-->
+					<vehiculeType>ECAR</vehiculeType>
+					<rules>EST TTL INC LDW-LIS-TAX-ADD DRV-TRF-AP SVC CHG-VLCR-TUF</rules>
+				</fareCar>
+				<pax>
+					<name>Pedro</name>
+					<lastName>vargas</lastName>
+					<mailPax>pedro@gmail.com</mailPax>
+					<frecuentGuest>1312312</frecuentGuest>
+				</pax>
+				<inclusions>
+					<inclusion>
+						<nameInclusion>GPS</nameInclusion>
+						<!--1 Incluido 0 no incluido-->
+						<value>1</value>
+					</inclusion>
+					<inclusion>
+						<nameInclusion>AdditionaDrive</nameInclusion>
+						<value>0</value>
+					</inclusion>
+				</inclusions>
+				<SpecialEquipments>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat child</name>
+						<ReferenceValue>234</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat boy</name>
+						<ReferenceValue>35</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>SkyDrive</name>
+						<ReferenceValue>43</ReferenceValue>
+					</SpecialEquipment>
+				</SpecialEquipments>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+						 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+							los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+							queda pagado ante el proveedor pero el cliente debe a la agencia-->
+							<OwnerCrediCard>C</OwnerCrediCard>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</bookCar>
+			<bookCar>
+			    <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica para algunos brokers)-->
+				<status>Book</status>	
+				<!--Localizador en el source -->
+				<locSource>JHUYTH</locSource>
+				<!--Localizador en el proveedor -->
+				<locProvider>HS63537338</locProvider>
+				<!--Nombre del source que brinda el servicio -->
+				<sourceName>1A</sourceName>
+				<!--Codigo del proveedor en el backoffice -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>
+				<!--Codigo IATA de la rentadora -->
+				<IatarentalCar>HZ</IatarentalCar>
+				<!--Nombre de la rentadora -->
+				<nameRentaCar>Hertz</nameRentaCar>
+				<!--Fecha en la que se hizo la reserva -->
+				<DateBook>2018-12-23 T 12:12</DateBook>
+				<!--Fecha en la que se toma el vehiculo-->
+				<pickUpDate>2019-02-14</pickUpDate>
+				<!--Fecha en la que se entrega el vehiculo -->
+				<DropOffDate>2019-02-18</DropOffDate>
+				<!--- plazo limite para gastos con el auto -->
+				<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+				<!-- Hora de en la que se tomara el vehiculo -->
+				<pickupTime>15:00</pickupTime>
+				<!--Hora de checkout-->
+				<ReturnTime>11:00</ReturnTime>
+				<UserBook>
+					<!-- Usuario que hizo la reserva-->
+					<loginBook>hdario</loginBook>
+					<nameBook>Pedro</nameBook>
+					<lastName>Vargas</lastName>
+					<!-- Codigo del usuario en la herramienta de reservas-->
+					<codeUser>4562</codeUser>
+					<!-- Email del usuario que hizo la reserva -->
+					<emailUser>pepe@gmail.com</emailUser>
+					<references>
+						<reference>
+							<code>1A</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1S</code>
+							<valued>HKI</valued>
+						</reference>
+						<reference>
+							<code>1G</code>
+							<valued>HKI</valued>
+						</reference>
+					</references>
+				</UserBook>
+
+				<pickupLocation>
+					<iataCodePickup>MIA</iataCodePickup>
+					<namePickupDestination>Miami</namePickupDestination>
+				</pickupLocation>
+				<DropOffLocation>
+					<iataCodeDropOff>MIA</iataCodeDropOff>
+					<nameDropOff>Miami</nameDropOff>
+				</DropOffLocation>
+				<fareCar>
+					<currencyFare>USD</currencyFare>
+					<!--Valor completo de la venta de toda la reserva-->
+					<totalSellFare>548</totalSellFare>
+					<!--Valor de las taxas de toda la reserva -->
+					<totalTax>20</totalTax>
+					<!--Total neto de la reserva -->
+					<totalNetfare>500</totalNetfare>
+					<!--Valor del fee, esto aplica adicional a los valores comisionables, algunas agencias adicional al markkup cobran un fee -->
+					<feeValue>20000</feeValue>
+					<currencyFee>COP</currencyFee>
+					<!---Indica si la tarifa es pagada en la agencia (PREPAID) o si es pagada por el cliente (CLIENTPAID) en destino-->
+					<paidType>PREPAID</paidType>
+					<!-- Comision que la agencia tiene para esa venta -->
+					<markup>10.5</markup>
+					<!--Valor del TRM(tasa de cambio de la moneda usada -->
+					<ExchangeRate>3000</ExchangeRate>
+					<!--Codigo de la tarifa aplicada a la reserva, es algo que la rentadora entrega-->
+					<rateCode>ADM</rateCode>
+					<!--Codigo del contrato con la rentadora-->
+					<corporateDiscount/>
+					<!--Codigo promocional aplicado a la tarifa de auto -->
+					<promocionalCode/>
+					<!-- valor a pagar a la agencia bien sea para pago en destino o prepago-->
+					<payAgency>234</payAgency>
+					<!-- valor a pagar en destino, esto para cuando hay dropoff(se tima en un estado/pais y se entrega en otro-->
+					<payDestination>234</payDestination>
+					<!--Tippo de vehiculo-->
+					<vehiculeType>ECAR</vehiculeType>
+					<rules>EST TTL INC LDW-LIS-TAX-ADD DRV-TRF-AP SVC CHG-VLCR-TUF</rules>
+				</fareCar>
+				<pax>
+					<name>Pedro</name>
+					<lastName>vargas</lastName>
+					<mailPax>pedro@gmail.com</mailPax>
+					<frecuentGuest>1312312</frecuentGuest>
+				</pax>
+				<inclusions>
+					<inclusion>
+						<nameInclusion>GPS</nameInclusion>
+						<!--1 Incluido 0 no incluido-->
+						<value>1</value>
+					</inclusion>
+					<inclusion>
+						<nameInclusion>AdditionaDrive</nameInclusion>
+						<value>0</value>
+					</inclusion>
+				</inclusions>
+				<SpecialEquipments>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat child</name>
+						<ReferenceValue>234</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>Seat boy</name>
+						<ReferenceValue>35</ReferenceValue>
+					</SpecialEquipment>
+					<SpecialEquipment>
+						<codeEquipment>G56</codeEquipment>
+						<name>SkyDrive</name>
+						<ReferenceValue>43</ReferenceValue>
+					</SpecialEquipment>
+				</SpecialEquipments>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+						 <!-- INdica de quien es la TC C:Cliente|A: Agencia, esto aplica ya que hay ocasiones en 
+							los que la agencia emite con una TC propia y no la del cliente, en ese caso el servicio 
+							queda pagado ante el proveedor pero el cliente debe a la agencia-->
+							<OwnerCrediCard>C</OwnerCrediCard>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</bookCar>
+		</bookCars>
+		<Insurances>
+		   <Insurance>
+		        <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica cuando se vende con aereo)-->
+				<status>Book</status>	
+				<!--Localizador en el source -->
+				<locSource>JHUYTH</locSource>
+				<!--Localizador en el proveedor -->        
+				<!--Nombre del source que brinda el servicio -->
+				<sourceName>TravelAce</sourceName>
+				<!--Codigo del proveedor en el backoffice -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>                
+				<!--Fecha en la que se hizo la reserva -->
+				<DateBook>2018-12-23 T 12:12</DateBook>
+				<!--Fecha en la que se toma el vehiculo-->
+				<dateStarService>2019-02-14</dateStarService>
+				<!--Fecha en la que se entrega el vehiculo -->
+				<dateFinalService>2019-02-18</dateFinalService>
+				<!--- plazo limite para gastos con el auto -->
+				<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+				<fareInsurance>
+					<!--Valor de la venta -->
+					<totaSellFare>500</totaSellFare>
+					<!--Valor tarifa neta-->
+					<totaNetFare>420</totaNetFare>          
+					<!--Moneda de venta -->
+					<currency>USD</currency> 
+					<!--Valor del TRM(tasa de cambio de la moneda usada -->
+					<ExchangeRate>3000</ExchangeRate>
+					<numADT>8</numADT>
+					<numCHD>2</numCHD>
+					<numSenior>1</numSenior>
+					<Paxes>
+						<pax>
+							<name>Pedro</name>
+							<lastName>vargas</lastName>
+							<mailPax>pedro@gmail.com</mailPax>
+							<!--Tipo identificacion -->
+							<documentTypePax>CC</documentTypePax>
+							<!-- IDentificacion del pasajero -->
+							<identification>10020303</identification>
+							<typePax>ADT</typePax>
+							<age>12</age>
+							<voucher>1312312</voucher>
+							<dateBirth>1980-12-23</dateBirth>
+							<!--Valor de la venta -->
+							<totaSellFarePax>500</totaSellFarePax>
+							<!--Valor tarifa neta-->
+							<totaNetFarePax>420</totaNetFarePax>							
+						</pax>
+						<pax>
+							<name>Pedro</name>
+							<lastName>vargas</lastName>
+							<mailPax>pedro@gmail.com</mailPax>
+							<!--Tipo identificacion -->
+							<documentTypePax>CC</documentTypePax>
+							<!-- IDentificacion del pasajero -->
+							<identification>10020303</identification>
+							<typePax>ADT</typePax>
+							<age>12</age>
+							<voucher>1312312</voucher>
+							<dateBirth>1980-12-23</dateBirth>
+							<!--Valor de la venta -->
+							<totaSellFarePax>500</totaSellFarePax>
+							<!--Valor tarifa neta-->
+							<totaNetFarePax>420</totaNetFarePax>							
+						</pax>
+					</Paxes>            
+				</fareInsurance>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</Insurance>	
+			<Insurance>
+			    <!--  Junio 9 del 2021, se agrega status ala reserva Mateo-Herney-->
+				<!-- Book(reserva que es equivalente a emitido) | Void(Anulado) | Hold(Solo aplica cuando se vende con aereo)-->
+				<status>Book</status>	
+				<!--Localizador en el source -->
+				<locSource>JHUYTH</locSource>
+				<!--Localizador en el proveedor -->        
+				<!--Nombre del source que brinda el servicio -->
+				<sourceName>TravelAce</sourceName>
+				<!--Codigo del proveedor en el backoffice -->
+				<CodProvideBackoffice>J21231</CodProvideBackoffice>                
+				<!--Fecha en la que se hizo la reserva -->
+				<DateBook>2018-12-23 T 12:12</DateBook>
+				<!--Fecha en la que se toma el vehiculo-->
+				<dateStarService>2019-02-14</dateStarService>
+				<!--Fecha en la que se entrega el vehiculo -->
+				<dateFinalService>2019-02-18</dateFinalService>
+				<!--- plazo limite para gastos con el auto -->
+				<DeadlineBroker>2019-01-14 T 16:00</DeadlineBroker>
+				<fareInsurance>
+					<!--Valor de la venta -->
+					<totaSellFare>500</totaSellFare>
+					<!--Valor tarifa neta-->
+					<totaNetFare>420</totaNetFare>          
+					<!--Moneda de venta -->
+					<currency>USD</currency> 
+					<!--Valor del TRM(tasa de cambio de la moneda usada -->
+					<ExchangeRate>3000</ExchangeRate>
+					<numADT>8</numADT>
+					<numCHD>2</numCHD>
+					<numSenior>1</numSenior>
+					<Paxes>
+						<pax>
+							<name>Pedro</name>
+							<lastName>vargas</lastName>
+							<mailPax>pedro@gmail.com</mailPax>
+							<!--Tipo identificacion -->
+							<documentTypePax>CC</documentTypePax>
+							<!-- IDentificacion del pasajero -->
+							<identification>10020303</identification>
+							<typePax>ADT</typePax>
+							<age>12</age>
+							<voucher>1312312</voucher>
+							<dateBirth>1980-12-23</dateBirth>
+							<!--Valor de la venta -->
+							<totaSellFarePax>500</totaSellFarePax>
+							<!--Valor tarifa neta-->
+							<totaNetFarePax>420</totaNetFarePax>							
+						</pax>
+						<pax>
+							<name>Pedro</name>
+							<lastName>vargas</lastName>
+							<mailPax>pedro@gmail.com</mailPax>
+							<!--Tipo identificacion -->
+							<documentTypePax>CC</documentTypePax>
+							<!-- IDentificacion del pasajero -->
+							<identification>10020303</identification>
+							<typePax>ADT</typePax>
+							<age>12</age>
+							<voucher>1312312</voucher>
+							<dateBirth>1980-12-23</dateBirth>
+							<!--Valor de la venta -->
+							<totaSellFarePax>500</totaSellFarePax>
+							<!--Valor tarifa neta-->
+							<totaNetFarePax>420</totaNetFarePax>							
+						</pax>
+					</Paxes>            
+				</fareInsurance>
+				<payments>
+					<payment>
+						<!-- Cash  TC-->
+						<fop>FPCASH</fop>
+						<valuePay>73747585</valuePay>
+					</payment>
+					<payment>
+						<!-- Cash  TC-->
+						<type>TC</type>
+						<valuePay>73747585</valuePay>
+						<creditCardInfo>
+							<!--Ultimos digitos de la TC -->
+							<lastCreditDigit>XXXX4567</lastCreditDigit>
+							<!--VI CA AX DI  -->
+							<flag>VI</flag>
+							<!--Codigo de aprobacion de la transacion-->
+							<approvalCode>6363</approvalCode>
+							<!--Codigo auxiliar de aprobacion de la transacion-->
+							<AdditionalCode>6363</AdditionalCode>
+							<!-- indica si el pago fue procesado por GDS/Source o si fue procesado por una pasarela  GDS|Gateway-->
+							<channelProcess>GDS</channelProcess>
+						</creditCardInfo>
+					</payment>
+				</payments>
+			</Insurance>									
+		</Insurances>	
+
+     <infoOffline>
+	    <!--KInformacion de viaticos y anticipos -->
+	     <Advance>
+		   <!--Fecha inicial de la solicitud para los viaticoss-->
+		    <StartDate> 2021-10-23</StartDate>
+			<!--Fecha final de la solicitud para los viaticoss-->
+			<EndDate> 2021-10-25</EndDate>
+			<!--Moneda en la cual se solicita los anticipos-->
+			<MoneyAdvance>COP</MoneyAdvance>
+			<!--Indica si la solicitud es para un gasto nacional o internacional-->
+			<Domestical>Yes</Domestical>
+			<!--Valor solicitado -->
+			<ValueAdvance>345000</ValueAdvance>
+			<!--Valor solicitado -->
+			<ValueApproved>345000</ValueApproved>
+			<!--Valor Rendido, es decir el valor que la persona reporto como gastos -->
+			<ValueExpenseReported>325000</ValueExpenseReported>
+			<!--Datos de la persona para la que se pide el anticipo -->
+			<paxExpense>
+			   <!--Nombre del pax -->
+			   <Name>Pedro</Name>			   
+			   <!--Apellido del pax -->
+			   <Lastname>Vargas</Lastname>
+			   <!--email del pax -->
+			   <mail>pedro@gmail.com</mail>			   
+			   <!--identificacion del pax -->
+			   <Identification>10345768</Identification>
+               <!-- CC: Cedula, NI: Nit, PA:Pasaporte, RT: RUT, CE: Cedula extranjeria,, CN: CNPJ, CP: CPNJ -->
+			   <Documentype>CC</Documentype>			   
+			   <!--Codeigo empleado -->
+			   <Code>Vargas</Code>
+			</paxExpense>
+			
+			<!--Ciudad desde la que pide el viatico -->
+			<DepartureCity>BOG</DepartureCity>
+            <!--Ciudad hacia  la que pide el viatico -->
+			<DepartureCity>MDE</DepartureCity>
+			<UserRequested>
+			   <nameRequest></nameRequest>
+			</UserRequested>
+		 </Advance>
+	 </infoOffline>		
+	</Book>
+</Books>

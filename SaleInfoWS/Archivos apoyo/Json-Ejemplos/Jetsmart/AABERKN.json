@@ -1,0 +1,537 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABERKN",
+			"dateLocator": "2021-04-19T14:32:45",
+			"EntityBook": {
+				"codeEntity": 32605,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "AOP999",
+				"InvoiceInfoClient": {
+					"name": "Pilar",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "3451220",
+					"movilePhone": "",
+					"address": "SANTIAGO",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "ALEJANDRO",
+				"lastName": "MELLA",
+				"codeUser": 148987,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "CAPACITACIONES",
+				"codetravelReason": "CAPACITACIONES",
+				"CenterCosts": [
+					{
+						"codeOBT": 81059,
+						"codeBackoffice": "115",
+						"codeClient": "",
+						"nameCeco": "OPERACIONES",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "Lorena ",
+							"lastName": "Carrasco",
+							"login": "lorena1",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 1,
+							"dateSent": "4/19/2021 2:33:00 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						}
+					]
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 2964,
+						"name": "CAMPO5",
+						"alias": "CAMPO5",
+						"codeBackOffice": "-",
+						"codeClient": "",
+						"value": "CASH"
+					}
+				]
+			},
+			"BookInfoFlights": [
+				{
+					"dateBook": "2021-04-19T14:32:45",
+					"locSource": "CDUFNR",
+					"userOrigin": "OAA",
+					"channel": "B2B",
+					"ip": "200.83.155.131",
+					"operatingSystem": "WinNT",
+					"Browser": "Chrome/89.0",
+					"fidelidad": {
+						"Campana": "",
+						"codCompany": "",
+						"factorpoints": "",
+						"sessionPoints": "",
+						"codeAux": ""
+					},
+					"inter": "NO",
+					"airCompanyIssue": {
+						"numericalCode": "995",
+						"iataCode": "JA"
+					},
+					"Source": "JetSmartWS",
+					"maxfare": 0,
+					"minFare": 0,
+					"publicfare": 0.0,
+					"fareConstruction": "",
+					"tourcode": "",
+					"firstStop": "CCP",
+					"route": "SCL/CCP/SCL",
+					"segments": [
+						{
+							"segmentNumber": 1,
+							"cabine": "Y",
+							"DomesticalSegment": "",
+							"familifare": "",
+							"baggage": "0P 23K",
+							"additionalInfo": "",
+							"Record": "CDUFNR",
+							"Class": "U",
+							"airlineOperator": "JA",
+							"airlineaMarketing": "JA",
+							"DurationFligth": 0,
+							"terminal": "",
+							"fareBase": "ULRDCL",
+							"departureCity": "Santiago de Chile                                           ",
+							"DepartureIata": "SCL",
+							"DepartureAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-07-05T11:58:00",
+							"ArrivalCity": "Concepcion",
+							"ArrivalIata": "CCP",
+							"ArrivalAirport": "Carriel Sur",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2021-07-05T13:05:00",
+							"groupSegment": 1,
+							"CarbonEmission": "",
+							"milesflight": "",
+							"FlightNumber": " 103"
+						},
+						{
+							"segmentNumber": 2,
+							"cabine": "Y",
+							"DomesticalSegment": "",
+							"familifare": "",
+							"baggage": "0P 23K",
+							"additionalInfo": "",
+							"Record": "CDUFNR",
+							"Class": "U",
+							"airlineOperator": "JA",
+							"airlineaMarketing": "JA",
+							"DurationFligth": 0,
+							"terminal": "",
+							"fareBase": "ULRDCL",
+							"departureCity": "Concepcion",
+							"DepartureIata": "CCP",
+							"DepartureAirport": "Carriel Sur",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-07-14T06:20:00",
+							"ArrivalCity": "Santiago de Chile                                           ",
+							"ArrivalIata": "SCL",
+							"ArrivalAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2021-07-14T07:28:00",
+							"groupSegment": 2,
+							"CarbonEmission": "",
+							"milesflight": "",
+							"FlightNumber": " 102"
+						}
+					],
+					"Paxes": [
+						{
+							"name": "WILLIAM",
+							"lastName": "NEVER",
+							"paxtype": "ADT",
+							"DocumentType": "NI",
+							"identification": "55555555-5",
+							"email": "Pruebas@gmail.com",
+							"phonePax": "978774471",
+							"frecuentFlyer": "",
+							"ticketNumber": "",
+							"status": "BOOK",
+							"commision": 1,
+							"tourcode": "",
+							"ReissueticketNumber": "",
+							"UserIssue": {
+								"loginBook": "",
+								"nameBook": "",
+								"lastName": "",
+								"codeUser": 0,
+								"emailUser": "",
+								"references": []
+							},
+							"payments": [],
+							"fees": {
+								"totalValue": 0.0,
+								"monedaFee": "",
+								"payment": {
+									"fop": "FPCASH",
+									"valuePay": 0.0
+								},
+								"fee": []
+							},
+							"fare": {
+								"baseFare": 20626.0,
+								"currencyFare": "CLP",
+								"totalTicket": 32278.0,
+								"localfare": 20626.0,
+								"localCurrency": "CLP",
+								"TotalTax": 11652.0,
+								"penalityValue": 0.0,
+								"totalAncillary": 0.0,
+								"ExchangeRate": 1.0,
+								"maxFare": 0,
+								"minFare": 0,
+								"publicFare": 0.0,
+								"fareConstruction": "",
+								"firstStop": "",
+								"taxes": [
+									{
+										"codeTax": "PBT",
+										"valtax": 5826.0
+									},
+									{
+										"codeTax": "PBT",
+										"valtax": 5826.0
+									}
+								],
+								"penalities": [],
+								"ancillaries": []
+							},
+							"Seats": [],
+							"totaSellFarePax": 0,
+							"totaNetFarePax": 0
+						}
+					],
+					"remarks": [
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNETIDCLIENTEAOP999",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-AGE/DEMOS",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TEL/223300951",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TELPAX/978774471",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CLI/Pruebas Cliente Basico",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PUBLICFARE/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PRIVATEFARE/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-UPFRONTDISCOUNT/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RF/amella Pruebas.com",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/CAPACITACIONES",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/1090",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FECHARESERVA/2021/04/19 143243",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FIRSOLI/amella_Pruebas.com",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TIPOSOLI/AGENTE",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-SOLICITANTE/ALEJANDRO MELLA",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/180149/LORENA  CARRASCO",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CECO1/81059",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PORCECO1/100",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/PG-04/CV-AMG/RF-",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/OB-",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/ST-",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/SL-ALEJANDRO MELLA",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "-CASH",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "IDSOL-¥1.1",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "OBT-Kontrol Travel ",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CEDULA/55555555-5/P1",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMIN/17800.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMAX/17800.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXD TTP CLP 17800",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXP TTP CLP 17800",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MIND TTP CLP 17800",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MINP TTP CLP 17800",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HF-17800.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "LF-17800.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TA/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IVATA/0",
+							"segment": 0,
+							"number": 0
+						}
+					]
+				}
+			],
+			"bookInfoHotels": [],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

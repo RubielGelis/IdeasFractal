@@ -1,0 +1,11 @@
+<!--Respuesta del WS-->
+<CreditLimitRS>
+   <!--Codigo del cliente en el backoffice de la agencia -->
+  <CodeClientBackOffice>6252</CodeClientBackOffice>
+  <!--Codigo del cliente en el OBT-KontrolTravel -->
+  <CodeClientOBT>627</CodeClientOBT>
+  <!--Status de la transaccion OK(Proceder)  NO-OK(No proceder) -->
+  <status>OK</status>
+  <!--Mensaje que se debe mostrar de la evaluacion en caso que no se pueda proceder -->
+  <Message>Por favor comunicarse con ..</Message>
+</CreditLimitRS>

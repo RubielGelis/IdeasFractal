@@ -1,0 +1,202 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABERKU",
+			"dateLocator": "2021-04-19T14:39:30",
+			"EntityBook": {
+				"codeEntity": 32605,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "AOP999",
+				"InvoiceInfoClient": {
+					"name": "Pilar",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "3451220",
+					"movilePhone": "",
+					"address": "SANTIAGO",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "ALEJANDRO",
+				"lastName": "MELLA",
+				"codeUser": 148987,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "CAPACITACIONES",
+				"codetravelReason": "CAPACITACIONES",
+				"CenterCosts": [
+					{
+						"codeOBT": 81059,
+						"codeBackoffice": "115",
+						"codeClient": "",
+						"nameCeco": "OPERACIONES",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "Alejandra",
+							"lastName": "Rivas",
+							"login": "alejandra1",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 1,
+							"dateSent": "4/19/2021 2:39:43 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						},
+						{
+							"mailApprover": "lcarrasco@Pruebas.com",
+							"nameApprover": "Lorena ",
+							"lastName": "Carrasco",
+							"login": "lorena1",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 1,
+							"dateSent": "4/19/2021 2:39:44 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						}
+					]
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 2964,
+						"name": "CAMPO5",
+						"alias": "CAMPO5",
+						"codeBackOffice": "-",
+						"codeClient": "",
+						"value": "CASH"
+					}
+				]
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "20007082",
+					"AditionalLoc": "20007082",
+					"sourceName": "hotels_roombeast",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "ALEJANDRO",
+						"lastName": "MELLA",
+						"codeUser": 148987,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-04-19T14:39:30",
+						"dateCheckin": "2021-08-02T00:00:00",
+						"dateCheckout": "2021-08-03T00:00:00",
+						"DeadlineBroker": "2021-07-31T00:00:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 145180.0,
+							"totalTax": 0.0,
+							"totalNetfare": 145180.0,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.0,
+							"ExchangeRate": 1.0
+						},
+						"Hotelcity": "SANTIAGO",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "45 BY DIRECTOR",
+							"addressHotel": "Carmencita 45",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 4,
+							"facilities": "",
+							"policy": "Desde sábado, 31 de julio de 2021, tiene una penalidad de CLP 145180Desde sábado, 31 de julio de 2021, tiene una penalidad de CLP 145180",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "https://cerbero.roombeast.com/images/imgfichas/185/185-1.jpg",
+							"codeHotel": "185",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "SINGLE",
+								"mealTable": "Con desayuno",
+								"totalPax": 72590.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 72590.0,
+									"totalTax": 0.0,
+									"totalNetfare": 61000.0
+								},
+								"policyRoom": "Desde sábado, 31 de julio de 2021, tiene una penalidad de CLP 145180",
+								"paxes": [
+									{
+										"name": "WILLIAM",
+										"lastName": "NEVER",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "lcarrasco@Pruebas.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							},
+							{
+								"roomType": "SINGLE",
+								"mealTable": "Con desayuno",
+								"totalPax": 72590.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 72590.0,
+									"totalTax": 0.0,
+									"totalNetfare": 61000.0
+								},
+								"policyRoom": "Desde sábado, 31 de julio de 2021, tiene una penalidad de CLP 145180",
+								"paxes": [
+									
+									{
+										"name": "ALEJANDRO",
+										"lastName": "MELLA",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "lcarrasco@Pruebas.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

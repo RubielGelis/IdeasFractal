@@ -1,0 +1,47 @@
+<!--Ejemplo de tabla donde se deberia grabar la info
+CREATE TABLE CreditLimitRQ
+(
+  idCreditLimitRQ        int identity,
+  CodeClientBackOffice   varchar(20),
+  CodeClientOBT          varchar(20),
+  Name                   varchar(200),
+  locValidacion          varchar(10),
+  value                  float,
+  Currency               varchar(3),
+  description            varchar(300),
+  paymentType            varchar(10),
+  mailUser               varchar(100),
+  status                 varchar(10),
+  messageValidation      varchar(300)
+)
+
+-->
+<CreditLimitRQ>
+   <!--Codigo del cliente en el backoffice de la agencia -->
+  <CodeClientBackOffice>6252</CodeClientBackOffice>
+  <!--Codigo del cliente en el OBT-KontrolTravel -->
+  <CodeClientOBT>627</CodeClientOBT>
+  <!--Nombre del cliente -->
+  <Name>Pedro vargas</Name>
+  <!--Loc al que se le esta haciendo el proceso de reserva/emision -->
+  <locValidacion>AAAKDJ3</locValidacion>
+  <!--Valor que tiene la transaccion que se esta validando -->
+  <value>450000</value>
+  <!--Moneda en la que se esta haciendo la transaccion -->
+  <Currency>COP</Currency>
+  <!-- tipo de producto que se esta procesando AIR|CAR|HOTEL|OTHER-->
+  <product>AIR</product>
+  <description>Compra de boleto aereo</description>
+  <!--Forma de pago de la transaccion TC | CASH -->
+  <paymentType>CASH</paymentType> 
+  <!--Email del usuario que esta haciendo la transaccion-->
+  <mailUser>pedro@ts.cl</mailUser>
+</CreditLimitRQ>
+
+
+
+
+
+
+
+

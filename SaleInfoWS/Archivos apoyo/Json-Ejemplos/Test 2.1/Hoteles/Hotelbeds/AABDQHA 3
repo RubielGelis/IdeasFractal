@@ -1,0 +1,156 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABDQHA",
+			"dateLocator": "2021-02-26T15:40:30",
+			"EntityBook": {
+				"codeEntity": 34193,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "5406",
+				"InvoiceInfoClient": {
+					"name": "VALENCIA LAFLEUR",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "968201318",
+					"movilePhone": "",
+					"address": "RAMON FREIRE 366",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "VALENCIA",
+				"lastName": "LAFLEUR",
+				"codeUser": 254565,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "Compras",
+				"codetravelReason": "MV-",
+				"CenterCosts": [],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": []
+				},
+				"UDIDS": []
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "71-2279095",
+					"AditionalLoc": "71-2279095",
+					"sourceName": "hotels_hotelbeds",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "VALENCIA",
+						"lastName": "LAFLEUR",
+						"codeUser": 254565,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-02-26T15:40:30",
+						"dateCheckin": "2021-03-04T00:00:00",
+						"dateCheckout": "2021-03-08T00:00:00",
+						"DeadlineBroker": "2020-07-12T23:01:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 69370.0,
+							"totalTax": 0.0,
+							"totalNetfare": 55496.32,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.2,
+							"ExchangeRate": 704.0
+						},
+						"Hotelcity": "Mexico City",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "Hotel Seoul",
+							"addressHotel": "",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 3,
+							"facilities": "",
+							"policy": "Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "",
+							"codeHotel": "751280",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "DOUBLE KING SIZE BED",
+								"mealTable": "ROOM ONLY",
+								"totalPax": 99.0,
+								"numAdt": 2,
+								"numCHD": 1,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 99.0,
+									"totalTax": 0.0,
+									"totalNetfare": 79.0
+								},
+								"policyRoom": "Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.",
+								"paxes": [
+									{
+										"name": "RAYMOND",
+										"lastName": "MOMFAITE",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "FRIDELINE",
+										"lastName": "MONFAITE PETIT PORT ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ADAMS DJUNOIR",
+										"lastName": "MONFAITE",
+										"paxtype": "CHD",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

@@ -1,0 +1,250 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABDOUM",
+			"dateLocator": "2021-02-24T16:05:21",
+			"EntityBook": {
+				"codeEntity": 33873,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "222",
+				"AgencyCodeClient": "5287",
+				"InvoiceInfoClient": {
+					"name": "FERNANDA HERNANDEZ",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "229295298",
+					"movilePhone": "",
+					"address": "Morande 835 oficina 615",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "RENATA",
+				"lastName": "MATOS",
+				"codeUser": 231946,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "",
+				"codetravelReason": "",
+				"CenterCosts": [],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "ALAN",
+							"lastName": "MOYA",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "cliente renata",
+							"Approved": "YES",
+							"sequence": 1,
+							"dateSent": "2/24/2021 4:19:59 PM",
+							"dateApproved": "2/24/2021 4:19:58 PM"
+						},
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "YULEIMA",
+							"lastName": "VIVAS",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "cliente renata",
+							"Approved": "YES",
+							"sequence": 2,
+							"dateSent": "2/24/2021 4:19:59 PM",
+							"dateApproved": "2/24/2021 4:19:58 PM"
+						}
+					]
+				},
+				"UDIDS": []
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "258-1494463",
+					"AditionalLoc": "258-1494463",
+					"sourceName": "hotels_hotelbeds",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "RENATA",
+						"lastName": "MATOS",
+						"codeUser": 231946,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-02-24T16:05:21",
+						"dateCheckin": "2021-03-13T00:00:00",
+						"dateCheckout": "2021-03-20T00:00:00",
+						"DeadlineBroker": "2020-07-12T23:01:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 220357.0,
+							"totalTax": 0.0,
+							"totalNetfare": 176285.76,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.2,
+							"ExchangeRate": 709.0
+						},
+						"Hotelcity": "Rio de Janeiro",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "Atlantico Business",
+							"addressHotel": "",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 4,
+							"facilities": "",
+							"policy": "Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "",
+							"codeHotel": "148069",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "DOUBLE STANDARD",
+								"mealTable": "BED AND BREAKFAST",
+								"totalPax": 155.0,
+								"numAdt": 2,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 155.0,
+									"totalTax": 0.0,
+									"totalNetfare": 124.0
+								},
+								"policyRoom": "Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.",
+								"paxes": [
+									{
+										"name": "ROGELIO",
+										"lastName": "COLLILEN",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ANDRES",
+										"lastName": "PEREZ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ANIBAL",
+										"lastName": "SUAREZ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ALVARO",
+										"lastName": "TORRES",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							},
+							{
+								"roomType": "DOUBLE STANDARD",
+								"mealTable": "BED AND BREAKFAST",
+								"totalPax": 155.0,
+								"numAdt": 2,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 155.0,
+									"totalTax": 0.0,
+									"totalNetfare": 124.0
+								},
+								"policyRoom": "Cancelaciones desde lunes 13 julio (23:59), aplica un cargo de USD 0.00 como penalidad.",
+								"paxes": [
+									{
+										"name": "ROGELIO",
+										"lastName": "COLLILEN",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ANDRES",
+										"lastName": "PEREZ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ANIBAL",
+										"lastName": "SUAREZ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "ALVARO",
+										"lastName": "TORRES",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

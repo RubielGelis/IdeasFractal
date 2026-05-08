@@ -1,0 +1,27 @@
+<SaleInfoRQ>
+	<!-- Localizador interno de la plataforma de reservaas Kontroltravel/Xnet -->
+	<locField>AAAXJSK</locField>
+	<!--Fecha de la reserva -->
+	<dateBookField>2019-05-23 T 23:15</dateBookField>
+	<!--Evento que se genero Reserva|Emision|Anulacion|Aprobacion -->
+	<eventoField>Reserva</eventoField>
+	<!-- Indica porque medio se genero la venta B2C|B2B-->
+	<channelField>B2C</channelField>
+	<!-- Portal por el cual se hizo la venta -->
+	<portalField>ts.kontroltravel.com</portalField>
+	<!-- Web|Mobile|WEbservices -->
+	<TechnologyField>WEB</TechnologyField>
+	<!--Indica si incluye vuelos -->
+	<includeFlightsField>Yes</includeFlightsField>
+	<!--Indica si incluye autos -->
+	<includeCarsField>Yes</includeCarsField>
+	<!--Indica si incluye hotels -->
+	<includeHotelsField>Yes</includeHotelsField>
+	<!--Indica si incluye seguros -->
+	<includeInsuranceField>No</includeInsuranceField>
+	<!--Indica si incluye seguros -->
+	<includePackageField>No</includePackageField>
+    <payload><![CDATA[" En esta seccion ir el XML de la informacion de venta "]]></payload>
+	<!--Como se envio la informacion  A(Automatico)|M(Manual)|R(Robot) -->
+	<SendformField>A</SendformField>
+</SaleInfoRQ>

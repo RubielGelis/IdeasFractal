@@ -1,0 +1,39 @@
+<SaleInfoRS>
+	<!-- Localizador interno de la plataforma de reservaas Kontroltravel/Xnet -->
+	<locField>AAAXJSK</locField>
+	<!--Codigo con el cual quedo registrado la informacion en el backoffice -->
+	<codeIntegrationBackofficeField>AF52536</codeIntegrationBackofficeField>
+	<!--Status de integracion OK|Error -->
+	<statusIntegracionField>OK</statusIntegracionField>
+	<!--Mensaje resultado de la integracion-->
+	<messageIntegrationField>Mensaje de exito</messageIntegrationField>
+	<locsField>
+		<loc>
+			<!-- Tipo de producto  Flight|Hotel|Car|Insurance -->
+			<productType>Flight</productType>
+			<locProvider>HGYEHE</locProvider>
+			<!--Status de integracion OK|Error -->
+			<statusIntegracion>OK</statusIntegracion>
+			<!--Mensaje resultado de la integracion-->
+			<messageIntegration>Todo ok</messageIntegration>
+		</loc>
+		<loc>
+			<!-- Tipo de producto  Flight|Hotel|Car|Insurance -->
+			<productTypeField>Hotel</productTypeField>
+			<locProviderField>HGYEHE</locProviderField>
+			<!--Status de integracion OK|Error -->
+			<statusIntegracionField>OK</statusIntegracionField>
+			<!--Mensaje resultado de la integracion-->
+			<messageIntegrationField>Todo ok</messageIntegrationField>
+		</loc>
+		<loc>
+			<!-- Tipo de producto  Flight|Hotel|Car|Insurance -->
+			<productTypeField>Hotel</productTypeField>
+			<locProviderField>HGYHD</locProviderField>
+			<!--Status de integracion OK|Error -->
+			<statusIntegracionField>OK</statusIntegracionField>
+			<!--Mensaje resultado de la integracion-->
+			<messageIntegrationField>Todo ok</messageIntegrationField>
+		</loc>
+	</locsField>
+</SaleInfoRS>

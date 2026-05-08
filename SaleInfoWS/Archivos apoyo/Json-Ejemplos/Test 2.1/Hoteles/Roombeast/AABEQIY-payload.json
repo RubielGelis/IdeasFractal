@@ -1,0 +1,234 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABEQIY",
+			"dateLocator": "2021-04-16T12:24:55",
+			"EntityBook": {
+				"codeEntity": 32129,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "1997",
+				"InvoiceInfoClient": {
+					"name": "NILKENTH",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "",
+					"movilePhone": "",
+					"address": "Providencia",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "nflorenzano",
+				"nameBook": "NILKENTH",
+				"lastName": "FLORENZANO",
+				"codeUser": 100061,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "Capacitacion",
+				"codetravelReason": "504",
+				"CenterCosts": [
+					{
+						"codeOBT": 37289,
+						"codeBackoffice": "DS0001",
+						"codeClient": "",
+						"nameCeco": "Sistemas",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "NO",
+					"noComplaint": "Viaje no programado",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": []
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 614,
+						"name": "OrdenDeCompra",
+						"alias": "Orden de Compra",
+						"codeBackOffice": "OC-",
+						"codeClient": "",
+						"value": "1233446"
+					}
+				]
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "20007062",
+					"AditionalLoc": "20007062",
+					"sourceName": "hotels_roombeast",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "nflorenzano",
+						"nameBook": "NILKENTH",
+						"lastName": "FLORENZANO",
+						"codeUser": 100061,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-04-16T12:24:55",
+						"dateCheckin": "2021-09-23T00:00:00",
+						"dateCheckout": "2021-09-24T00:00:00",
+						"DeadlineBroker": "2021-09-23T00:00:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 70474.0,
+							"totalTax": 0.0,
+							"totalNetfare": 63427.0,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.1,
+							"ExchangeRate": 1.0
+						},
+						"Hotelcity": "CALAMA",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "DIEGO DE ALMAGRO CENTRO CALAMA",
+							"addressHotel": "Pedro leon gallo n° 1840",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 4,
+							"facilities": "",
+							"policy": "Desde jueves, 23 de septiembre de 2021, tiene una penalidad de CLP 63427",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "https://cerbero.roombeast.com/images/imgfichas/162/162-1.jpg",
+							"codeHotel": "162",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "SINGLE",
+								"mealTable": "Con desayuno",
+								"totalPax": 70474.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 70474.0,
+									"totalTax": 0.0,
+									"totalNetfare": 53300.0
+								},
+								"policyRoom": "Desde jueves, 23 de septiembre de 2021, tiene una penalidad de CLP 63427",
+								"paxes": [
+									{
+										"name": "NILKENTH",
+										"lastName": "FLORENZANO CHAVEZ",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				},
+				{
+					"locSource": "20007063",
+					"AditionalLoc": "20007063",
+					"sourceName": "hotels_roombeast",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "nflorenzano",
+						"nameBook": "NILKENTH",
+						"lastName": "FLORENZANO",
+						"codeUser": 100061,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-04-16T12:24:55",
+						"dateCheckin": "2021-09-23T00:00:00",
+						"dateCheckout": "2021-09-24T00:00:00",
+						"DeadlineBroker": "2021-09-21T00:00:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 51468.0,
+							"totalTax": 0.0,
+							"totalNetfare": 46321.0,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.1,
+							"ExchangeRate": 1.0
+						},
+						"Hotelcity": "CALAMA",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "DIEGO DE ALMAGRO CALAMA EXPRESS",
+							"addressHotel": "Pedro león gallo 1857, calama, región de antofagasta",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 3,
+							"facilities": "",
+							"policy": "Desde martes, 21 de septiembre de 2021, tiene una penalidad de CLP 46321",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "https://cerbero.roombeast.com/images/imgfichas/1098/1098-1.jpg",
+							"codeHotel": "1098",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "SINGLE",
+								"mealTable": "Con desayuno",
+								"totalPax": 51468.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 51468.0,
+									"totalTax": 0.0,
+									"totalNetfare": 38925.0
+								},
+								"policyRoom": "Desde martes, 21 de septiembre de 2021, tiene una penalidad de CLP 46321",
+								"paxes": [									
+									{
+										"name": "DJINNO",
+										"lastName": "LANGER",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

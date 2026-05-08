@@ -1,0 +1,247 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABCRDA",
+			"dateLocator": "2020-12-16T13:05:04",
+			"EntityBook": {
+				"codeEntity": 32143,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "4360",
+				"InvoiceInfoClient": {
+					"name": "Luis Elgueta",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "+56227544100",
+					"movilePhone": "",
+					"address": "AVENIDA DEL VALLE SUR 577",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "PATRICIO ESTEBAN",
+				"lastName": "PEREZ",
+				"codeUser": 92383,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "",
+				"codetravelReason": "",
+				"CenterCosts": [
+					{
+						"codeOBT": 38061,
+						"codeBackoffice": "15G-0150",
+						"codeClient": "",
+						"nameCeco": "ESPECIALIDADES",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "MARIANO LUIS",
+							"lastName": "GUEVARA",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "ok",
+							"Approved": "YES",
+							"sequence": 1,
+							"dateSent": "12/16/2020 3:31:53 PM",
+							"dateApproved": "12/16/2020 3:31:53 PM"
+						},
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "GABRIELA PAOLA",
+							"lastName": "CORTEZ",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "ok",
+							"Approved": "YES",
+							"sequence": 2,
+							"dateSent": "12/16/2020 3:31:54 PM",
+							"dateApproved": "12/16/2020 3:31:53 PM"
+						}
+					]
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 569,
+						"name": "EMPRESA",
+						"alias": "Nombre Empresa",
+						"codeBackOffice": "*DV-",
+						"codeClient": "",
+						"value": "1"
+					},
+					{
+						"codeUDID": 571,
+						"name": "CODPROYECTO",
+						"alias": "Código Proyecto",
+						"codeBackOffice": "*C1-",
+						"codeClient": "",
+						"value": "15G-5237"
+					},
+					{
+						"codeUDID": 3098,
+						"name": "NOMBREPROYECTO",
+						"alias": "Nombre Proyecto",
+						"codeBackOffice": "",
+						"codeClient": "",
+						"value": "UACH FILOSOFIA"
+					},
+					{
+						"codeUDID": 3101,
+						"name": "NUEVOPROYECTO",
+						"alias": "¿Reporta nuevo proyecto?",
+						"codeBackOffice": "",
+						"codeClient": "",
+						"value": "SI"
+					}
+				]
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "20005318",
+					"AditionalLoc": "20005318",
+					"sourceName": "hotels_roombeast",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "PATRICIO ESTEBAN",
+						"lastName": "PEREZ",
+						"codeUser": 92383,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2020-12-16T13:05:04",
+						"dateCheckin": "2020-12-17T00:00:00",
+						"dateCheckout": "2020-12-18T00:00:00",
+						"DeadlineBroker": "2020-12-15T00:00:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 113546.0,
+							"totalTax": 0.0,
+							"totalNetfare": 102191.0,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.1,
+							"ExchangeRate": 1.0
+						},
+						"Hotelcity": "VALDIVIA",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "MELILLANCA",
+							"addressHotel": "Av. alemania 675",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 4,
+							"facilities": "",
+							"policy": "TARIFA NO REEMBOLSABLETARIFA NO REEMBOLSABLE",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "https://cerbero.roombeast.com/images/imgfichas/415/415-1.jpg",
+							"codeHotel": "415",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "SINGLE",
+								"mealTable": "BUFFET",
+								"totalPax": 56773.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 56773.0,
+									"totalTax": 0.0,
+									"totalNetfare": 42938.0
+								},
+								"policyRoom": "TARIFA NO REEMBOLSABLE",
+								"paxes": [
+									{
+										"name": "ROBERTO AGUSTIN",
+										"lastName": "PINTO",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "PATRICIO ESTEBAN",
+										"lastName": "PEREZ",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							},
+							{
+								"roomType": "SINGLE",
+								"mealTable": "BUFFET",
+								"totalPax": 56773.0,
+								"numAdt": 1,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 56773.0,
+									"totalTax": 0.0,
+									"totalNetfare": 42938.0
+								},
+								"policyRoom": "TARIFA NO REEMBOLSABLE",
+								"paxes": [
+									{
+										"name": "ROBERTO AGUSTIN",
+										"lastName": "PINTO",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "PATRICIO ESTEBAN",
+										"lastName": "PEREZ",
+										"paxtype": "ADT",
+										"age": "18",
+										"email": "Pruebas@gmail.com",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

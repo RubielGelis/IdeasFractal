@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Packages
+packages/
+*.nupkg
+
+# Build outputs
+bin/
+obj/
+
+# Miscellaneous
+nuget.exe
+*.docx

@@ -1,0 +1,190 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABDTHT",
+			"dateLocator": "2021-03-04T15:41:18",
+			"EntityBook": {
+				"codeEntity": 33873,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "222",
+				"AgencyCodeClient": "5287",
+				"InvoiceInfoClient": {
+					"name": "FERNANDA HERNANDEZ",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "229295298",
+					"movilePhone": "",
+					"address": "Morande 835 oficina 615",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "RENATA",
+				"lastName": "MATOS",
+				"codeUser": 231946,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "",
+				"codetravelReason": "",
+				"CenterCosts": [],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "ALAN",
+							"lastName": "MOYA",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "cliente Renata",
+							"Approved": "YES",
+							"sequence": 1,
+							"dateSent": "3/4/2021 3:52:42 PM",
+							"dateApproved": "3/4/2021 3:52:42 PM"
+						},
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "YULEIMA",
+							"lastName": "VIVAS",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "cliente Renata",
+							"Approved": "YES",
+							"sequence": 2,
+							"dateSent": "3/4/2021 3:52:42 PM",
+							"dateApproved": "3/4/2021 3:52:42 PM"
+						}
+					]
+				},
+				"UDIDS": []
+			},
+			"BookInfoFlights": [],
+			"bookInfoHotels": [
+				{
+					"locSource": "69-3530667",
+					"AditionalLoc": "69-3530667",
+					"sourceName": "hotels_hotelbeds",
+					"CodProvideBackoffice": "SIN-DEFINIR",
+					"UserBook": {
+						"loginBook": "Pruebas@gmail.com",
+						"nameBook": "RENATA",
+						"lastName": "MATOS",
+						"codeUser": 231946,
+						"emailUser": "Pruebas@gmail.com",
+						"references": []
+					},
+					"InfoBook": {
+						"DateBook": "2021-03-04T15:41:18",
+						"dateCheckin": "2021-06-02T00:00:00",
+						"dateCheckout": "2021-06-09T00:00:00",
+						"DeadlineBroker": "2021-05-29T23:01:00",
+						"timeCheckin": "00:00:00",
+						"timeCheckout": "00:00:00",
+						"fareHotel": {
+							"currencyFare": "CLP",
+							"totalSellFare": 248719.0,
+							"totalTax": 0.0,
+							"totalNetfare": 198974.82,
+							"feeValue": 0.0,
+							"currencyFee": "CLP",
+							"paidType": "",
+							"markup": 0.2,
+							"ExchangeRate": 726.0
+						},
+						"Hotelcity": "Cancun (and vicinity)",
+						"CountryHotel": "",
+						"continent": "",
+						"hotelInfo": {
+							"hotelName": "Xbalamque & Spa",
+							"addressHotel": "",
+							"phoneHotel": "",
+							"latitud": 0,
+							"longitud": 0,
+							"starts": 3,
+							"facilities": "",
+							"policy": "Cancelaciones desde domingo 30 mayo (23:59), aplica un cargo de 25.14 % como penalidad.Cancelaciones desde martes 01 junio (23:59), aplica un cargo de 87.99 % como penalidad.",
+							"aditionalInfo": "",
+							"additionalfee": "",
+							"codeIataChain": "",
+							"chain": "",
+							"urlimage": "",
+							"codeHotel": "8503",
+							"fiscalID": ""
+						},
+						"rooms": [
+							{
+								"roomType": "TWIN STANDARD",
+								"mealTable": "ROOM ONLY",
+								"totalPax": 343.0,
+								"numAdt": 4,
+								"numCHD": 0,
+								"fareRoom": {
+									"codeFare": "",
+									"totalSellFare": 343.0,
+									"totalTax": 0.0,
+									"totalNetfare": 274.0
+								},
+								"policyRoom": "Cancelaciones desde domingo 30 mayo (23:59), aplica un cargo de 25.14 % como penalidad.Cancelaciones desde martes 01 junio (23:59), aplica un cargo de 87.99 % como penalidad.",
+								"paxes": [
+									{
+										"name": "NICHOL ",
+										"lastName": "ZULETA ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "CARLA ",
+										"lastName": "ZULETA ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "NICOLAS ",
+										"lastName": "ZULETA ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									},
+									{
+										"name": "BARBARA ",
+										"lastName": "OSIVALD ",
+										"paxtype": "ADT",
+										"age": "0",
+										"email": "",
+										"frecuentGuest": "",
+										"commision": 0,
+										"totaSellFarePax": 0,
+										"totaNetFarePax": 0
+									}
+								]
+							}
+						]
+					},
+					"payments": []
+				}
+			],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

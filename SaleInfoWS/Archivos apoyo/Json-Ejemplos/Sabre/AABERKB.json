@@ -1,0 +1,590 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABERKB",
+			"dateLocator": "2021-04-19T14:15:09",
+			"EntityBook": {
+				"codeEntity": 32605,
+				"nameEntity": "Ideas Fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "AOP999",
+				"InvoiceInfoClient": {
+					"name": "Pilar",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "3451220",
+					"movilePhone": "",
+					"address": "SANTIAGO",
+					"email": "pruebas@gmail.com",
+					"Nationality": ""
+				}
+			},
+			"UserBook": {
+				"loginBook": "pruebas@gmail.com",
+				"nameBook": "ALEJANDRO",
+				"lastName": "MELLA",
+				"codeUser": 148987,
+				"emailUser": "pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "VISITA A CLIENTES",
+				"codetravelReason": "VISITACLIENTES",
+				"CenterCosts": [
+					{
+						"codeOBT": 81059,
+						"codeBackoffice": "115",
+						"codeClient": "",
+						"nameCeco": "OPERACIONES",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "YES",
+					"noComplaint": "",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "pruebas@gmail.com",
+							"nameApprover": "Lorena ",
+							"lastName": "Carrasco",
+							"login": "lorena1",
+							"CommentApprover": "",
+							"Approved": "NO",
+							"sequence": 1,
+							"dateSent": "4/19/2021 2:15:33 PM",
+							"dateApproved": "1/1/1900 12:00:00 AM"
+						}
+					]
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 2964,
+						"name": "CAMPO5",
+						"alias": "CAMPO5",
+						"codeBackOffice": "-",
+						"codeClient": "",
+						"value": "CASH"
+					}
+				]
+			},
+			"BookInfoFlights": [
+				{
+					"dateBook": "2021-04-19T14:15:09",
+					"locSource": "ZWDCYG",
+					"userOrigin": "OAA",
+					"channel": "B2B",
+					"ip": "200.83.155.131",
+					"operatingSystem": "WinNT",
+					"Browser": "Chrome/89.0",
+					"fidelidad": {
+						"Campana": "",
+						"codCompany": "",
+						"factorpoints": "",
+						"sessionPoints": "",
+						"codeAux": ""
+					},
+					"inter": "NO",
+					"airCompanyIssue": {
+						"numericalCode": "045",
+						"iataCode": "LA"
+					},
+					"Source": "Sabre",
+					"maxfare": 0,
+					"minFare": 0,
+					"publicfare": 0.0,
+					"fareConstruction": "",
+					"tourcode": "",
+					"firstStop": "IQQ",
+					"route": "SCL/IQQ/SCL",
+					"segments": [
+						{
+							"segmentNumber": 1,
+							"cabine": "V",
+							"DomesticalSegment": "",
+							"familifare": "QP",
+							"baggage": "0P",
+							"additionalInfo": "",
+							"Record": "GGXLSG",
+							"Class": "V",
+							"airlineOperator": "LA",
+							"airlineaMarketing": "LA",
+							"DurationFligth": 143,
+							"terminal": "",
+							"fareBase": "V00QP5ZI",
+							"departureCity": "Santiago de Chile                                           ",
+							"DepartureIata": "SCL",
+							"DepartureAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-06-14T05:57:00",
+							"ArrivalCity": "Iquique                                                     ",
+							"ArrivalIata": "IQQ",
+							"ArrivalAirport": "Diego Aracena                                                         ",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2021-06-14T08:20:00",
+							"groupSegment": 1,
+							"CarbonEmission": "KG 107",
+							"milesflight": "",
+							"FlightNumber": "162"
+						},
+						{
+							"segmentNumber": 2,
+							"cabine": "G",
+							"DomesticalSegment": "",
+							"familifare": "QP",
+							"baggage": "0P",
+							"additionalInfo": "",
+							"Record": "GGXLSG",
+							"Class": "G",
+							"airlineOperator": "LA",
+							"airlineaMarketing": "LA",
+							"DurationFligth": 135,
+							"terminal": "",
+							"fareBase": "G00QP5ZI",
+							"departureCity": "Iquique                                                     ",
+							"DepartureIata": "IQQ",
+							"DepartureAirport": "Diego Aracena                                                         ",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-06-18T08:30:00",
+							"ArrivalCity": "Santiago de Chile                                           ",
+							"ArrivalIata": "SCL",
+							"ArrivalAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2021-06-18T10:45:00",
+							"groupSegment": 2,
+							"CarbonEmission": "KG 107",
+							"milesflight": "",
+							"FlightNumber": "361"
+						}
+					],
+					"Paxes": [
+						{
+							"name": "WILLIAM",
+							"lastName": "NEVER",
+							"paxtype": "ADT",
+							"DocumentType": "NI",
+							"identification": "55555555-5",
+							"email": "pruebas@gmail.com",
+							"phonePax": "978774471",
+							"frecuentFlyer": "",
+							"ticketNumber": "",
+							"status": "BOOK",
+							"commision": 1,
+							"tourcode": "",
+							"ReissueticketNumber": "",
+							"UserIssue": {
+								"loginBook": "",
+								"nameBook": "",
+								"lastName": "",
+								"codeUser": 0,
+								"emailUser": "",
+								"references": []
+							},
+							"payments": [],
+							"fees": {
+								"totalValue": 0.0,
+								"monedaFee": "",
+								"payment": {
+									"fop": "FPCASH",
+									"valuePay": 0.0
+								},
+								"fee": []
+							},
+							"fare": {
+								"baseFare": 72980.0,
+								"currencyFare": "CLP",
+								"totalTicket": 84632.0,
+								"localfare": 72980.0,
+								"localCurrency": "CLP",
+								"TotalTax": 11652.0,
+								"penalityValue": 0.0,
+								"totalAncillary": 0.0,
+								"ExchangeRate": 1.0,
+								"maxFare": 0,
+								"minFare": 0,
+								"publicFare": 0.0,
+								"fareConstruction": "SCL LA IQQ53990LA SCL18990CLP72980END",
+								"firstStop": "",
+								"taxes": [
+									{
+										"codeTax": "CL",
+										"valtax": 11652.0
+									}
+								],
+								"penalities": [],
+								"ancillaries": []
+							},
+							"Seats": [],
+							"totaSellFarePax": 0,
+							"totaNetFarePax": 0
+						}
+					],
+					"remarks": [
+						{
+							"type": "It",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Pruebas",
+							"segment": 0,
+							"number": 1
+						},
+						{
+							"type": "Hi",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "ASD/ID/PNR/Pruebas",
+							"segment": 0,
+							"number": 2
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-GDS/SABRE",
+							"segment": 0,
+							"number": 3
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNETIDCLIENTEAOP999",
+							"segment": 0,
+							"number": 4
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-AGE/DEMOS",
+							"segment": 0,
+							"number": 5
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TEL/223300951",
+							"segment": 0,
+							"number": 6
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TELPAX/978774471",
+							"segment": 0,
+							"number": 7
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CLI/Pruebas CLIENTE BASICO",
+							"segment": 0,
+							"number": 8
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PUBLICFARE/0",
+							"segment": 0,
+							"number": 9
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PRIVATEFARE/0",
+							"segment": 0,
+							"number": 10
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-UPFRONTDISCOUNT/0",
+							"segment": 0,
+							"number": 11
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RF/AMELLA Pruebas.COM",
+							"segment": 0,
+							"number": 12
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/VISITA A CLIENTES",
+							"segment": 0,
+							"number": 13
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/1093",
+							"segment": 0,
+							"number": 14
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FECHARESERVA/2021/04/19 141504",
+							"segment": 0,
+							"number": 15
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FIRSOLI/AMELLAPruebas.COM",
+							"segment": 0,
+							"number": 16
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TIPOSOLI/AGENTE",
+							"segment": 0,
+							"number": 17
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-SOLICITANTE/ALEJANDRO MELLA",
+							"segment": 0,
+							"number": 18
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 19
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/180149/LORENA  CARRASCO",
+							"segment": 0,
+							"number": 20
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CECO1/81059",
+							"segment": 0,
+							"number": 21
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PORCECO1/100",
+							"segment": 0,
+							"number": 22
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/PG-04/CV-AMG/RF-",
+							"segment": 0,
+							"number": 23
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/OB-",
+							"segment": 0,
+							"number": 24
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/ST-",
+							"segment": 0,
+							"number": 25
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "CC-AOP999/SL-ALEJANDRO MELLA",
+							"segment": 0,
+							"number": 26
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "-CASH",
+							"segment": 0,
+							"number": 27
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "IDSOL-¥1.1",
+							"segment": 0,
+							"number": 28
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "OBT-KONTROL TRAVEL",
+							"segment": 0,
+							"number": 29
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CEDULA/55555555-5/P1",
+							"segment": 0,
+							"number": 30
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMIN/23980.00",
+							"segment": 0,
+							"number": 31
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMAX/192880.00",
+							"segment": 0,
+							"number": 32
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXD TTP CLP 192880",
+							"segment": 0,
+							"number": 33
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXP TTP CLP 192880",
+							"segment": 0,
+							"number": 34
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MIND TTP CLP 23980",
+							"segment": 0,
+							"number": 35
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MINP TTP CLP 23980",
+							"segment": 0,
+							"number": 36
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HF-192880.00",
+							"segment": 0,
+							"number": 37
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "LF-23980.00",
+							"segment": 0,
+							"number": 38
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TA/0",
+							"segment": 0,
+							"number": 39
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IVATA/0",
+							"segment": 0,
+							"number": 40
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/NI555555555",
+							"segment": 0,
+							"number": 1
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/LCARRASCO//Pruebas.COM",
+							"segment": 0,
+							"number": 2
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/978774471",
+							"segment": 0,
+							"number": 3
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/F//AP994415/CL/05FEB1980/M//NEVER/WILLIAM",
+							"segment": 0,
+							"number": 4
+						}
+					]
+				}
+			],
+			"bookInfoHotels": [],
+			"bookCars": [],
+			"Insurances": []
+		}
+	]
+}

@@ -1,0 +1,1293 @@
+{
+	"Books": [
+		{
+			"InternalLocator": "AABDFEN",
+			"dateLocator": "2021-02-04T15:39:57",
+			"EntityBook": {
+				"codeEntity": 32143,
+				"nameEntity": "Ideas fractal",
+				"idfiscal": "",
+				"AgencyCodeClient": "4360",
+				"InvoiceInfoClient": {
+					"name": "Luis Elgueta",
+					"lastname": "",
+					"documentType": "",
+					"documentNumber": "",
+					"phone": "+56227544100",
+					"movilePhone": "",
+					"address": "AVENIDA DEL VALLE SUR 577",
+					"email": "Pruebas@gmail.com"
+				}
+			},
+			"UserBook": {
+				"loginBook": "Pruebas@gmail.com",
+				"nameBook": "MAURICIO",
+				"lastName": "MERDECH",
+				"codeUser": 240528,
+				"emailUser": "Pruebas@gmail.com",
+				"references": []
+			},
+			"CorporateInfo": {
+				"travelReason": "",
+				"codetravelReason": "",
+				"CenterCosts": [
+					{
+						"codeOBT": 182606,
+						"codeBackoffice": "10G-0100",
+						"codeClient": "",
+						"nameCeco": "GG Edificación",
+						"percent": 100
+					}
+				],
+				"approvalProcess": {
+					"Politicy": "NO",
+					"noComplaint": "Viaje no programado",
+					"CodenoComplaint": "",
+					"processflow": "Default",
+					"Additionalprocessflow": "",
+					"approvers": [
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "MAURICIO",
+							"lastName": "MERDECH",
+							"login": "Pruebas@gmail.com",
+							"CommentApprover": "Requerimiento del cliente",
+							"Approved": "YES",
+							"sequence": 1,
+							"dateSent": "2/4/2021 3:55:39 PM",
+							"dateApproved": "2/4/2021 3:55:38 PM"
+						},
+						{
+							"mailApprover": "Pruebas@gmail.com",
+							"nameApprover": "FERNANDO",
+							"lastName": "BARRALES VERA",
+							"login": "124507",
+							"CommentApprover": "Requerimiento del cliente",
+							"Approved": "YES",
+							"sequence": 2,
+							"dateSent": "2/4/2021 3:55:39 PM",
+							"dateApproved": "2/4/2021 3:55:38 PM"
+						}
+					]
+				},
+				"UDIDS": [
+					{
+						"codeUDID": 569,
+						"name": "EMPRESA",
+						"alias": "Nombre Empresa",
+						"codeBackOffice": "*DV-",
+						"codeClient": "",
+						"value": "1"
+					},
+					{
+						"codeUDID": 571,
+						"name": "CODPROYECTO",
+						"alias": "Código Proyecto",
+						"codeBackOffice": "*C1-",
+						"codeClient": "",
+						"value": "10G-5159"
+					},
+					{
+						"codeUDID": 3098,
+						"name": "NOMBREPROYECTO",
+						"alias": "Nombre Proyecto",
+						"codeBackOffice": "",
+						"codeClient": "",
+						"value": "Centro Comercial Patio La Serena"
+					},
+					{
+						"codeUDID": 3101,
+						"name": "NUEVOPROYECTO",
+						"alias": "¿Reporta nuevo proyecto?",
+						"codeBackOffice": "",
+						"codeClient": "",
+						"value": "SI"
+					}
+				]
+			},
+			"BookInfoFlights": [
+				{
+					"dateBook": "2021-02-04T15:39:57",
+					"locSource": "BBISUY",
+					"userOrigin": "OCA",
+					"channel": "B2B",
+					"ip": "190.47.215.81",
+					"operatingSystem": "WinNT",
+					"Browser": "Chrome/88.0",
+					"fidelidad": {
+						"Campana": "",
+						"codCompany": "",
+						"factorpoints": "",
+						"sessionPoints": "",
+						"codeAux": ""
+					},
+					"inter": "NO",
+					"airCompanyIssue": {
+						"numericalCode": "045",
+						"iataCode": "LA"
+					},
+					"Source": "Sabre",
+					"maxfare": 0,
+					"minFare": 0,
+					"publicfare": 0.0,
+					"fareConstruction": "",
+					"tourcode": "",
+					"firstStop": "SCL",
+					"route": "LSC/SCL",
+					"segments": [
+						{
+							"segmentNumber": 1,
+							"cabine": "S",
+							"DomesticalSegment": "",
+							"familifare": "QP",
+							"baggage": "0P",
+							"additionalInfo": "",
+							"Record": "BBISGS",
+							"Class": "S",
+							"airlineOperator": "LA",
+							"airlineaMarketing": "LA",
+							"DurationFligth": 0,
+							"terminal": "",
+							"fareBase": "S00QP5ZI",
+							"departureCity": "La Serena",
+							"DepartureIata": "LSC",
+							"DepartureAirport": "La florida",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-02-10T19:15:00",
+							"ArrivalCity": "Santiago de Chile                                           ",
+							"ArrivalIata": "SCL",
+							"ArrivalAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2022-02-10T20:10:00",
+							"groupSegment": 1,
+							"CarbonEmission": "KG 42",
+							"milesflight": "",
+							"FlightNumber": "305"
+						}
+					],
+					"Paxes": [
+						{
+							"name": "MAURICIO ALFREDO",
+							"lastName": "MERDECH SALGADO",
+							"paxtype": "ADT",
+							"DocumentType": "NI",
+							"identification": "136799479",
+							"email": "Pruebas@gmail.com",
+							"phonePax": "962475321",
+							"frecuentFlyer": "136799479",
+							"ticketNumber": "0454841903196",
+							"status": "ISSUED",
+							"commision": 1,
+							"tourcode": "",
+							"ReissueticketNumber": "",
+							"UserIssue": {
+								"loginBook": "RAPARICIO",
+								"nameBook": "Roxana",
+								"lastName": "Aparicio Aldana",
+								"codeUser": 0,
+								"emailUser": "Pruebas@gmail.com",
+								"references": []
+							},
+							"payments": [
+								{
+									"fop": "FPCASH",
+									"valuePay": 35251.0
+								}
+							],
+							"fees": {
+								"totalValue": 9500.0,
+								"monedaFee": "CLP",
+								"payment": {
+									"fop": "FPCASH",
+									"valuePay": 9500.0
+								},
+								"fee": [
+									{
+										"typeFee": "Basico",
+										"valueFee": 6500.0
+									},
+									{
+										"typeFee": "Aditional",
+										"valueFee": 3000.0
+									}
+								]
+							},
+							"fare": {
+								"baseFare": 20000.0,
+								"currencyFare": "CLP",
+								"totalTicket": 25751.0,
+								"localfare": 20000.0,
+								"localCurrency": "CLP",
+								"TotalTax": 5751.0,
+								"penalityValue": 0.0,
+								"totalAncillary": 0.0,
+								"ExchangeRate": 1.0,
+								"maxFare": 0,
+								"minFare": 0,
+								"publicFare": 0.0,
+								"fareConstruction": "LSC LA SCL20000CLP20000END",
+								"firstStop": "",
+								"taxes": [
+									{
+										"codeTax": "CL",
+										"valtax": 5751.0
+									}
+								],
+								"penalities": [],
+								"ancillaries": []
+							},
+							"Seats": [
+								{
+									"segmentNumber": 1,
+									"seatSelected": "04C"
+								}
+							],
+							"totaSellFarePax": 0,
+							"totaNetFarePax": 0
+						}
+					],
+					"remarks": [
+						{
+							"type": "It",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "TURISMO RAYS",
+							"segment": 0,
+							"number": 1
+						},
+						{
+							"type": "Hi",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "ASD/ID/PNR/TURISMO RAYS",
+							"segment": 0,
+							"number": 2
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-GDS/SABRE",
+							"segment": 0,
+							"number": 3
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNETIDCLIENTE0004360",
+							"segment": 0,
+							"number": 4
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-AGE/RAYS CORPORATE",
+							"segment": 0,
+							"number": 5
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TEL/5716204040",
+							"segment": 0,
+							"number": 6
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TELPAX/962475321",
+							"segment": 0,
+							"number": 7
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CLI/DRS",
+							"segment": 0,
+							"number": 8
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PUBLICFARE/0",
+							"segment": 0,
+							"number": 9
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PRIVATEFARE/0",
+							"segment": 0,
+							"number": 10
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-UPFRONTDISCOUNT/0",
+							"segment": 0,
+							"number": 11
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RF/MMERDECH DRS.CL",
+							"segment": 0,
+							"number": 12
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/-SELECCIONE-",
+							"segment": 0,
+							"number": 13
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/-SELECCIONE-",
+							"segment": 0,
+							"number": 14
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/-1",
+							"segment": 0,
+							"number": 15
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FECHARESERVA/2021/02/04 153952",
+							"segment": 0,
+							"number": 16
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FIRSOLI/MMERDECHDRS.CL",
+							"segment": 0,
+							"number": 17
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TIPOSOLI/CLIENTE",
+							"segment": 0,
+							"number": 18
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-SOLICITANTE/MAURICIO MERDECH",
+							"segment": 0,
+							"number": 19
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "MOT--SELECCIONE-",
+							"segment": 0,
+							"number": 20
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 21
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/240528/MAURICIO MERDECH",
+							"segment": 0,
+							"number": 22
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 23
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/124507/FERNANDO BARRALES VERA",
+							"segment": 0,
+							"number": 24
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CECO2/182606",
+							"segment": 0,
+							"number": 25
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PORCECO2/100",
+							"segment": 0,
+							"number": 26
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*DV-1",
+							"segment": 0,
+							"number": 27
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*C1-10G-5159",
+							"segment": 0,
+							"number": 28
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RNC/REQUERIMIENTO DEL CLIENTE",
+							"segment": 0,
+							"number": 29
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RNC/35",
+							"segment": 0,
+							"number": 30
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CEDULA/136799479/P1",
+							"segment": 0,
+							"number": 31
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMIN/10990.00",
+							"segment": 0,
+							"number": 32
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMAX/23000.00",
+							"segment": 0,
+							"number": 33
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXD TTP CLP 23000",
+							"segment": 0,
+							"number": 34
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXP TTP CLP 23000",
+							"segment": 0,
+							"number": 35
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MIND TTP CLP 10990",
+							"segment": 0,
+							"number": 36
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MINP TTP CLP 10990",
+							"segment": 0,
+							"number": 37
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "TA-23000.00",
+							"segment": 0,
+							"number": 38
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "TB-10990.00",
+							"segment": 0,
+							"number": 39
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TA/5462",
+							"segment": 0,
+							"number": 40
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IVATA/1038",
+							"segment": 0,
+							"number": 41
+						},
+						{
+							"type": "In",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "X-APPROVAL/APROBADA POR MAURICIO MERDECH MERDECH/240528",
+							"segment": 0,
+							"number": 42
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IDUSUARIO/177322",
+							"segment": 0,
+							"number": 43
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FECHAEMISION/2021/02/04 161236",
+							"segment": 0,
+							"number": 44
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-EMISOR/ROXANA APARICIO ALDANA",
+							"segment": 0,
+							"number": 45
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FIREMISOR/RAPARICIO",
+							"segment": 0,
+							"number": 46
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TIPOEMISOR/AGENTE",
+							"segment": 0,
+							"number": 47
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TA/0",
+							"segment": 0,
+							"number": 48
+						},
+						{
+							"type": "Ge",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IVATA/0",
+							"segment": 0,
+							"number": 49
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "1S PLS ADV TKT NBR BEFORE 05FEB21 0539 LSC LT OR AUTO CNL",
+							"segment": 0,
+							"number": 1
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/NI136799479",
+							"segment": 0,
+							"number": 1
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/MMERDECH//DRS.CL",
+							"segment": 0,
+							"number": 2
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/962475321",
+							"segment": 0,
+							"number": 3
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1/F///CL/12APR1979/M//MERDECH SALGADO/MAURICIO ALFREDO",
+							"segment": 0,
+							"number": 4
+						},
+						{
+							"type": "SSR",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "HK1 LSCSCL0305S10FEB/0454841903196C1",
+							"segment": 0,
+							"number": 5
+						}
+					]
+				},
+				{
+					"dateBook": "2021-02-04T15:39:57",
+					"locSource": "C3KMXF",
+					"userOrigin": "OCA",
+					"channel": "B2B",
+					"ip": "190.47.215.81",
+					"operatingSystem": "WinNT",
+					"Browser": "Chrome/88.0",
+					"fidelidad": {
+						"Campana": "",
+						"codCompany": "",
+						"factorpoints": "",
+						"sessionPoints": "",
+						"codeAux": ""
+					},
+					"inter": "NO",
+					"airCompanyIssue": {
+						"numericalCode": "995",
+						"iataCode": "JA"
+					},
+					"Source": "JetSmartWS",
+					"maxfare": 0,
+					"minFare": 0,
+					"publicfare": 0.0,
+					"fareConstruction": "",
+					"tourcode": "",
+					"firstStop": "LSC",
+					"route": "SCL/LSC",
+					"segments": [
+						{
+							"segmentNumber": 1,
+							"cabine": "Y",
+							"DomesticalSegment": "",
+							"familifare": "",
+							"baggage": "0P 23K",
+							"additionalInfo": "",
+							"Record": "C3KMXF",
+							"Class": "R",
+							"airlineOperator": "JA",
+							"airlineaMarketing": "JA",
+							"DurationFligth": 0,
+							"terminal": "",
+							"fareBase": "RLRDCL",
+							"departureCity": "Santiago de Chile                                           ",
+							"DepartureIata": "SCL",
+							"DepartureAirport": "Aeropuerto Comodoro Arturo Merino Benitez                             ",
+							"DepartureCountry": "CL",
+							"DepartureContinent": "AmericaSur",
+							"DepartureDate": "2021-02-10T09:21:00",
+							"ArrivalCity": "La Serena",
+							"ArrivalIata": "LSC",
+							"ArrivalAirport": "La florida",
+							"ArrivalCountry": "CL",
+							"ArrivalContinent": "AmericaSur",
+							"ArrivalDate": "2021-02-10T10:26:00",
+							"groupSegment": 1,
+							"CarbonEmission": "",
+							"milesflight": "",
+							"FlightNumber": "  52"
+						}
+					],
+					"Paxes": [
+						{
+							"name": "MAURICIO ALFREDO",
+							"lastName": "MERDECH SALGADO",
+							"paxtype": "ADT",
+							"DocumentType": "NI",
+							"identification": "136799479",
+							"email": "Pruebas@gmail.com",
+							"phonePax": "962475321",
+							"frecuentFlyer": "136799479",
+							"ticketNumber": "54429308311429",
+							"status": "ISSUED",
+							"commision": 1,
+							"tourcode": "",
+							"ReissueticketNumber": "",
+							"UserIssue": {
+								"loginBook": "RAPARICIO",
+								"nameBook": "Roxana",
+								"lastName": "Aparicio Aldana",
+								"codeUser": 0,
+								"emailUser": "Pruebas@gmail.com",
+								"references": []
+							},
+							"payments": [
+								{
+									"fop": "TC",
+									"valuePay": 34625.0,
+									"creditCardInfo": {
+										"lastCreditDigit": "XXXXXXX0000",
+										"flag": "TC",
+										"approvalCode": "076838",
+										"AdditionalCode": "",
+										"channelProcess": ""
+									}
+								}
+							],
+							"fees": {
+								"totalValue": 9500.0,
+								"monedaFee": "CLP",
+								"payment": {
+									"fop": "FPCASH",
+									"valuePay": 9500.0
+								},
+								"fee": [
+									{
+										"typeFee": "Basico",
+										"valueFee": 6500.0
+									},
+									{
+										"typeFee": "Aditional",
+										"valueFee": 3000.0
+									}
+								]
+							},
+							"fare": {
+								"baseFare": 19374.0,
+								"currencyFare": "CLP",
+								"totalTicket": 25125.0,
+								"localfare": 19374.0,
+								"localCurrency": "CLP",
+								"TotalTax": 5751.0,
+								"penalityValue": 0.0,
+								"totalAncillary": 0.0,
+								"ExchangeRate": 1.0,
+								"maxFare": 0,
+								"minFare": 0,
+								"publicFare": 0.0,
+								"fareConstruction": "",
+								"firstStop": "",
+								"taxes": [
+									{
+										"codeTax": "PBT",
+										"valtax": 5751.0
+									}
+								],
+								"penalities": [],
+								"ancillaries": [
+									{
+										"nameAncillary": "STF",
+										"valAncillary": 0.0,
+										"codeAncillary": "STF",
+										"numDocument": "STF-ADT2"
+									}
+								]
+							},
+							"Seats": [
+								{
+									"segmentNumber": 1,
+									"seatSelected": "1C"
+								}
+							],
+							"totaSellFarePax": 0,
+							"totaNetFarePax": 0
+						}
+					],
+					"remarks": [
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNETIDCLIENTE0004360",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-AGE/RAYS CORPORATE",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TEL/5716204040",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TELPAX/962475321",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CLI/DRS",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PUBLICFARE/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PRIVATEFARE/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-UPFRONTDISCOUNT/0",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RF/mmerdech drs.cl",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/(Seleccione)",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/(Seleccione)",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-MOT/-1",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FECHARESERVA/2021/02/04 153952",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FIRSOLI/mmerdech_drs.cl",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TIPOSOLI/CLIENTE",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-SOLICITANTE/MAURICIO MERDECH",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "MOT-(Seleccione)",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/240528/MAURICIO MERDECH",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-FLUJO/C",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-APROB/124507/FERNANDO BARRALES VERA",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CECO1/182606",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-PORCECO1/100",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*DV-1",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*C1-10G-5159",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RNC/requerimiento del cliente",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-RNC/35",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-CEDULA/136799479/P1",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMIN/20900.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TMAX/20900.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXD TTP CLP 20900",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MAXP TTP CLP 20900",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MIND TTP CLP 20900",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "*MINP TTP CLP 20900",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "TA-20900.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "TB-20900.00",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-TA/5462",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "XNET-IVATA/1038",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "X-APPROVAL/Aprobada Por MAURICIO MERDECH MERDECH/240528",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Notification sent to contacto@turismorays.cl on 06 Feb 2021",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Notification sent to Pruebas@gmail.com on 06 Feb 2021",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Schedule Change Accepted On 08/02/2021 12:14",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "{\"Id\":\"cfbea744-f566-46d8-8522-89f1cd2b2997\",\"SequenceId\":0,\"Type\":\"ConsentAcceptData\",\"Key\":\"ConsentAccept-Payment-09-02-2021 20:31:56\",\"Value\":\"{\\\"Consent\\\":\\\"accepted\\\",\\\"AcceptUTCTime\\\":\\\"2021-02-09T20:31:56.196247\\\"}\"}",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "{\"Id\":\"67551b55-b0a9-434e-9f82-73378ab6170f\",\"SequenceId\":0,\"Type\":\"TealiumBsid\",\"Key\":\"Bsid\",\"Value\":\"{\\\"Bsid\\\":\\\"8BpBgCS6jQ\\\"}\"}",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "{\"Id\":\"b0df69a4-704e-49c1-8987-c634eb2d0df8\",\"SequenceId\":0,\"Type\":\"Covid19ConsentAcceptData\",\"Key\":\"Covid19ConsentAccept-09-02-2021 20:41:00\",\"Value\":\"{\\\"Consent\\\":\\\"COVID-19: accepted\\\",\\\"AcceptUTCTime\\\":\\\"2021-02-09T20:41:00.443931\\\"}\"}",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "{\"Id\":\"800bf286-424d-4e60-85af-fd11f3b80313\",\"SequenceId\":0,\"Type\":\"BoardingPassUpload\",\"Key\":\"JA52_mauricio_alfredo__merdech_salgado_1979_4_12\",\"Value\":\"{\\\"FileName\\\":\\\"2021_2_10_JA52_C3KMXF_mauricio_alfredo__merdech_salgado_1979_4_12_F.gif\\\"}\"}",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Notification sent to Pruebas@gmail.com on 09 Feb 2021",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Notification sent to contacto@turismorays.cl on 09 Feb 2021",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Notification sent to 56962475321 on 09 Feb 2021",
+							"segment": 0,
+							"number": 0
+						},
+						{
+							"type": "H",
+							"paxAsociate": 0,
+							"value": "",
+							"text": "Link factura: http://190.153.213.27/dte/view_pdf.php?sUrlPdf=/opt/opendte/Archivos/76574879/PDF/2021/2/10/dte-76574879-8-34-295288.pdf",
+							"segment": 0,
+							"number": 0
+						}
+					]
+				}
+			],
+			"bookInfoHotels": [],
+			"bookCars": [],
+			"Insurances": [
+				{
+					"locSource": "T010991283",
+					"sourceName": "travelace",
+					"CodProvideBackoffice": "",
+					"DateBook": "2021-02-04T16:08:21",
+					"dateStarService": "2021-02-10T00:00:00",
+					"dateFinalService": "2021-02-10T00:00:00",
+					"DeadlineBroker": "2021-02-10T00:00:00",
+					"fareInsurance": {
+						"totaSellFare": 3.0,
+						"totaNetFare": 3.0,
+						"currency": "USD",
+						"ExchangeRate": 734.0,
+						"numADT": 1,
+						"numCHD": 0,
+						"numSenior": 0,
+						"Paxes": [
+							{
+								"name": "MAURICIO ALFREDO",
+								"lastName": "MERDECH SALGADO",
+								"paxtype": "ADT",
+								"age": "0",
+								"email": "Pruebas@gmail.com",
+								"commision": 0,
+								"voucher": "T010991283",
+								"dateBirth": "4/12/1979 12:00:00 AM",
+								"totaSellFarePax": 3.0,
+								"totaNetFarePax": 3.0
+							}
+						]
+					},
+					"payments": []
+				}
+			]
+		}
+	]
+}
