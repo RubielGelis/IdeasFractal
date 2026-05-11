@@ -105,194 +105,245 @@ p_retval	INTEGER; -- Valor de retorno de este procedimiento: 0:Exito; 1:Error(Bl
 p_id_FormasPago INTEGER;
 	p_id_TarjetasCredito INTEGER;
 p_RESPETARVALOR INTEGER;
+p_msgValoresGDS TEXT;
+	p_BookingsSabreUnicaNacionalidad Varchar(50);
+	p_cd_FormaPago VARCHAR(3);
+	p_in_nacionalidad INTEGER;
+	p_am_tarifa DOUBLE PRECISION := 0;
+	p_am_comb DOUBLE PRECISION := 0;
+	p_am_vat DOUBLE PRECISION := 0;
+	p_am_TarifaContado DOUBLE PRECISION := 0;
+	p_am_TarifaCredito DOUBLE PRECISION := 0;
+	p_am_OtrosContado DOUBLE PRECISION := 0;
+	p_am_OtrosCredito DOUBLE PRECISION := 0;
+	p_ds_cc_code VARCHAR(2);
+	p_PCC VARCHAR(10);
+	p_PCC_Emite VARCHAR(10);
+	p_ds_cliid VARCHAR(25);
+	p_ds_clidir VARCHAR(100);
+	p_ds_clicity VARCHAR(50);
+	p_ds_clirazoncial VARCHAR(250);
+	p_ds_clitel VARCHAR(25);
+	p_cd_clipais VARCHAR(25);
+	p_cd_CentroCostoCliente VARCHAR(50);
+	p_ds_ClienteEmail VARCHAR(100);
+	p_ds_contrato VARCHAR(50);
+	p_cd_tourcode VARCHAR(25);
+	p_cd_tourcode2 VARCHAR(25);
+	p_exchangeRate DOUBLE PRECISION := 1;
+	p_ds_cc_autorizacion VARCHAR(25);
+	p_ds_cc_voucher VARCHAR(25);
+	p_ds_cc_autorizacion2 VARCHAR(25);
+	p_ds_cc_voucher2 VARCHAR(25);
+	p_ds_AutorizacionTarjetaTAO VARCHAR(25);
+	p_ds_VoucherTarjetaTAO VARCHAR(25);
+	p_in_cantpax INTEGER;
+	p_cd_Pseudo VARCHAR(10);
+	p_cd_conceptofacturacion VARCHAR(10);
+	p_cd_TipoServicio VARCHAR(10);
+	p_cd_Proveedores VARCHAR(25);
+	p_ds_Descrip TEXT;
+	p_ds_pax_firstnm VARCHAR(50);
+	p_ds_pax_lastnm VARCHAR(50);
+	p_cd_pax_cedula VARCHAR(25);
+	p_cd_licitacion VARCHAR(25);
+	p_cd_FormaPagoTAO VARCHAR(3);
+	p_cd_TarjetaCreditoTAO VARCHAR(2);
+	p_cd_NumeroTarjetaTAO VARCHAR(16);
+	p_cd_VencimientoTarjetaTAO VARCHAR(5);
+	p_in_cuotasTarjetaTAO INTEGER;
+	p_observation TEXT;
+	p_cd_TarjetaCredito VARCHAR(2);
+	p_cd_NumeroTarjeta VARCHAR(16);
+	p_cd_VencimientoTarjeta VARCHAR(5);
+	p_in_CuotasTarjeta INTEGER;
+	p_codefp VARCHAR(10);
+	p_cd_tipotarjeta VARCHAR(2);
+	p_ds_numerotarjeta VARCHAR(16);
+	p_ds_cc_number VARCHAR(16);
+	p_ds_expiraciontarjeta VARCHAR(5);
+	p_in_coutas INTEGER;
+	p_in_cc_cuotas INTEGER;
+	p_description TEXT;
+	p_currency VARCHAR(3) := 'COP';
+	p_bl_usada INTEGER := 0;
+	p_bl_NotificacionMPD INTEGER := 0;
+	p_error INTEGER := 0;
+	p_bl_usado INTEGER := 0;
+	p_in_cc_cuotas2 INTEGER;
+	p_ds_cc_vence VARCHAR(5);
+	p_ds_cc_vence2 VARCHAR(5);
+	p_ds_cc_autorizacion_aux VARCHAR(25);
+	p_ds_cc_voucher_aux VARCHAR(25);
+	p_cd_citysalida VARCHAR(3);
+	p_cd_city VARCHAR(3);
+	p_ds_fecha_salida VARCHAR(8);
+	p_ds_hora_salida VARCHAR(5);
+	p_ds_hora_llegada VARCHAR(5);
+	p_cd_aero_salida VARCHAR(3);
+	p_cd_aero_llegada VARCHAR(3);
+	p_cd_aero_siglas VARCHAR(3);
+	p_am_tarifa_aux DOUBLE PRECISION;
+	v_BookingProductId INTEGER;
+	v_Id_BookingProductItineraryGDS INTEGER;
+	v_ItineraryCount INTEGER;
+	v_checkIn TIMESTAMP;
+	v_checkOut TIMESTAMP;
+	v_bookingCode VARCHAR(25);
+	v_fecha_salida TEXT;
+	v_Y TEXT; v_M TEXT; v_D TEXT;
+	v_Mr INTEGER; v_YAr INTEGER;
+	v_Yr INTEGER;
+	v_inNationality INTEGER;
+
 BEGIN
 
 p_RESPETARVALOR := 0;
 SELECT (CASE WHEN value='S' THEN 1 ELSE 0 END) INTO p_bl_CotizacionFacAuto FROM public."SystemParameter" Where  code = '526' ;
 
 IF EXISTS (Select * From public."BookingGDS" Where id = p_bookingId AND Booking LIKE '%RESPETARVALOR%') OR EXISTS (Select * From public."SystemParameter" Where code = '506' And value = 'S') THEN
-	Begin
 	p_RESPETARVALOR := 1;
-End
+	END IF;
 
-
-
-p_msgValoresGDS Varchar(8000);
 p_msgValoresGDS := '';
 
 IF p_external = true THEN
-	BEGIN 
 	--Obtenemos la aerolinea externa
-	SELECT value INTO p_AerolineaExterna From public."SystemParameter" Where code = '239'
-	SELECT initials INTO p_CodAerolineaExterna From public."Prestadora" Where code = p_AerolineaExterna
-	
-END 
-SELECT value INTO p_bl_tomarpccsucimp From public."SystemParameter" Where code = '373'
-SELECT value INTO p_bl_IncluirCombaTarifa From public."SystemParameter" Where code = '419' 
-SELECT value INTO p_bl_SumarCombustibleTarifaTkt From public."SystemParameter" Where code = '568' 
+	SELECT value INTO p_AerolineaExterna FROM public."SystemParameter" WHERE code = '239';
+	SELECT initials INTO p_CodAerolineaExterna FROM public."Prestadora" WHERE code = p_AerolineaExterna;
+	END IF;
+SELECT value INTO p_bl_tomarpccsucimp From public."SystemParameter" Where code = '373';
+SELECT value INTO p_bl_IncluirCombaTarifa From public."SystemParameter" Where code = '419' ;
+SELECT value INTO p_bl_SumarCombustibleTarifaTkt From public."SystemParameter" Where code = '568' ;
 
-p_BookingsSabreUnicaNacionalidad Varchar(50);
-SELECT value INTO p_BookingsSabreUnicaNacionalidad From public."SystemParameter" Where code = '501'
+
+SELECT value INTO p_BookingsSabreUnicaNacionalidad From public."SystemParameter" Where code = '501';
 IF p_BookingsSabreUnicaNacionalidad = 'Internacional' THEN
-	BEGIN
 	p_in_nacionalidad := 2;
 END IF;
-	IF p_BookingsSabreUnicaNacionalidad = 'Nacional' THEN THEN
-	BEGIN
+	IF p_BookingsSabreUnicaNacionalidad = 'Nacional' THEN
 	p_in_nacionalidad := 1;
 END IF;
-	IF p_bl_IncluirCombaTarifa = 'S' --AND p_in_nacionalidad = 2 THEN THEN
-	BEGIN
+	IF p_bl_IncluirCombaTarifa = 'S' THEN
 	 p_am_tarifa := p_am_tarifa+p_am_comb;
 	 if p_am_TarifaContado>0 and p_am_TarifaCredito = 0 THEN
-	BEGIN
 		p_am_TarifaContado := p_am_TarifaContado+p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito>0 and p_am_TarifaContado = 0 THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito>0 and p_am_TarifaContado = 0 THEN
 		p_am_TarifaCredito := p_am_TarifaCredito+p_am_comb;
-	 end
+	 end IF;
 	 
 	 p_am_vat := p_am_vat-p_am_comb;
 	 if p_am_OtrosContado>0 and p_am_OtrosCredito = 0 THEN
-	BEGIN
 		p_am_OtrosContado := p_am_OtrosContado - p_am_comb;
 	 END IF;
-	IF p_am_OtrosCredito>0 and p_am_OtrosContado = 0 THEN THEN
-	BEGIN
+	IF p_am_OtrosCredito>0 and p_am_OtrosContado = 0 THEN
 		p_am_OtrosCredito := p_am_OtrosCredito - p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')='' THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')='' THEN
 		p_am_TarifaContado := p_am_TarifaContado+p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')<>'' THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')<>'' THEN
 		p_am_TarifaCredito := p_am_TarifaCredito+p_am_comb;
-	 end
+	 end IF;
 
 	 p_am_comb := 0;
-END	/*fin rgelis 2015/07/06 suma de combustible a la tarifa*/		
+	END IF;
 
 IF p_bl_SumarCombustibleTarifaTkt = 'S' THEN
-	BEGIN
 	 p_am_tarifa := p_am_tarifa-p_am_comb;
 	 if p_am_TarifaContado>0 and p_am_TarifaCredito = 0 THEN
-	BEGIN
 		p_am_TarifaContado := p_am_TarifaContado-p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito>0 and p_am_TarifaContado = 0 THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito>0 and p_am_TarifaContado = 0 THEN
 		p_am_TarifaCredito := p_am_TarifaCredito-p_am_comb;
-	 end
+	 end IF;
 	 p_am_vat := p_am_vat-p_am_comb;
 	 if p_am_OtrosContado>0 and p_am_OtrosCredito = 0 THEN
-	BEGIN
 		p_am_OtrosContado := p_am_OtrosContado - p_am_comb;
 	 END IF;
-	IF p_am_OtrosCredito>0 and p_am_OtrosContado = 0 THEN THEN
-	BEGIN
+	IF p_am_OtrosCredito>0 and p_am_OtrosContado = 0 THEN
 		p_am_OtrosCredito := p_am_OtrosCredito - p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')='' THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')='' THEN
 		p_am_TarifaContado := p_am_TarifaContado+p_am_comb;
 	 END IF;
-	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')<>'' THEN THEN
-	BEGIN
+	IF p_am_TarifaCredito = 0 and p_am_TarifaContado = 0 AND COALESCE(p_ds_cc_code,'')<>'' THEN
 		p_am_TarifaCredito := p_am_TarifaCredito+p_am_comb;
-	 end
+	 end IF;
 
 	 p_am_comb := 0;
-END		
+	END IF;
 
 --Ubicacion	
-IF COALESCE(p_PCC,'') <> '' AND p_bl_tomarpccsucimp = 'S' THEN
-	BEGIN 
-
-	SELECT NULL  INTO p_branch
-		, NULL AS p_implant
+	IF COALESCE(p_PCC,'') <> '' AND p_bl_tomarpccsucimp = 'S' THEN
+	p_branch := NULL;
+	p_implant := NULL;
 	
 	SELECT code INTO p_branch
-		, NULL AS p_implant
-	FROM public."Sucursales" WHERE ((Sucursales.code = p_PCC OR Sucursales.cd_alterno = p_PCC) AND bl_inactivo = 0) 
+	FROM public."Sucursales" WHERE ((Sucursales.code = p_PCC OR Sucursales.cd_alterno = p_PCC) AND bl_inactivo = 0);
 
 	--Si el pcc que emite es el mismo que factura, quiere decir que el emisor no es una sucursal
 	IF COALESCE(p_PCC,'') <> COALESCE(p_PCC_Emite,'') THEN
-	BEGIN 
 		SELECT i.code INTO p_implant
 			--p_bl_usarimplanteFullFilment = bl_usarimplanteFullFilment,
 			--p_Id_implanteFullFilment = Id_implanteFullFilment
 		FROM public."Implant" i
-		WHERE (i.code = p_PCC_Emite OR i.code = p_PCC_Emite) 
+		WHERE (i.code = p_PCC_Emite OR i.code = p_PCC_Emite);
 
 		IF p_bl_usarimplanteFullFilment = 1 AND p_Id_implanteFullFilment IS NOT NULL THEN
-	BEGIN
 			SELECT s.code INTO p_branch
 			FROM public."Branch" s
-			INNER JOIN public."Implantes" i ON i."branchId" = s.id
-			WHERE i.id = p_Id_implanteFullFilment
-		END 
-	END
+			INNER JOIN public."Implant" i ON i."branchId" = s.id
+			WHERE i.id = p_Id_implanteFullFilment;
+		END IF; 
+	END IF;
 	--Si el PCC que emite es igual al que factura y no existe como sucursal, entonces es un implante 
 	IF COALESCE(p_PCC,'') = COALESCE(p_PCC_Emite,'') AND p_branch IS NULL THEN
-	BEGIN 
-		SELECT Sucursales.code INTO p_branch INTO p_branch
-			, Implantes.code AS p_implant
+		SELECT b.code, i.code INTO p_branch, p_implant
 		FROM public."Implant" i
 		INNER JOIN public."Branch" b ON b.id = i."branchId"
-		WHERE (i.code = p_PCC_Emite OR i.code = p_PCC_Emite)
-	END 
-END 
+		WHERE (i.code = p_PCC_Emite OR i.code = p_PCC_Emite);
+	END IF; 
 ELSE
-BEGIN  
 	--Validamos la sucursal
-	If Not Exists(Select * From public."Branch" Where code = p_branch THEN
-	BEGIN
+	If Not Exists(Select * From public."Branch" Where code = p_branch) THEN
 		p_branch := 'OFP';
-	End
+	END IF;
+	END IF;
 	--Validamos el implante
 	If Not Exists(Select * From public."Implant" Where code = p_implant) THEN
-	BEGIN
 		p_implant := NULL;
-	END
-END 
+	END IF;
 
 /*inicio rgelis 2013/07/06 req.15175*/
 IF (COALESCE(p_cd_FormaPagoTAO,'')='CA') THEN
-	BEGIN
 	p_cd_FormaPagoTAO := 'EFE';
 END IF;
-	IF (COALESCE(p_cd_FormaPagoTAO,'')='PO') THEN THEN
-	BEGIN
+	IF (COALESCE(p_cd_FormaPagoTAO,'')='PO') THEN
 	p_cd_FormaPagoTAO := 'POL';
-END
+END IF;
 /*IF (COALESCE(p_cd_fp1,'')='CA') THEN
-	BEGIN
 	p_cd_fp1 := 'EFE';
 END IF;
-	IF (COALESCE(p_cd_fp2,'')='CA') THEN THEN
-	BEGIN
+	IF (COALESCE(p_cd_fp2,'')='CA') THEN
 	p_cd_fp2 := 'EFE';
 END IF;
-	IF (COALESCE(p_cd_fp3,'')='CA') THEN THEN
-	BEGIN
+	IF (COALESCE(p_cd_fp3,'')='CA') THEN
 	p_cd_fp3 := 'EFE';
-END	*/
+END;	*/
 
-IF EXISTS (SELECT * FROM public."SystemParameter" where code = '432' and value = 'S') THEN THEN
-	BEGIN 
-	SELECT p_codeador_aux = SUBSTRING(p_booking,136,2)
-	
-	IF EXISTS (SELECT * FROM public."TicketPrinter" WHERE code = p_codeador_aux or code = p_codeador_aux) THEN
+IF EXISTS (SELECT * FROM public."SystemParameter" where code = '432' and value = 'S') THEN
+	p_codeador_aux := SUBSTRING(p_booking,136,2);
 	p_tiquetPrinter := p_codeador_aux;
-END; END IF;; END IF;
+END IF;
 
 --Obtenemos el codigo IATA - JARG - 2015/10/16
-IF p_gds IN (6,8,9)
-	SELECT p_iata = ''
+IF p_gds IN (6,8,9) THEN
+	p_iata := '';
 ELSE
-	SELECT p_iata = replace(SUBSTRING(p_booking,46,10),' ','')
+	p_iata := replace(SUBSTRING(p_booking,46,10),' ','');
+END IF;
 
 /*CREATE TABLE #CamposGDSValores	(Tiqueteador VARCHAR(6)
 								,Vendedor VARCHAR(3)
@@ -345,197 +396,190 @@ ELSE
 								,CuotasTarjeta INTEGER
 								)
 
- p_cd_FormaPago VARCHAR(3);
+ 
 		,p_cd_TarjetaCredito VARCHAR(2)
 		,p_cd_NumeroTarjeta VARCHAR(16)
 		,p_cd_VencimientoTarjeta VARCHAR(5)
 		,p_in_CuotasTarjeta INTEGER
 
 IF p_gds IN (1,2,6,8,9) THEN
-	BEGIN 
-	p_Bookingaux := (CASE WHEN p_Op<>'Cab' THEN NULL WHEN COALESCE(p_Bookingxml,'')<>'' THEN p_Bookingxml ELSE p_booking END);
+	p_Bookingaux := (CASE ... END)
 	
-	PERFORM public."spza_ConfiguracionCamposGDS_ObtenerValores" p_id_usuario = 1, p_"bookingId" AS p_"bookingId"s, p_Bookingaux AS p_GDS, p_gds AS p_gds
+	PERFORM public."spza_ConfiguracionCamposGDS_ObtenerValores" p_id_usuario = 1, p_bookingId AS p_bookingIds, p_Bookingaux AS p_GDS, p_gds AS p_gds
 	
 	--inicio rgelis 2017/03/10 req.48084
-	p_branch := (CASE WHEN COALESCE(F.sucursal,'')<>''			THEN F.sucursal				ELSE p_branch				END);
-			, CASE AS p_implant WHEN COALESCE(F.implante,'')<>''			THEN F.implante				ELSE p_implant 				END
-			, CASE AS p_tiquetPrinter WHEN COALESCE(F.Tiqueteador,'')<>''		THEN F.Tiqueteador			ELSE p_tiquetPrinter			END
-			, CASE AS p_seller WHEN COALESCE(F.Vendedor,'')<>''			THEN F.Vendedor				ELSE p_seller 				END
-			, CASE AS p_client WHEN COALESCE(F.Cliente,'')<>''			THEN F.Cliente				ELSE p_client 				END
-			, CASE AS p_ds_clidir WHEN COALESCE(F.DireccionCliente,'')<>''	THEN F.DireccionCliente		ELSE p_ds_clidir					END
-			, CASE AS p_ds_clicity WHEN COALESCE(F.CiudadCliente,'')<>''		THEN F.CiudadCliente		ELSE p_ds_clicity 				END
-			, CASE AS p_ds_cliid WHEN COALESCE(F.Cliente,'')<>''			THEN F.Cliente				ELSE p_ds_cliid 					END
-			, CASE AS p_ds_clirazoncial WHEN COALESCE(F.RazonSocialCliente,'')<>'' THEN F.RazonSocialCliente	ELSE p_ds_clirazoncial 			END
-			, CASE AS p_ds_clitel WHEN COALESCE(F.TelefonoCliente,'')<>''	THEN F.TelefonoCliente		ELSE p_ds_clitel					END
-			, CASE AS p_cd_clipais WHEN COALESCE(F.PaisCliente,'')<>''		THEN F.PaisCliente			ELSE p_cd_clipais				END
-			, CASE AS p_cd_CentroCostoCliente WHEN COALESCE(F.centrocosto,'')<>''		THEN F.centrocosto			ELSE p_cd_CentroCostoCliente		END
-			, CASE AS p_ds_ClienteEmail WHEN COALESCE(F.EmailCliente,'')<>''		THEN F.EmailCliente			ELSE p_ds_ClienteEmail 			END
-			, CASE AS p_ds_contrato WHEN COALESCE(F.contrato,'')<>''			THEN F.contrato				ELSE p_ds_contrato				END
-			, CASE AS p_cd_tourcode WHEN COALESCE(F.tourcodeBooking,'')<>''	THEN F.tourcodeBooking		ELSE p_cd_tourcode				END
-			, CASE AS p_cd_tourcode2 WHEN COALESCE(F.tourcodetiquete,'')<>''	THEN F.tourcodetiquete		ELSE p_cd_tourcode2				END
-			, CASE AS p_iata WHEN COALESCE(F.CodigoIata,'')<>''			THEN F.CodigoIata			ELSE p_iata					END
-			, CASE AS p_exchangeRate WHEN COALESCE(F.TasaCambio,0)>0			THEN F.TasaCambio			ELSE p_exchangeRate				END
-			, CASE AS p_ds_cc_autorizacion WHEN COALESCE(F.Autorizacion,'')<>''		THEN F.Autorizacion			ELSE p_ds_cc_autorizacion		END --inicio rgelis 2017/06/05 req.48084
-			, CASE AS p_ds_cc_voucher WHEN COALESCE(F.Voucher,'')<>''			THEN F.Voucher				ELSE p_ds_cc_voucher				END
-			, CASE AS p_ds_cc_autorizacion2 WHEN COALESCE(F.Autorizacion2,'')<>''		THEN F.Autorizacion2		ELSE p_ds_cc_autorizacion2		END
-			, CASE AS p_ds_cc_voucher2 WHEN COALESCE(F.Voucher2,'')<>''			THEN F.Voucher2				ELSE p_ds_cc_voucher2			END
-			, CASE AS p_ds_AutorizacionTarjetaTAO WHEN COALESCE(F.AutorizacionTAO,'')<>''	THEN F.AutorizacionTAO		ELSE p_ds_AutorizacionTarjetaTAO	END
-			, CASE AS p_ds_VoucherTarjetaTAO WHEN COALESCE(F.VoucherTAO,'')<>''			THEN F.VoucherTAO			ELSE p_ds_VoucherTarjetaTAO		END --fin rgelis 2017/06/05 req.48084
-			, CASE AS p_in_cantpax WHEN COALESCE(F.CantidadPasajero,0)>0		THEN F.implante				ELSE p_in_cantpax				END 
-			, CASE AS p_cd_Pseudo WHEN COALESCE(F.Pseudo,'')<>''				THEN F.Pseudo				ELSE p_cd_Pseudo					END 
-			, CASE AS p_cd_Pseudo WHEN COALESCE(F.Pseudo,'')<>''				THEN F.Pseudo				ELSE p_cd_Pseudo					END 
-			, CASE AS p_cd_conceptofacturacion WHEN COALESCE(F.conceptofacturacion,'')<>'' THEN F.conceptofacturacion	ELSE p_cd_conceptofacturacion	END --ini rgelis 2019/09/26 req.103173
-			, CASE AS p_cd_TipoServicio WHEN COALESCE(F.Tiposervicio,'')<>''		THEN F.Tiposervicio			ELSE p_cd_TipoServicio			END 
-			, CASE AS p_cd_Proveedores WHEN COALESCE(F.Proveedor,'')<>''			THEN F.Proveedor			ELSE p_cd_Proveedores			END 
-			, CASE AS p_ds_Descrip WHEN COALESCE(F.DescripcionProduct,'')<>'' THEN F.DescripcionProduct ELSE p_ds_Descrip				END
-			, CASE AS p_ds_pax_firstnm WHEN COALESCE(F.PasajerosNombres,'')<>''	THEN F.PasajerosNombres		ELSE p_ds_pax_firstnm			END 
-			, CASE AS p_ds_pax_lastnm WHEN COALESCE(F.PasajerosApellidos,'')<>''	THEN F.PasajerosApellidos	ELSE p_ds_pax_lastnm				END 
-			, CASE AS p_ds_pax_lastnm WHEN COALESCE(F.Pasajeros,'')<>''			THEN F.Pasajeros			ELSE p_ds_pax_lastnm				END --fin rgelis 2019/09/26 req.103173
-			, CASE AS p_cd_pax_cedula WHEN COALESCE(F.PasajerosCedula,'')<>''	THEN F.PasajerosCedula		ELSE p_cd_pax_cedula				END
-			, CASE AS p_cd_licitacion WHEN COALESCE(F.Licitacion,'')<>''			THEN F.Licitacion			ELSE p_cd_licitacion				END
-			, CASE AS p_cd_FormaPagoTAO WHEN COALESCE(F.FormaPagoTAO,'')<>''		THEN F.FormaPagoTAO			ELSE p_cd_FormaPagoTAO			END
-			, CASE AS p_cd_TarjetaCreditoTAO WHEN COALESCE(F.TarjetaCreditoTAO,'')<>''	THEN F.TarjetaCreditoTAO	ELSE p_cd_TarjetaCreditoTAO		END
-			, CASE AS p_cd_NumeroTarjetaTAO WHEN COALESCE(F.NumeroTarjetaTAO,'')<>''	THEN F.NumeroTarjetaTAO		ELSE p_cd_NumeroTarjetaTAO		END
-			, CASE AS p_cd_VencimientoTarjetaTAO WHEN COALESCE(F.VencimientoTarjetaTAO,'')<>''	THEN F.VencimientoTarjetaTAO	ELSE p_cd_VencimientoTarjetaTAO	END
-			, CASE AS p_in_cuotasTarjetaTAO WHEN COALESCE(F.CuotasTarjetaTAO,0)<>0		THEN F.CuotasTarjetaTAO		ELSE p_in_cuotasTarjetaTAO		END
-			, CASE AS p_observation WHEN COALESCE(F.ds_Observaciones,'')<>''   THEN F.ds_Observaciones     ELSE p_observation			END
-			, CASE AS p_cd_FormaPago WHEN COALESCE(F.FormaPago,'')<>''			THEN F.FormaPago			ELSE p_cd_FormaPago				END
-			, CASE AS p_cd_TarjetaCredito WHEN COALESCE(F.TarjetaCredito,'')<>''		THEN F.TarjetaCredito		ELSE p_cd_TarjetaCredito			END
-			, CASE AS p_cd_NumeroTarjeta WHEN COALESCE(F.NumeroTarjeta,'')<>''		THEN F.NumeroTarjeta		ELSE p_cd_NumeroTarjeta			END
-			, CASE AS p_cd_VencimientoTarjeta WHEN COALESCE(F.VencimientoTarjeta,'')<>''	THEN F.VencimientoTarjeta	ELSE p_cd_VencimientoTarjeta		END
-			, CASE AS p_in_cuotasTarjeta WHEN COALESCE(F.CuotasTarjeta,0)<>0		THEN F.CuotasTarjeta		ELSE p_in_cuotasTarjetaTAO		END
+	p_branch := (CASE ... END)
+	p_implant := CASE WHEN COALESCE(F.implante,'')<>''			THEN F.implante				ELSE p_implant 				END IF;
+	p_tiquetPrinter := CASE WHEN COALESCE(F.Tiqueteador,'')<>''		THEN F.Tiqueteador			ELSE p_tiquetPrinter			END IF;
+	p_seller := CASE WHEN COALESCE(F.Vendedor,'')<>''			THEN F.Vendedor				ELSE p_seller 				END IF;
+	p_client := CASE WHEN COALESCE(F.Cliente,'')<>''			THEN F.Cliente				ELSE p_client 				END IF;
+	p_ds_clidir := CASE WHEN COALESCE(F.DireccionCliente,'')<>''	THEN F.DireccionCliente		ELSE p_ds_clidir					END IF;
+	p_ds_clicity := CASE WHEN COALESCE(F.CiudadCliente,'')<>''		THEN F.CiudadCliente		ELSE p_ds_clicity 				END IF;
+	p_ds_cliid := CASE WHEN COALESCE(F.Cliente,'')<>''			THEN F.Cliente				ELSE p_ds_cliid 					END IF;
+	p_ds_clirazoncial := CASE WHEN COALESCE(F.RazonSocialCliente,'')<>'' THEN F.RazonSocialCliente	ELSE p_ds_clirazoncial 			END IF;
+	p_ds_clitel := CASE WHEN COALESCE(F.TelefonoCliente,'')<>''	THEN F.TelefonoCliente		ELSE p_ds_clitel					END IF;
+	p_cd_clipais := CASE WHEN COALESCE(F.PaisCliente,'')<>''		THEN F.PaisCliente			ELSE p_cd_clipais				END IF;
+	p_cd_CentroCostoCliente := CASE WHEN COALESCE(F.centrocosto,'')<>''		THEN F.centrocosto			ELSE p_cd_CentroCostoCliente		END IF;
+	p_ds_ClienteEmail := CASE WHEN COALESCE(F.EmailCliente,'')<>''		THEN F.EmailCliente			ELSE p_ds_ClienteEmail 			END IF;
+	p_ds_contrato := CASE WHEN COALESCE(F.contrato,'')<>''			THEN F.contrato				ELSE p_ds_contrato				END IF;
+	p_cd_tourcode := CASE WHEN COALESCE(F.tourcodeBooking,'')<>''	THEN F.tourcodeBooking		ELSE p_cd_tourcode				END IF;
+	p_cd_tourcode2 := CASE WHEN COALESCE(F.tourcodetiquete,'')<>''	THEN F.tourcodetiquete		ELSE p_cd_tourcode2				END IF;
+	p_iata := CASE WHEN COALESCE(F.CodigoIata,'')<>''			THEN F.CodigoIata			ELSE p_iata					END IF;
+	p_exchangeRate := CASE WHEN COALESCE(F.TasaCambio,0)>0			THEN F.TasaCambio			ELSE p_exchangeRate				END IF;
+	p_ds_cc_autorizacion := CASE WHEN COALESCE(F.Autorizacion,'')<>''		THEN F.Autorizacion			ELSE p_ds_cc_autorizacion		END --inicio rgelis 2017/06/05 req.48084;
+	p_ds_cc_voucher := CASE WHEN COALESCE(F.Voucher,'')<>''			THEN F.Voucher				ELSE p_ds_cc_voucher				END IF;
+	p_ds_cc_autorizacion2 := CASE WHEN COALESCE(F.Autorizacion2,'')<>''		THEN F.Autorizacion2		ELSE p_ds_cc_autorizacion2		END IF;
+	p_ds_cc_voucher2 := CASE WHEN COALESCE(F.Voucher2,'')<>''			THEN F.Voucher2				ELSE p_ds_cc_voucher2			END IF;
+	p_ds_AutorizacionTarjetaTAO := CASE WHEN COALESCE(F.AutorizacionTAO,'')<>''	THEN F.AutorizacionTAO		ELSE p_ds_AutorizacionTarjetaTAO	END IF;
+	p_ds_VoucherTarjetaTAO := CASE WHEN COALESCE(F.VoucherTAO,'')<>''			THEN F.VoucherTAO			ELSE p_ds_VoucherTarjetaTAO		END --fin rgelis 2017/06/05 req.48084;
+	p_in_cantpax := CASE WHEN COALESCE(F.CantidadPasajero,0)>0		THEN F.implante				ELSE p_in_cantpax				END ;
+	p_cd_Pseudo := CASE WHEN COALESCE(F.Pseudo,'')<>''				THEN F.Pseudo				ELSE p_cd_Pseudo					END ;
+	p_cd_Pseudo := CASE WHEN COALESCE(F.Pseudo,'')<>''				THEN F.Pseudo				ELSE p_cd_Pseudo					END ;
+	p_cd_conceptofacturacion := CASE WHEN COALESCE(F.conceptofacturacion,'')<>'' THEN F.conceptofacturacion	ELSE p_cd_conceptofacturacion	END --ini rgelis 2019/09/26 req.103173;
+	p_cd_TipoServicio := CASE WHEN COALESCE(F.Tiposervicio,'')<>''		THEN F.Tiposervicio			ELSE p_cd_TipoServicio			END ;
+	p_cd_Proveedores := CASE WHEN COALESCE(F.Proveedor,'')<>''			THEN F.Proveedor			ELSE p_cd_Proveedores			END ;
+	p_ds_Descrip := CASE WHEN COALESCE(F.DescripcionProduct,'')<>'' THEN F.DescripcionProduct ELSE p_ds_Descrip				END IF;
+	p_ds_pax_firstnm := CASE WHEN COALESCE(F.PasajerosNombres,'')<>''	THEN F.PasajerosNombres		ELSE p_ds_pax_firstnm			END ;
+	p_ds_pax_lastnm := CASE WHEN COALESCE(F.PasajerosApellidos,'')<>''	THEN F.PasajerosApellidos	ELSE p_ds_pax_lastnm				END ;
+	p_ds_pax_lastnm := CASE WHEN COALESCE(F.Pasajeros,'')<>''			THEN F.Pasajeros			ELSE p_ds_pax_lastnm				END --fin rgelis 2019/09/26 req.103173;
+	p_cd_pax_cedula := CASE WHEN COALESCE(F.PasajerosCedula,'')<>''	THEN F.PasajerosCedula		ELSE p_cd_pax_cedula				END IF;
+	p_cd_licitacion := CASE WHEN COALESCE(F.Licitacion,'')<>''			THEN F.Licitacion			ELSE p_cd_licitacion				END IF;
+	p_cd_FormaPagoTAO := CASE WHEN COALESCE(F.FormaPagoTAO,'')<>''		THEN F.FormaPagoTAO			ELSE p_cd_FormaPagoTAO			END IF;
+	p_cd_TarjetaCreditoTAO := CASE WHEN COALESCE(F.TarjetaCreditoTAO,'')<>''	THEN F.TarjetaCreditoTAO	ELSE p_cd_TarjetaCreditoTAO		END IF;
+	p_cd_NumeroTarjetaTAO := CASE WHEN COALESCE(F.NumeroTarjetaTAO,'')<>''	THEN F.NumeroTarjetaTAO		ELSE p_cd_NumeroTarjetaTAO		END IF;
+	p_cd_VencimientoTarjetaTAO := CASE WHEN COALESCE(F.VencimientoTarjetaTAO,'')<>''	THEN F.VencimientoTarjetaTAO	ELSE p_cd_VencimientoTarjetaTAO	END IF;
+	p_in_cuotasTarjetaTAO := CASE WHEN COALESCE(F.CuotasTarjetaTAO,0)<>0		THEN F.CuotasTarjetaTAO		ELSE p_in_cuotasTarjetaTAO		END IF;
+	p_observation := CASE WHEN COALESCE(F.ds_Observaciones,'')<>''   THEN F.ds_Observaciones     ELSE p_observation			END IF;
+	p_cd_FormaPago := CASE WHEN COALESCE(F.FormaPago,'')<>''			THEN F.FormaPago			ELSE p_cd_FormaPago				END IF;
+	p_cd_TarjetaCredito := CASE WHEN COALESCE(F.TarjetaCredito,'')<>''		THEN F.TarjetaCredito		ELSE p_cd_TarjetaCredito			END IF;
+	p_cd_NumeroTarjeta := CASE WHEN COALESCE(F.NumeroTarjeta,'')<>''		THEN F.NumeroTarjeta		ELSE p_cd_NumeroTarjeta			END IF;
+	p_cd_VencimientoTarjeta := CASE WHEN COALESCE(F.VencimientoTarjeta,'')<>''	THEN F.VencimientoTarjeta	ELSE p_cd_VencimientoTarjeta		END IF;
+	p_in_cuotasTarjeta := CASE WHEN COALESCE(F.CuotasTarjeta,0)<>0		THEN F.CuotasTarjeta		ELSE p_in_cuotasTarjetaTAO		END IF;
 			--,PasaportePax
 			--,over
 			--,Evento
 			--,Categoria
-	--FROM public."fnza_ConfiguracionCamposGDS_ObtenerValores_Table"(p_"bookingId",p_booking,p_gds) AS F
+	--FROM public."fnza_ConfiguracionCamposGDS_ObtenerValores_Table"(p_bookingId,p_booking,p_gds) AS F
 	FROM #CamposGDSValores AS F
 	--fin rgelis 2017/03/10 req.48084
-END
+END IF;
 DROP TABLE #CamposGDSValores
 */
 IF (COALESCE(p_cd_FormaPago,'')='CA') THEN
-	BEGIN
 	p_cd_FormaPago := 'EFE';
 END IF;
-	IF (COALESCE(p_cd_FormaPago,'')='PO') THEN THEN
-	BEGIN
+	IF (COALESCE(p_cd_FormaPago,'')='PO') THEN
 	p_cd_FormaPago := 'POL';
-END IF;
-	IF COALESCE(p_cd_FormaPago,'')<>'' THEN THEN
-	BEGIN
+	END IF;
+	IF COALESCE(p_cd_FormaPago,'')<>'' THEN
 	p_codefp := p_cd_FormaPago;
-END IF;
-	IF COALESCE(p_cd_TarjetaCredito,'')<>'' THEN THEN
-	BEGIN
+	END IF;
+	IF COALESCE(p_cd_TarjetaCredito,'')<>'' THEN
 	p_cd_tipotarjeta := p_cd_TarjetaCredito;
 	p_ds_cc_code := p_cd_TarjetaCredito;
-END IF;
-	IF COALESCE(p_cd_NumeroTarjeta,'')<>'' THEN THEN
-	BEGIN
+	END IF;
+	IF COALESCE(p_cd_NumeroTarjeta,'')<>'' THEN
 	p_ds_numerotarjeta := p_cd_NumeroTarjeta;
 	p_ds_cc_number := p_cd_NumeroTarjeta;
-END IF;
-	IF COALESCE(p_cd_VencimientoTarjeta,'')<>'' THEN THEN
-	BEGIN
+	END IF;
+	IF COALESCE(p_cd_VencimientoTarjeta,'')<>'' THEN
 	p_ds_expiraciontarjeta := p_cd_VencimientoTarjeta;
-END IF;
-	IF COALESCE(p_in_CuotasTarjeta,0)<>0 THEN THEN
-	BEGIN
+	END IF;
+	IF COALESCE(p_in_CuotasTarjeta,0)<>0 THEN
 	p_in_coutas := p_in_CuotasTarjeta;
 	p_in_cc_cuotas := p_in_CuotasTarjeta;
-END; END IF;; END IF;
+	END IF;
 /*inicio rgelis 2013/07/06 req.15175*/
-IF p_Op = 'Cab' THEN THEN
-	BEGIN	
-
+IF p_Op = 'Cab' THEN
 	IF EXISTS (SELECT 1 FROM public."BookingGDS" r WHERE r.code = p_code) THEN 
 		--Modificacion de Booking existente:
 		--Se actualiza la cabecera original apuntando a la nueva estructura en ingles
-		UPDATE public."BookingGDS" SET gds = p_gds, CAST AS "date"(p_date AS TIMESTAMP), p_tiquetPrinter AS "tiquetPrinter", p_seller AS seller, p_client AS client, p_booking AS booking, p_branch AS blanch, p_implant AS implant, p_typetransaction AS typetransaction, p_observation AS observation, p_exchangeRate AS "exchangeRate", p_iata AS iata, p_description AS description
-			WHERE code := p_code; 
+		UPDATE public."BookingGDS" SET 
+			gds = p_gds, 
+			"date" = CAST(p_date AS TIMESTAMP), 
+			"tiquetPrinter" = p_tiquetPrinter, 
+			seller = p_seller, 
+			client = p_client, 
+			booking = p_booking, 
+			blanch = p_branch, 
+			implant = p_implant, 
+			typetransaction = p_typetransaction, 
+			observation = p_observation, 
+			"exchangeRate" = p_exchangeRate, 
+			iata = p_iata, 
+			description = p_description
+		WHERE code = p_code; 
 
 		-----------------------------------------------------------------------------------------
 		--Obtenemos el id de la Booking actualizada
-		SELECT id INTO v_Id_public."BookingGDS" 
+		SELECT id INTO p_Id_BookingGDS 
 		FROM public."BookingGDS"
-		WHERE code := p_code; --AND gds := 1;
+		WHERE code = p_code; --AND gds = 1;
 
 		-----------------------------------------------------------------------------------------
 		IF (NOT EXISTS(SELECT id FROM public."ConfiguracionClientesFacAuto" WHERE code = p_client OR code = p_ds_cliid)
 		    AND EXISTS(SELECT id FROM public."SystemParameter" WHERE code = '525' AND TRIM(value) = 'S')
-		   )
-		BEGIN
+		   ) THEN
 			p_bl_cliente := 0;
-		END
-		ELSE IF EXISTS (SELECT * FROM public."SystemParameter" WHERE code = '366' AND RTRIM(value) = 'S') THEN THEN
-	BEGIN
+		ELSIF EXISTS (SELECT * FROM public."SystemParameter" WHERE code = '366' AND RTRIM(value) = 'S') THEN
 			p_bl_cliente := 1;
-		END
 		ELSE
-		BEGIN
 			p_bl_cliente := (CASE WHEN COALESCE(p_ds_cliid,'')<>'' OR COALESCE(p_client,'')<>'' THEN 1 ELSE 0 END);
-		END
+		END IF;
 		-- Si la facturacion automatica de SABRE esta habilitada, insertamos el registro
 		IF (EXISTS(SELECT * FROM public."Branch" S
 				  INNER JOIN public."BranchGDSFacAuto" SG ON SG.id_Sucursal = S.id   
 				  WHERE S.code = p_branch and (SG.id_GDS = 1 and SG.bl_FacAuto = 1) and p_bl_NotificacionMPD = 0 AND p_bl_cliente = 1) 
 		  OR EXISTS( SELECT * FROM public."BookingGDS" r 
 				     INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
-					 WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1) THEN
-	 THEN
-	BEGIN
+					 WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1)) THEN
 			p_state := 'USADA';
 			SELECT d."state" INTO p_state
 			FROM public."BookingProductGDS" p
 			INNER JOIN public."BookingGDS"  b on b.id = p."bookingId"
 			WHERE b.id = p_Id_BookingGDS
-			AND p.state = 'NUEVO'
+			AND p.state = 'NUEVO';
 
-			IF ((p_state = 'NUEVO' and NOT EXISTS (SELECT * FROM public."BookingsGDSFacAuto" where "bookingId" = p_Id_BookingGDS)	)
-				or NOT EXISTS (SELECT *
+			IF ((p_state = 'NUEVO' AND NOT EXISTS (SELECT * FROM public."BookingsGDSFacAuto" where "bookingId" = p_Id_BookingGDS))
+				OR NOT EXISTS (SELECT *
 								FROM public."BookingProductGDS" p
 								INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
 								WHERE b."id" = p_Id_BookingGDS))
-				AND p_gds = 1
+				AND p_gds = 1 THEN
 				INSERT INTO public."BookingsGDSInvoiceAuto" (Branch,implant,"bookingCode","bookingId") 
-				VALUES(p_branch,p_implant,p_code,p_Id_BookingGDS) 
-		END
+				VALUES(p_branch,p_implant,p_code,p_Id_BookingGDS);
+			END IF;
+		END IF;
 		-----------------------------------------------------------------------------------------
 		---------------------------------------------------------------------------------------------
 		/*inicio rgelis 2013/01/24 se elimina los itinerarios de las Bookings para que no se dupliquen*/
-		IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN THEN
-	BEGIN
-			   Delete From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS
-			End
+		IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN
+			   Delete From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS;
+			END IF;
 		/*fin rgelis 2013/01/24 se elimina los itinerarios de las Bookings para que no se dupliquen*/
 		--------------------------------------------------------------------------------------------
 		---------------------------------------------------------------------------------------------
 		/*inicio rgelis 2013/07/02 Req.15175 se elimina las Polizas de las Bookings para que no se dupliquen*/
-		IF EXISTS (Select * From public."BookingGDSProductPaymantGDS" Where "bookingId" = p_Id_BookingGDS) THEN THEN
-	BEGIN
-			   Delete From public."BookingGDSProductPaymantGDS" Where "bookingId" = p_Id_BookingGDS
-			End
+		IF EXISTS (Select * From public."BookingGDSProductPaymantGDS" Where "bookingId" = p_Id_BookingGDS) THEN
+			   Delete From public."BookingGDSProductPaymantGDS" Where "bookingId" = p_Id_BookingGDS;
+			END IF;
 		/*fin rgelis 2013/07/02 Req.15175 se elimina las Polizas de las Bookings para que no se dupliquen*/
 		--------------------------------------------------------------------------------------------
 		---------------------------------------------------------------------------------------------
 		/*inicio JARG 2015/03/14 se elimina las Bookings cuando es cambio de factura*/
-		IF EXISTS (Select * From public."BookingGDS" Where ID = p_Id_BookingGDS AND Booking LIKE '%CAMBIOFACTURA%') THEN THEN
-	BEGIN
-			   Delete From public."BookingProductGDS" Where "bookingId" := p_Id_BookingGDS
-			End
+		IF EXISTS (Select * From public."BookingGDS" Where ID = p_Id_BookingGDS AND Booking LIKE '%CAMBIOFACTURA%') THEN
+			   Delete From public."BookingProductGDS" WHERE "bookingId" = p_Id_BookingGDS;
+			END IF;
 		/*Fin JARG 2015/03/14 se elimina las Bookings cuando es cambio de factura*/
 
 		--------------------------------------------------------------------------------------------
 		---------------------------------------------------------------------------------------------
 		
-		If p_error<>0 THEN THEN
-	BEGIN
-			RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS'
-			SELECT -1;
-			Return -1
-		END
+		If p_error<>0 THEN
+			RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS';
+			-- -- SELECT -1;
+			Return -1;
+		END IF;
 
 		INSERT INTO public."BookingsGDSLog" (blanch,implant,"message",file,codebooking, booking,error)
 		SELECT 
@@ -545,36 +589,26 @@ IF p_Op = 'Cab' THEN THEN
 			,p_code
 			,p_code
 			,p_booking
-			,0
+			,0;
 
 		IF p_gds <> 6 THEN
-	BEGIN
-			SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_"bookingId"s = p_Id_BookingGDS, p_booking AS p_GDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_Id_BookingGDS, p_booking, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS));
-			END IF p_gds NOT IN (6,8,9)
-					SELECT id FROM public."BookingGDS" r WHERE r.code := p_code; 
-  			--RETURN 0; 	
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
+		END IF;
 		
-			PERFORM p_RetVal = spBookingsGDS_ValoresGDS p_Id_Booking = p_Id_BookingGDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_ValoresGDS(p_Id_BookingGDS, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS);
-			END
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
 			p_msgValoresGDS := '';
-			SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_Booking = p_Id_BookingGDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_BookingGDS, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS));
-			END
-		END			
-	END 
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
+		END IF;
 	ELSE
-	BEGIN 
 		INSERT INTO public."BookingGDS" (
             code,
             type,
@@ -618,87 +652,70 @@ IF p_Op = 'Cab' THEN THEN
 		RETURNING id INTO p_Id_BookingGDS;
 
 		IF p_gds <> 6 THEN
-	BEGIN
-			SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_"bookingId"s = p_Id_BookingGDS, p_booking AS p_GDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_Id_BookingGDS, p_booking, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS));
-			END
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
+		END IF;
 
-			PERFORM p_RetVal = spBookingsGDS_ValoresGDS p_Id_Booking = p_Id_BookingGDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_ValoresGDS(p_Id_BookingGDS, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS);
-			END
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
 		
 			p_msgValoresGDS := '';
-			SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_Booking = p_Id_BookingGDS, p_msgValoresGDS AS p_msg 
+			SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_BookingGDS, p_msgValoresGDS);
 			IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-	BEGIN
-				--Agregamos el Msj de error al log.
-				PERFORM public."spRegistrarLog"(((p_id_proceso => > 696, p_id_usuario => > 1, p_cd_status => > 0, p_admsg := > p_msgValoresGDS));
-			END
-		END
+				PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			END IF;
+		END IF;
 		-----------------------------------------------------------------------------------------
 		-- Si la facturacion automatica de SABRE esta habilitada, insertamos el registro
 		IF (NOT EXISTS(SELECT id FROM public."ConfiguracionClientesFacAuto" WHERE code = p_client OR code = p_ds_cliid)
-		    AND EXISTS(SELECT id FROM public."SystemParameter" WHERE id = 525 AND TRIM(Valor) = 'S')
-		   )
-		BEGIN
+		    AND EXISTS(SELECT id FROM public."SystemParameter" WHERE id = 525 AND TRIM(value) = 'S')) THEN
 			p_bl_cliente := 0;
-		END
-		ELSE IF EXISTS (SELECT * FROM public."SystemParameter" WHERE code = '366' AND RTRIM(value) = 'S') THEN THEN
-	BEGIN
+		ELSIF EXISTS (SELECT * FROM public."SystemParameter" WHERE code = '366' AND RTRIM(value) = 'S') THEN
 			p_bl_cliente := 1;
-		END
 		ELSE
-		BEGIN
 			p_bl_cliente := (CASE WHEN COALESCE(p_ds_cliid,'')<>'' OR COALESCE(p_client,'')<>'' THEN 1 ELSE 0 END);
 		END IF;
 	IF EXISTS(
 					SELECT * 
 					FROM public."Branch" b
-					inner join BranchGDSInvoiceAuto a ON a."branchId" = b.id  and id_GDS = 1 and bl_FacAuto = 1
+					inner join public."BranchGDSInvoiceAuto" a ON a."branchId" = b.id  and id_GDS = 1 and bl_FacAuto = 1
 					WHERE code = p_branch 
-					--AND p_bl_NotificacionMPD = 0 
-					--AND p_bl_cliente = 1
 				) 
 				OR EXISTS( SELECT * FROM public."BookingGDS" r 
 							INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
 							WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1) THEN
-	BEGIN
 			p_state := 'USADA' ;
 			SELECT p."state" INTO p_state
 			FROM public."BookingProductGDS" p
 			INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
-			WHERE public."BookingGDS".id = p_Id_BookingGDS
-			AND p.state = 'NUEVO'
+			WHERE b.id = p_Id_BookingGDS
+			AND p.state = 'NUEVO';
 
-			IF ((p_bl_usada = 0 and NOT EXISTS (SELECT * FROM public."BookingsGDSEnvoiceAuto" where "bookingId" = p_Id_BookingGDS)	)
-				or NOT EXISTS (SELECT *
-								FROM public."BookingProductGDS"
-								INNER JOIN public."BookingGDS" on public."BookingGDS".id = public."BookingProductGDS"."bookingId"
-								WHERE public."BookingGDS".id = p_Id_BookingGDS))
-				AND p_gds = 1
+			IF ((p_bl_usada = 0 AND NOT EXISTS (SELECT * FROM public."BookingsGDSEnvoiceAuto" where "bookingId" = p_Id_BookingGDS))
+				OR NOT EXISTS (SELECT *
+								FROM public."BookingProductGDS" p
+								INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
+								WHERE b.id = p_Id_BookingGDS))
+				AND p_gds = 1 THEN
 				INSERT INTO public."BookingsGDSEnvoiceAuto" (branch,implant,"bookingCode" ,"bookingId") 
-				VALUES(p_branch,p_implant,p_code, p_Id_BookingGDS)
-		END
+				VALUES(p_branch,p_implant,p_code, p_Id_BookingGDS);
+			END IF;
 		-----------------------------------------------------------------------------------------
 		---------------------------------------------------------------------------------------------
-		IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN THEN
-	BEGIN
-			   Delete From public."BookingProductItineraryGDS" Where "bookingId" := p_Id_BookingGDS
-			End
+		IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN
+			   Delete From public."BookingProductItineraryGDS" WHERE "bookingId" = p_Id_BookingGDS;
+			END IF;
 		--------------------------------------------------------------------------------------------
 
-		If p_error<>0 THEN THEN
-	BEGIN
-			RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS'
-			SELECT -1;
-			Return -1
-		END
+		If p_error<>0 THEN
+			RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS';
+			-- -- SELECT -1;
+			Return -1;
+		END IF;
 		
 		------------------------------------------------------------------------------------------
 		-- Log de Bookings -----------------------------------------------------------------------
@@ -711,34 +728,28 @@ IF p_Op = 'Cab' THEN THEN
 			,p_code
 			,p_code
 			,p_booking
-			,0
-		IF p_gds NOT IN (6,8,9)
-			SELECT p_Id_BookingGDS AS 'id';
-		--Return 0;
-	END 
+			,0;
+
+		IF p_gds NOT IN (6,8,9) THEN
+			RETURN p_Id_BookingGDS;
+		END IF;
 	--inicio rgelis 2019/01/24 req.75925
-	IF EXISTS (SELECT * FROM public."SystemParameter" Where code = '565' AND LTRIM(RTRIM(value) THEN
-	) = 'S')  
-	BEGIN 
+	IF EXISTS (SELECT * FROM public."SystemParameter" Where code = '565' AND LTRIM(RTRIM(value)) = 'S') THEN
 		UPDATE public."BookingGDS" SET cd_formapago_cliente = (SELECT c.code_fp 
 									  FROM public."Configuracion_remisiones_FPago" c
 									  INNER JOIN public."Configuracion_remisiones" e ON e.id_cliente = c.id_cliente
-									  WHERE (c.id_cliente = client OR c.id_cliente = ds_cliid)
+									  WHERE (c.id_cliente = p_client OR c.id_cliente = p_ds_cliid)
 										AND e.bl_forma_pago = 1
 										AND c.bl_defecto = 1
 									  LIMIT 1)
-		WHERE id := p_Id_BookingGDS;
-	END 
-	Return 0;
-	--fin rgelis 2019/01/24 req.75925
+		WHERE id = p_Id_BookingGDS;
+	END IF; 
+	
 	RETURN p_Id_BookingGDS;
 	END IF;
 
-	IF p_Op = 'DetPas' THEN THEN
-	BEGIN
-		v_BookingProductId INTEGER;;
-		BEGIN
-			-- 1. Insertamos el Producto Principal (Tiquete)
+	IF p_Op = 'DetPas' THEN
+		-- 1. Insertamos el Producto Principal (Tiquete)
 			INSERT INTO public."BookingProductGDS" (
 				"bookingId",
 				code,
@@ -752,7 +763,7 @@ IF p_Op = 'Cab' THEN THEN
 				"reservationcode",
 				"state"
 			) VALUES (
-				p_"bookingId",
+				p_bookingId,
 				COALESCE(p_code, ''),
 				COALESCE(p_productType, 'Tiquete'),
 				COALESCE(p_productService, 'Tiquete Aereo'),
@@ -866,29 +877,20 @@ IF p_Op = 'Cab' THEN THEN
 				);
 			END IF;
 
-			RETURN;
+			RETURN NULL;
 			RETURN v_BookingProductId;
-	END;
 	END IF;
 
-		IF p_Op = 'DetItinerario' THEN THEN
-	BEGIN
-		v_checkIn TIMESTAMP;;
-			v_checkOut TIMESTAMP;
-			v_fecha_salida TEXT := p_ds_fecha_salida;
-			v_Y TEXT; v_M TEXT; v_D TEXT;
-			v_Mr INTEGER; v_YAr INTEGER;
-			v_Yr INTEGER;
-		BEGIN
+		IF p_Op = 'DetItinerario' THEN
+			v_fecha_salida := p_ds_fecha_salida;
 			-- Lógica de ajuste de año (legacy)
 			IF LENGTH(v_fecha_salida) >= 8 THEN
 				v_Y := SUBSTRING(v_fecha_salida, 1, 4);
 				v_M := SUBSTRING(v_fecha_salida, 5, 2);
 				v_D := SUBSTRING(v_fecha_salida, 7, 2);
-;
 				SELECT EXTRACT(MONTH FROM "date")::INTEGER, EXTRACT(YEAR FROM "date")::INTEGER 
 				INTO v_Mr, v_YAr
-				FROM public."BookingGDS" WHERE id := p_"bookingId";
+				FROM public."BookingGDS" WHERE id = p_bookingId;
 
 				IF (v_Mr > v_M::INTEGER AND v_YAr >= v_Y::INTEGER) THEN
 					v_Yr := v_Y::INTEGER + 1;
@@ -901,7 +903,6 @@ IF p_Op = 'Cab' THEN THEN
 			-- Construir Timestamps
 			v_checkIn := TO_TIMESTAMP(v_fecha_salida || ' ' || COALESCE(p_ds_hora_salida, '00:00'), 'YYYYMMDD HH24:MI');
 			v_checkOut := TO_TIMESTAMP(v_fecha_salida || ' ' || COALESCE(p_ds_hora_llegada, '00:00'), 'YYYYMMDD HH24:MI');
-;
 			INSERT INTO public."BookingProductItineraryGDS" (
 				"bookingProductId",
 				"orden",
@@ -917,7 +918,7 @@ IF p_Op = 'Cab' THEN THEN
 				"Typeflight",
 				"amount"
 			) VALUES (
-				COALESCE(p_bookingProductId, (SELECT MAX(id) FROM public."BookingProductGDS" WHERE "bookingId" := p_"bookingId")),
+				COALESCE(p_bookingProductId, (SELECT MAX(id) FROM public."BookingProductGDS" WHERE "bookingId" = p_bookingId)),
 				p_orden,
 				COALESCE(p_cd_aero_salida, p_origin),
 				p_cd_aero_llegada,
@@ -932,21 +933,16 @@ IF p_Op = 'Cab' THEN THEN
 				COALESCE(p_amount, 0)
 			);
 			
-			RETURN p_"bookingId"; -- O v_BookingProductId si tuviéramos uno
-		END; END IF;; END IF;;
-	END IF;
+			RETURN p_bookingId; -- O v_BookingProductId si tuviéramos uno
+		END IF;
 	IF p_Op = 'DetCar' THEN
-		v_BookingProductId INTEGER;;
-			v_inNationality INTEGER := 1;
-		BEGIN
-			
+			v_inNationality := 1;
 			-- Validar Nacionalidad (Nacional = 1, 2 AS Internacional)
-			IF EXISTS (SELECT A.id FROM public."Airports" A
+			IF EXISTS (SELECT A.id FROM public."Airports" A 
 			  INNER JOIN public."Cities" C ON C.id = A."citiesId"
 			  INNER JOIN public."Countries" P ON P.id = C."countriesId"
 			  INNER JOIN public."SystemParameter" PR ON PR.code = 'Pais' AND PR.value<>P.name 
-			  WHERE A.code = COALESCE(p_cd_citysalida, p_origin) THEN
-	)
+			  WHERE A.code = COALESCE(p_cd_citysalida, p_origin))
 			THEN
 				v_inNationality := 2;
 			ELSE
@@ -957,7 +953,7 @@ IF p_Op = 'Cab' THEN THEN
 				"bookingId", code, type, "service", "description", "provider", "quantity",
 				price, cost, "checkInDate", "checkOutDate", "reservationcode", "state", "inNationality"
 			) VALUES (
-				p_"bookingId", COALESCE(p_code, ''), COALESCE(p_productType, 'Auto'),
+				p_bookingId, COALESCE(p_code, ''), COALESCE(p_productType, 'Auto'),
 				COALESCE(p_productService, 'Renta de Auto'), COALESCE(p_productDescription, 'Servicio de Renta de Auto'),
 				p_provider, 1, COALESCE(p_amount, 0), 0, p_checkInDate, p_checkOutDate, p_code, 'NUEVO', v_inNationality
 			) RETURNING id INTO v_BookingProductId;
@@ -970,21 +966,16 @@ IF p_Op = 'Cab' THEN THEN
 				);
 			END IF;
 			RETURN v_BookingProductId;
-	END;
 	END IF;
 
 	IF p_Op = 'DetHotel' THEN
-		v_BookingProductId INTEGER;;
-			v_inNationality INTEGER := 1;
-		BEGIN
-			
+			v_inNationality := 1;
 			-- Validar Nacionalidad (Nacional = 1, 2 AS Internacional)
-			IF EXISTS (SELECT A.id FROM public."Airports" A
+			IF EXISTS (SELECT A.id FROM public."Airports" A 
 			  INNER JOIN public."Cities" C ON C.id = A."citiesId"
 			  INNER JOIN public."Countries" P ON P.id = C."countriesId"
 			  INNER JOIN public."SystemParameter" PR ON PR.code = 'Pais' AND PR.value<>P.name 
-			  WHERE A.code = COALESCE(p_cd_city, p_origin) THEN
-	)
+			  WHERE A.code = COALESCE(p_cd_city, p_origin))
 			THEN
 				v_inNationality := 2;
 			ELSE
@@ -995,7 +986,7 @@ IF p_Op = 'Cab' THEN THEN
 				"bookingId", code, type, "service", "description", "provider", "quantity",
 				price, cost, "checkInDate", "checkOutDate", "reservationcode", "state", "inNationality"
 			) VALUES (
-				p_"bookingId", COALESCE(p_code, ''), COALESCE(p_productType, 'Hotel'),
+				p_bookingId, COALESCE(p_code, ''), COALESCE(p_productType, 'Hotel'),
 				COALESCE(p_productService, 'Alojamiento'), COALESCE(p_productDescription, 'Reserva de Hotel'),
 				p_provider, 1, COALESCE(p_amount, 0), 0, p_checkInDate, p_checkOutDate, p_code, 'NUEVO', v_inNationality
 			) RETURNING id INTO v_BookingProductId;
@@ -1008,21 +999,16 @@ IF p_Op = 'Cab' THEN THEN
 				);
 			END IF;
 			RETURN v_BookingProductId;
-	END;
 	END IF;
 
 	IF p_Op = 'DetSrv' THEN
-		v_BookingProductId INTEGER;;
-			v_inNationality INTEGER := 1;
-		BEGIN
-			
+			v_inNationality := 1;
 			-- Validar Nacionalidad (Nacional = 1, 2 AS Internacional)
-			IF EXISTS (SELECT A.id FROM public."Airports" A
+			IF EXISTS (SELECT A.id FROM public."Airports" A 
 			  INNER JOIN public."Cities" C ON C.id = A."citiesId"
 			  INNER JOIN public."Countries" P ON P.id = C."countriesId"
 			  INNER JOIN public."SystemParameter" PR ON PR.code = 'Pais' AND PR.value<>P.name 
-			  WHERE A.code = COALESCE(p_origin, '') THEN
-	)
+			  WHERE A.code = COALESCE(p_origin, ''))
 			THEN
 				v_inNationality := 2;
 			ELSE
@@ -1033,7 +1019,7 @@ IF p_Op = 'Cab' THEN THEN
 				"bookingId", code, type, "service", "description", "provider", "quantity",
 				price, cost, "checkInDate", "checkOutDate", "reservationcode", "state", "inNationality"
 			) VALUES (
-				p_"bookingId", COALESCE(p_code, ''), COALESCE(p_productType, 'Servicio'),
+				p_bookingId, COALESCE(p_code, ''), COALESCE(p_productType, 'Servicio'),
 				COALESCE(p_productService, 'Servicio Adicional'), COALESCE(p_productDescription, 'Servicio de Terceros'),
 				p_provider, 1, COALESCE(p_amount, 0), 0, p_checkInDate, p_checkOutDate, p_code, 'NUEVO', v_inNationality
 			) RETURNING id INTO v_BookingProductId;
@@ -1046,7 +1032,6 @@ IF p_Op = 'Cab' THEN THEN
 				);
 			END IF;
 			RETURN v_BookingProductId;
-	END;
 	END IF;
 
 	--IF p_Op = 'Poliza' THEN
