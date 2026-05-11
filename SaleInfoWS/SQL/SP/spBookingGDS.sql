@@ -110,8 +110,8 @@ BEGIN
 p_RESPETARVALOR := 0;
 SELECT (CASE WHEN value='S' THEN 1 ELSE 0 END) INTO p_bl_CotizacionFacAuto FROM public."SystemParameter" Where  code = '526' ;
 
-IF EXISTS (Select * From public."BookingGDS" Where id = p_bookingId AND Booking LIKE '%RESPETARVALOR%') OR EXISTS (Select * From public."SystemParameter" Where code = '506' And value = 'S')
-Begin
+IF EXISTS (Select * From public."BookingGDS" Where id = p_bookingId AND Booking LIKE '%RESPETARVALOR%') OR EXISTS (Select * From public."SystemParameter" Where code = '506' And value = 'S') THEN
+	Begin
 	p_RESPETARVALOR := 1;
 End
 
@@ -484,6 +484,7 @@ IF p_Op = 'Cab' THEN THEN
 		  OR EXISTS( SELECT * FROM public."BookingGDS" r 
 				     INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
 					 WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1) THEN
+	 THEN
 	BEGIN
 			p_state := 'USADA';
 			SELECT d."state" INTO p_state
@@ -666,8 +667,8 @@ IF p_Op = 'Cab' THEN THEN
 				) 
 				OR EXISTS( SELECT * FROM public."BookingGDS" r 
 							INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
-							WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1)
-		BEGIN
+							WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1) THEN
+	BEGIN
 			p_state := 'USADA' ;
 			SELECT p."state" INTO p_state
 			FROM public."BookingProductGDS" p
