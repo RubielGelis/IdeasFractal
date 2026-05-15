@@ -30,30 +30,38 @@ namespace SaleInfoWS.ServiceInterface
             {
                 try
                 {
-                    // Guarda el request en la base de datos y obtiene el id con el que se guardo el registro.
-                    var lastId = db.Insert(request, selectIdentity:true);
+                    // Llamada al procedimiento almacenado de PostgreSQL "spInterfaceIdeasFractal".
+                    // Este procedimiento recibe el JSON (enviado en request.Payload) y orquesta la transformación e inserción.
+                    // Al ser un PROCEDURE con un parámetro INOUT, se usa CALL y se captura el resultado.
+                    var responseXml = db.SqlScalar<string>(
+                        "CALL public.\"spInterfaceIdeasFractal\"(@op, @codigo, @xml, @pet, @res)",
+                        new { 
+                            op = "Booking", 
+                            codigo = request.Loc, 
+                            xml = request.Payload, 
+                            pet = "API-REQUEST", // Identificador de petición
+                            res = (string)null   // El parámetro INOUT se recibe como resultado del escalar
+                        });
 
-                    // En este bloque se hace la logica necesaria para la comunicacion con el servicio externo.
+                    // Se determina el estado basado en la respuesta XML generada por el SP de respuesta.
+                    bool isSuccess = responseXml != null && responseXml.Contains("<Status>Success</Status>");
 
-
-                    // Ejemplo de la respuesta con los datos que se obtendrian del servicio externo.
                     return new SaleInfoRS
                     {
                         Loc = request.Loc,
-                        CodeIntegrationBackoffice = "AF580",
-                        MessageIntegration = "Exito!",
-                        StatusIntegration = "OK",
-                        Locs = new List<Loc>
-                        {
-                            new Loc { LocProvider = "IOS89", MessageIntegration = "Ok", StatusIntegration = "OK", ProductType = "Flight" },
-                            new Loc { LocProvider = "FOC31", MessageIntegration = "Ok", StatusIntegration = "OK", ProductType = "Hotel" },
-                            new Loc { LocProvider = "VIOJO", MessageIntegration = "Ok", StatusIntegration = "OK", ProductType = "Car" },
-                        }
+                        CodeIntegrationBackoffice = request.Loc,
+                        StatusIntegration = isSuccess ? "OK" : "Error",
+                        MessageIntegration = responseXml ?? "No se recibió respuesta del servidor de base de datos."
                     };
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    return new SaleInfoRS
+                    {
+                        Loc = request.Loc,
+                        StatusIntegration = "Error",
+                        MessageIntegration = "Excepción al procesar la integración: " + e.Message
+                    };
                 }
             }
         }

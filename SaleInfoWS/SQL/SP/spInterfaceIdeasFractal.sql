@@ -1,136 +1,123 @@
-
-CREATE PROCEDURE dbo.[spInterfaceIdeasFractral]
-		@Op VARCHAR(50) = NULL
-	,	@Codigo VARCHAR(25)  = NULL
-	,	@XML VARCHAR(MAX) = NULL
-	,	@PET VARCHAR(MAX) = NULL
-WITH ENCRYPTION
-AS
+CREATE OR REPLACE PROCEDURE public."spInterfaceIdeasFractal"(
+    p_Op VARCHAR(50) DEFAULT NULL,
+    p_Codigo VARCHAR(25) DEFAULT NULL,
+    p_XML text DEFAULT NULL,
+    p_PET text DEFAULT NULL,
+    INOUT p_Respuesta text DEFAULT NULL
+)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+    v_id_Interfaces INTEGER;
+    v_cd_interfaces VARCHAR(50);
+    v_oper VARCHAR(25);
+    v_Error INTEGER := 0;
+    v_NombreServicio text;
+    v_Respuesta text := '';
+    v_Resultado text := '';
+    v_ResultadoError text := '';
+    v_XMLI text := '';
+    v_XMLR text := '';
+    v_CodigoBooking VARCHAR(12);
+    v_msg text;
+    v_archivo VARCHAR(250);
+    v_ResultadoJSON JSON;
 BEGIN
-	
-	DECLARE @id_Interfaces INT
-	DECLARE @cd_interfaces VARCHAR(50)
-	DECLARE @cd_maestros VARCHAR(25)
-	DECLARE @oper VARCHAR(25)
-	DECLARE @Error INT= 0
-	DECLARE @TextoRaiserror VARCHAR(MAX)
-	DECLARE @NombreServicio VARCHAR(MAX)
-	DECLARE @Respuesta		VARCHAR(8000)
-	DECLARE @Resultado		VARCHAR(8000)
-	DECLARE @ResultadoError	VARCHAR(MAX)
-	DECLARE @XMLI VARCHAR(MAX)=''
-	DECLARE @XMLR VARCHAR(MAX)=''
-	DECLARE @XMLD XML
-	DECLARE @Booking TABLE(id INT IDENTITY,Booking VARCHAR(MAX))
-	DECLARE @Respuestas TABLE(id INT IDENTITY,Respuesta VARCHAR(MAX))
-	DECLARE @Resultados TABLE(id INT IDENTITY,Resultado VARCHAR(MAX), Mensaje VARCHAR(MAX))
-	SET NOCOUNT ON
+    v_cd_interfaces := 'IdeasFractal';
+    SELECT id INTO v_id_Interfaces FROM public."Interfaces" WHERE code = v_cd_interfaces;
 
-	BEGIN TRY
+    IF p_Op = 'Booking' THEN
+        v_oper := 'Insertar';
+        v_NombreServicio := 'Creacion de Booking';
 
+        -- Convertir JSON a XML si es necesario (asumiendo que viene en formato JSON si empieza con {)
+        IF p_XML LIKE '{%' THEN
+			BEGIN
+                v_XMLI := public."fnzafnjsonaxml"(p_XML);
+            EXCEPTION WHEN OTHERS THEN
+                v_XMLI := p_XML;
+            END;
+		ELSE
+            v_XMLI := p_XML;
+        END IF;
 
-		SET @cd_interfaces = 'IdeasFractral'
-		SELECT @id_Interfaces = id FROM dbo.Interfaces WHERE cd_codigo = @cd_interfaces
-		IF @Op = 'Booking'
+        -- 1. Llamar a spInterfaceReadXMLBookingIdeasFractal para transformar el XML al formato interno
 		BEGIN
-			SET @oper = 'Insertar'
-			SET @NombreServicio = 'Creacion de Booking'
-			--IF (ISJSON(@XML)=1)
-			--BEGIN
-			--	SELECT @XMLI = CONVERT(VARCHAR(MAX),dbo.fnza_jsonaxml(@XML))
-			--END
-			--ELSE
-			--BEGIN
-			--	SELECT @XMLI = @XML
-			--END
-			--BEGIN TRY 
-			--	SELECT @XMLI = CONVERT(VARCHAR(MAX),CONVERT(XML,@XML)) 
-			--END TRY
-			--BEGIN CATCH
-			--	SELECT @XMLI = CONVERT(VARCHAR(MAX),dbo.fnza_jsonaxml(@XML)) 
-			--END CATCH
-			IF (CHARINDEX('{',ISNULL(@XML,''))>0)
+            CALL public."spInterfaceReadXMLBookingIdeasFractal"(p_Op, v_XMLI, v_XMLR);
+        EXCEPTION WHEN OTHERS THEN
+            v_ResultadoError := 'Error al transformar el XML: ' || SQLERRM;
+            v_Error := 1;
+        END;
+
+        -- 2. Validar que la transformación generó contenido
+        IF v_Error = 0 AND (v_XMLR IS NULL OR v_XMLR = '') THEN
+            v_ResultadoError := 'Error: La transformación del XML devolvió un resultado vacío.';
+            v_Error := 1;
+        END IF;
+
+        -- 3. Procesar el XML resultante con el motor de Booking GDS
+        IF v_Error = 0 THEN
 			BEGIN
-				SELECT @XMLI = CONVERT(VARCHAR(MAX),dbo.fnza_jsonaxml(@XML))
-			END
-			ELSE
-			BEGIN
-				SELECT @XMLI = @XML
-			END
-			
-			INSERT INTO @Booking
-			EXEC dbo.spInterfaceReadXMLBookingIdeasFractal @Op = @Op, @XML = @XMLI
-			--return 1 
-			IF NOT EXISTS(SELECT id FROM @Booking)
-			BEGIN
-				SET @TextoRaiserror= 'Error al generar el XML del inserción de la Booking'
-				SET @Respuesta= 'Error al generar el XML del inserción de la Booking'
-				SET @Error = 1
+                BEGIN
+                    v_CodigoBooking := (xpath('//InternalLocator/text()', v_XMLR::xml))[1]::text;
+                EXCEPTION WHEN OTHERS THEN
+                    v_CodigoBooking := 'UNK';
+                END;
+                
+                v_archivo := v_CodigoBooking;
+                v_msg := 'Booking xml procesado exitosamente';
 
-			END
-			ELSE
-			BEGIN
-				SELECT @XMLR = Booking FROM @Booking WHERE id=1
-				
-				BEGIN TRY
-					SET @XMLD=CONVERT(XML,@XMLR)
-					DECLARE @CodigoBooking VARCHAR(12),@msg VARCHAR(MAX),@archivo VARCHAR(250)
-					
-					SELECT @CodigoBooking=ISNULL(R.Booking.value('(cd_codigo)[1]','VARCHAR(12)'),'')
-					FROM @XMLD.nodes('//Booking/Booking') AS R(Booking)
+                INSERT INTO public."BookingGDS_log" (ds_mensaje, ds_archivo, cd_Booking, ds_Booking, bl_error)
+                VALUES (v_msg, v_archivo, v_CodigoBooking, v_XMLI, false);
 
-					SET @archivo=@CodigoBooking
+                -- Llamada al procedimiento central de procesamiento
+                CALL public."spBookingGDSXML"(v_XMLR, v_ResultadoJSON);
+                v_Resultado := v_ResultadoJSON::text;
+            EXCEPTION WHEN OTHERS THEN
+                v_ResultadoError := 'Error en spBookingGDSXML: ' || SQLERRM;
+                v_Error := 1;
+            END;
+        END IF;
 
-					SET @msg='Booking xml procesado exitosamente'
-					Insert Into dbo.BookingGDS_log (cd_sucursal,cd_implante,ds_mensaje,ds_archivo,cd_Booking, ds_Booking,bl_error )
-					Select null,null,@msg,@archivo,@CodigoBooking, @XMLI, 0 
+        -- 4. Generar la respuesta XML final
+		BEGIN
+            CALL public."spza_InterfaceXmlResponse_IdeasFractral"(p_Op, v_XMLI, p_Codigo, v_ResultadoError, v_Respuesta);
+        EXCEPTION WHEN OTHERS THEN
+            v_Respuesta := '<Response><Status>Error</Status><Message>' || SQLERRM || '</Message></Response>';
+        END;
 
-					INSERT INTO @Resultados
-					Exec dbo.spWSG_BookingGDS @XML = @XMLR
-				
-					SELECT @Resultado = @Resultado + Resultado + CHAR(10) FROM @Resultados
-					SET @ResultadoError=''
-				END TRY
-				BEGIN CATCH
+        -- 5. Registrar el log de la transacción de la interfaz
+        INSERT INTO public."EquivalenciasInterfaces_Log" (
+            "Id_Interfaces", cd_maestro, cd_codigo, "cd_codigoInte", cd_operacion, 
+            ds_xmlpeticion, ds_xmlrespuesta, ds_xmlorg, "ds_Logpeticion"
+        )
+        VALUES (
+            v_id_Interfaces, p_Op, p_Codigo, p_Codigo, v_oper, 
+            v_XMLR, COALESCE(v_Resultado, '') || v_Respuesta, v_XMLI, p_PET
+        );
 
-					SET @Resultado = ISNULL ( ERROR_MESSAGE() , '')
-					SET @Resultado =	'Error al procesar el servicio "' + @NombreServicio + '" ' + 'Error: ' +  @Resultado
-					SET @ResultadoError=@Resultado
-					SET @Error=1
-				END CATCH
+        p_Respuesta := v_Respuesta;
+        RETURN;
+    END IF;
 
-				INSERT INTO @Respuestas
-				EXEC dbo.[spza_InterfaceXmlRespuesta_IdeasFractral] @Op = NULL,	@XML=@XMLI, @Codigo=@Codigo, @MensajeError=@ResultadoError
-				SET @Respuesta=''
-				SELECT @Respuesta = @Respuesta + Respuesta + CHAR(10) FROM @Respuestas
-				SET @Resultado = @Resultado + @Respuesta
-				SET @Error = 0
-			END
+    p_Respuesta := '';
+    RETURN;
+EXCEPTION WHEN OTHERS THEN
+    v_ResultadoError := 'Error inesperado en spInterfaceIdeasFractal: ' || SQLERRM;
+    BEGIN
+        INSERT INTO public."EquivalenciasInterfaces_Log" (
+            "Id_Interfaces", cd_maestro, cd_codigo, "cd_codigoInte", cd_operacion, 
+            ds_xmlpeticion, ds_xmlrespuesta, ds_xmlorg, "ds_Logpeticion"
+        )
+        VALUES (
+            v_id_Interfaces, p_Op, p_Codigo, p_Codigo, 'ERROR', 
+            COALESCE(v_XMLR, ''), v_ResultadoError, COALESCE(v_XMLI, ''), p_PET
+        );
+    EXCEPTION WHEN OTHERS THEN
+        NULL;
+    END;
+    p_Respuesta := v_ResultadoError;
+END;
+$BODY$;
 
-			SET @XMLR = ISNULL(@XMLR,'')
-			INSERT INTO dbo.EquivalenciasInterfaces_Log (Id_Interfaces,cd_maestro,cd_codigo,cd_codigoInte,cd_operacion,ds_xmlpeticion,ds_xmlrespuesta,ds_xmlorg,ds_Logpeticion)
-			VALUES(@id_Interfaces,@Op,@Codigo,@Codigo,@oper,@XMLR,@Resultado,@XMLI,@PET)
-			SELECT ltrim(rtrim(@Respuesta)) AS 'Respuesta';
-			--SELECT CONVERT(XML,ltrim(rtrim(@Respuesta))) AS 'Respuesta';
-			RETURN @Error
-		END
-
-		
-
-
-	END TRY
-	BEGIN CATCH
-
-		SET @TextoRaiserror = ISNULL ( ERROR_MESSAGE() , '')
-		SET @TextoRaiserror =	'Error al procesar el servicio "' + @NombreServicio + '".' + CHAR(13) + CHAR(10) +
-								'Error: ' +  @TextoRaiserror
-		SET @XMLR=ISNULL(@XMLR,'')	
-		INSERT INTO dbo.EquivalenciasInterfaces_Log (Id_Interfaces,cd_maestro,cd_codigo,cd_codigoInte,cd_operacion,ds_xmlpeticion,ds_xmlrespuesta,ds_xmlorg,ds_Logpeticion)
-		VALUES(@id_Interfaces,@Op,@Codigo,@Codigo,@oper,@XMLR,@TextoRaiserror,@XMLI,@PET)
-		RAISERROR ( @TextoRaiserror , 16, 1)
-	END CATCH
-		
-
-	RETURN 0
-END
-GO
+ALTER PROCEDURE public."spInterfaceIdeasFractal"(varchar, varchar, text, text, inout text) OWNER TO postgres;
