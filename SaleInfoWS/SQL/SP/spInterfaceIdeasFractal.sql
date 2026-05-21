@@ -34,7 +34,7 @@ BEGIN
         -- Convertir JSON a XML si es necesario (asumiendo que viene en formato JSON si empieza con {)
         IF p_XML LIKE '{%' THEN
 			BEGIN
-                v_XMLI := public."fnjsonaxml"(p_XML);
+                v_XMLI := '<Root>' || public."fnjsonaxml"(p_XML)::text || '</Root>';
             EXCEPTION WHEN OTHERS THEN
                 v_XMLI := p_XML;
             END;
