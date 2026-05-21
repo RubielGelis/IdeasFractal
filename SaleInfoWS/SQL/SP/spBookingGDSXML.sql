@@ -435,6 +435,24 @@ BEGIN
     ) t ON t.product_consecutivo = f.locSource
     WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
 
+    -- Pagos (Payments) de Vuelos
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_amount)
+    SELECT locSource, 
+           fop, 
+           'Pago ' || fop, 
+           NULLIF(valuePay, '')::DOUBLE PRECISION
+    FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            paxes_xml XML PATH 'Paxes'
+    ) f,
+    XMLTABLE('//Paxes/Pax/payments/payment' PASSING f.paxes_xml
+        COLUMNS
+            fop VARCHAR PATH 'fop',
+            valuePay VARCHAR PATH 'valuePay'
+    ) p
+    WHERE valuePay IS NOT NULL AND valuePay != '';
+
     -- Eliminar reserva existente y sus dependencias si ya existe para evitar duplicación
     DELETE FROM public."BookingProductItineraryGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
     DELETE FROM public."BookingProductPassangerGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
@@ -568,6 +586,27 @@ BEGIN
                     p_taxType := r_tax.tax_type,
                     p_taxismain := r_tax.is_main,
                     p_tax := r_tax.tax_amount,
+                    p_id_out := v_dummy_out
+                );
+            END LOOP;
+
+            -- Pagos (Payments)
+            FOR r_payment IN (SELECT * FROM temp_payments WHERE product_consecutivo = r_product.consecutivo) LOOP
+                CALL public."spBookingGDS"(
+                    p_Op := 'payment',
+                    p_bookingId := v_bookingId,
+                    p_bookingProductId := v_bookingProductId,
+                    p_paymentCode := r_payment.pay_code,
+                    p_paymentName := r_payment.pay_name,
+                    p_paymentType := 'EFECTIVO',
+                    p_amount := r_payment.pay_amount,
+                    p_creditCardType := r_payment.cc_type,
+                    p_creditCardNumber := r_payment.cc_number,
+                    p_voucher := r_payment.voucher,
+                    p_expirationDate := r_payment.exp_date,
+                    p_authorization := r_payment.auth,
+                    p_quotas := r_payment.quotas,
+                    p_bank := r_payment.bank,
                     p_id_out := v_dummy_out
                 );
             END LOOP;
