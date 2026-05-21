@@ -103,6 +103,7 @@ CREATE OR REPLACE PROCEDURE public."spBookingGDS"(
 	p_iata VARCHAR = NULL,
 	p_description TEXT = NULL,
 	p_observation TEXT = NULL,
+	p_consecutive VARCHAR = NULL,
 	
 	-- Extra (necesario para la firma pero obsoleto para la logica limpia)
 	p_Bookingxml TEXT = null,
@@ -835,7 +836,7 @@ BEGIN
 			"quantity", price, cost, "checkInDate", "checkOutDate", 
 			"nights", "paxAdults", "paxChildren", "serviceType", "billingConcept", 
 			"destination", "reservationCode", "sellerCom", "ticketPrinterCom", 
-			"inNationality", "state", "conjunction", "revised", "typeproduct", "penalty"
+			"inNationality", "state", "conjunction", "revised", "typeproduct", "penalty", consecutive
 		) VALUES (
 			p_bookingId, 
 			COALESCE(p_code, ''), 
@@ -865,7 +866,8 @@ BEGIN
 			p_conjunction, 
 			p_revised, 
 			p_typeproduct, 
-			p_penalty
+			p_penalty,
+			p_consecutive
 		) RETURNING id INTO v_BookingProductId;
 
 		-- 2. Insertamos el Pasajero (Solo si viene en el mismo llamado)

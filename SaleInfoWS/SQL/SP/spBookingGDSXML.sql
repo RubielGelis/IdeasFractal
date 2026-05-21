@@ -763,6 +763,7 @@ BEGIN
                     p_revised := r_product.revised,
                     p_penalty := r_product.penalty,
                     p_billingConcept := r_product.billing_concept,
+                    p_consecutive := r_product.consecutivo,
                     p_id_out := v_temp_product_id
                 );
                 v_bookingProductId := v_temp_product_id;

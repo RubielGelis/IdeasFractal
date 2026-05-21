@@ -22,7 +22,7 @@ BEGIN
             SELECT 
                 p.id,
                 p.type,
-                COALESCE(p."reservationCode", p_Codigo) AS reservation_code,
+                COALESCE(p.consecutive, p."reservationCode", p_Codigo) AS loc_provider,
                 ROW_NUMBER() OVER (ORDER BY p.id) as rn
             FROM public."BookingProductGDS" p
             INNER JOIN public."BookingGDS" b ON b.id = p."bookingId"
@@ -39,7 +39,7 @@ BEGIN
                             WHEN LOWER(type) LIKE '%insurance%' OR LOWER(type) LIKE '%insurance%' THEN 'Insurance'
                             ELSE type
                         END AS "productType",
-                        reservation_code AS "locProvider",
+                        loc_provider AS "locProvider",
                         'OK' AS "statusIntegracion",
                         'Todo ok' AS "messageIntegration"
                     )
@@ -52,7 +52,7 @@ BEGIN
                             WHEN LOWER(type) LIKE '%insurance%' OR LOWER(type) LIKE '%insurance%' THEN 'Insurance'
                             ELSE type
                         END AS "productTypeField",
-                        reservation_code AS "locProviderField",
+                        loc_provider AS "locProviderField",
                         'OK' AS "statusIntegracionField",
                         'Todo ok' AS "messageIntegrationField"
                     )
