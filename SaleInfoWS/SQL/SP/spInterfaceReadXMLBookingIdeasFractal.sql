@@ -40,9 +40,9 @@ BEGIN
         XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml_data
             COLUMNS 
                 locSource VARCHAR PATH 'locSource',
-                totalTicket DOUBLE PRECISION PATH 'fare/totalTicket',
-                TotalTax DOUBLE PRECISION PATH 'fare/TotalTax',
-                totalAncillary DOUBLE PRECISION PATH 'fare/totalAncillary',
+                totalTicket DOUBLE PRECISION PATH 'sum(Paxes/Pax/fare/totalTicket)',
+                TotalTax DOUBLE PRECISION PATH 'sum(Paxes/Pax/fare/TotalTax)',
+                totalAncillary DOUBLE PRECISION PATH 'sum(Paxes/Pax/fare/totalAncillary)',
                 iataCode VARCHAR PATH 'airCompanyIssue/iataCode',
                 route TEXT PATH 'route',
                 segments_xml XML PATH 'segments',

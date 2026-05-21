@@ -204,7 +204,7 @@ BEGIN
         COLUMNS 
             InternalLocator VARCHAR PATH '../../InternalLocator',
             locSource VARCHAR PATH 'locSource',
-            ticketNumber VARCHAR PATH 'Paxes/Pax/ticketNumber',
+            ticketNumber VARCHAR PATH 'Paxes/Pax[1]/ticketNumber',
             totalTicket VARCHAR PATH 'fare/totalTicket',
             TotalTax VARCHAR PATH 'fare/TotalTax',
             totalAncillary VARCHAR PATH 'fare/totalAncillary',
