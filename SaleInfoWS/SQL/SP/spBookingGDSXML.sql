@@ -471,6 +471,102 @@ BEGIN
     ) p
     WHERE pay_amount IS NOT NULL AND pay_amount > 0;
 
+    -- Pagos (Payments) de Hoteles (desde paxes)
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
+    SELECT locSource, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas
+    FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            paxes_xml XML PATH 'InfoBook/rooms/room/paxes'
+    ) f,
+    XMLTABLE('//paxes/pax/payments/payment' PASSING f.paxes_xml
+        COLUMNS
+            pay_code VARCHAR PATH 'fop',
+            pay_name VARCHAR PATH 'fop',
+            pay_type VARCHAR PATH 'fop',
+            pay_amount DOUBLE PRECISION PATH 'valuePay',
+            cc_type VARCHAR PATH 'creditCardInfo/flag',
+            cc_number VARCHAR PATH 'creditCardInfo/lastCreditDigit',
+            exp_date VARCHAR DEFAULT '__/__',
+            auth VARCHAR PATH 'creditCardInfo/approvalCode',
+            voucher VARCHAR PATH 'creditCardInfo/AdditionalCode',
+            bank VARCHAR DEFAULT '',
+            quotas INTEGER DEFAULT 0
+    ) p
+    WHERE pay_amount IS NOT NULL AND pay_amount > 0;
+
+    -- Pagos (Payments) de Hoteles (directos)
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
+    SELECT locSource, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas
+    FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            payments_xml XML PATH 'payments'
+    ) f,
+    XMLTABLE('//payments/payment' PASSING f.payments_xml
+        COLUMNS
+            pay_code VARCHAR PATH 'fop',
+            pay_name VARCHAR PATH 'fop',
+            pay_type VARCHAR PATH 'fop',
+            pay_amount DOUBLE PRECISION PATH 'valuePay',
+            cc_type VARCHAR PATH 'creditCardInfo/flag',
+            cc_number VARCHAR PATH 'creditCardInfo/lastCreditDigit',
+            exp_date VARCHAR DEFAULT '__/__',
+            auth VARCHAR PATH 'creditCardInfo/approvalCode',
+            voucher VARCHAR PATH 'creditCardInfo/AdditionalCode',
+            bank VARCHAR DEFAULT '',
+            quotas INTEGER DEFAULT 0
+    ) p
+    WHERE pay_amount IS NOT NULL AND pay_amount > 0;
+
+    -- Pagos (Payments) de Autos
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
+    SELECT locSource, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas
+    FROM XMLTABLE('//Books/Book/bookCars/bookCar' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            payments_xml XML PATH 'payments'
+    ) f,
+    XMLTABLE('//payments/payment' PASSING f.payments_xml
+        COLUMNS
+            pay_code VARCHAR PATH 'fop',
+            pay_name VARCHAR PATH 'fop',
+            pay_type VARCHAR PATH 'fop',
+            pay_amount DOUBLE PRECISION PATH 'valuePay',
+            cc_type VARCHAR PATH 'creditCardInfo/flag',
+            cc_number VARCHAR PATH 'creditCardInfo/lastCreditDigit',
+            exp_date VARCHAR DEFAULT '__/__',
+            auth VARCHAR PATH 'creditCardInfo/approvalCode',
+            voucher VARCHAR PATH 'creditCardInfo/AdditionalCode',
+            bank VARCHAR DEFAULT '',
+            quotas INTEGER DEFAULT 0
+    ) p
+    WHERE pay_amount IS NOT NULL AND pay_amount > 0;
+
+    -- Pagos (Payments) de Seguros
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
+    SELECT locSource, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas
+    FROM XMLTABLE('//Books/Book/Insurances/Insurance' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            payments_xml XML PATH 'payments'
+    ) f,
+    XMLTABLE('//payments/payment' PASSING f.payments_xml
+        COLUMNS
+            pay_code VARCHAR PATH 'fop',
+            pay_name VARCHAR PATH 'fop',
+            pay_type VARCHAR PATH 'fop',
+            pay_amount DOUBLE PRECISION PATH 'valuePay',
+            cc_type VARCHAR PATH 'creditCardInfo/flag',
+            cc_number VARCHAR PATH 'creditCardInfo/lastCreditDigit',
+            exp_date VARCHAR DEFAULT '__/__',
+            auth VARCHAR PATH 'creditCardInfo/approvalCode',
+            voucher VARCHAR PATH 'creditCardInfo/AdditionalCode',
+            bank VARCHAR DEFAULT '',
+            quotas INTEGER DEFAULT 0
+    ) p
+    WHERE pay_amount IS NOT NULL AND pay_amount > 0;
+
     -- Eliminar reserva existente y sus dependencias si ya existe para evitar duplicación
     DELETE FROM public."BookingProductItineraryGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
     DELETE FROM public."BookingProductPassangerGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
