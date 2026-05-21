@@ -431,6 +431,144 @@ BEGIN
     ) t ON t.product_consecutivo = f.locSource
     WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
 
+    -- Impuestos (Taxes) de Hoteles
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT locSource, 
+           public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           'Impuesto ' || public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           SUM(NULLIF(valtax, '')::DOUBLE PRECISION), 
+           'TAX', 
+           false
+    FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            taxes_xml XML PATH 'InfoBook/fareHotel/taxes'
+    ) f,
+    XMLTABLE('//taxes/tax' PASSING f.taxes_xml
+        COLUMNS
+            codeTax VARCHAR PATH 'codeTax',
+            valtax VARCHAR PATH 'valtax'
+    ) t
+    WHERE valtax IS NOT NULL AND valtax != ''
+    GROUP BY locSource, codeTax;
+
+    -- Cargo Otros (OTR) de Hoteles
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT 
+        f.locSource,
+        public."fnEquivalenceInterface"(v_interface_id, 10, 'OTR'),
+        'Otros',
+        COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0),
+        'OTR',
+        false
+    FROM (
+        SELECT locSource, NULLIF(TotalTax, '')::DOUBLE PRECISION AS TotalTax
+        FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml
+            COLUMNS 
+                locSource VARCHAR PATH 'locSource',
+                TotalTax VARCHAR PATH 'InfoBook/fareHotel/totalTax'
+        ) f_inner
+    ) f
+    LEFT JOIN (
+        SELECT product_consecutivo, SUM(tax_amount) AS sum_detailed_taxes
+        FROM temp_taxes
+        WHERE tax_type = 'TAX'
+        GROUP BY product_consecutivo
+    ) t ON t.product_consecutivo = f.locSource
+    WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
+
+    -- Impuestos (Taxes) de Autos
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT locSource, 
+           public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           'Impuesto ' || public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           SUM(NULLIF(valtax, '')::DOUBLE PRECISION), 
+           'TAX', 
+           false
+    FROM XMLTABLE('//Books/Book/bookCars/bookCar' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            taxes_xml XML PATH 'fareCar/taxes'
+    ) f,
+    XMLTABLE('//taxes/tax' PASSING f.taxes_xml
+        COLUMNS
+            codeTax VARCHAR PATH 'codeTax',
+            valtax VARCHAR PATH 'valtax'
+    ) t
+    WHERE valtax IS NOT NULL AND valtax != ''
+    GROUP BY locSource, codeTax;
+
+    -- Cargo Otros (OTR) de Autos
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT 
+        f.locSource,
+        public."fnEquivalenceInterface"(v_interface_id, 10, 'OTR'),
+        'Otros',
+        COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0),
+        'OTR',
+        false
+    FROM (
+        SELECT locSource, NULLIF(TotalTax, '')::DOUBLE PRECISION AS TotalTax
+        FROM XMLTABLE('//Books/Book/bookCars/bookCar' PASSING v_xml
+            COLUMNS 
+                locSource VARCHAR PATH 'locSource',
+                TotalTax VARCHAR PATH 'fareCar/totalTax'
+        ) f_inner
+    ) f
+    LEFT JOIN (
+        SELECT product_consecutivo, SUM(tax_amount) AS sum_detailed_taxes
+        FROM temp_taxes
+        WHERE tax_type = 'TAX'
+        GROUP BY product_consecutivo
+    ) t ON t.product_consecutivo = f.locSource
+    WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
+
+    -- Impuestos (Taxes) de Seguros
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT locSource, 
+           public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           'Impuesto ' || public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           SUM(NULLIF(valtax, '')::DOUBLE PRECISION), 
+           'TAX', 
+           false
+    FROM XMLTABLE('//Books/Book/Insurances/Insurance' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            taxes_xml XML PATH 'fareInsurance/taxes'
+    ) f,
+    XMLTABLE('//taxes/tax' PASSING f.taxes_xml
+        COLUMNS
+            codeTax VARCHAR PATH 'codeTax',
+            valtax VARCHAR PATH 'valtax'
+    ) t
+    WHERE valtax IS NOT NULL AND valtax != ''
+    GROUP BY locSource, codeTax;
+
+    -- Cargo Otros (OTR) de Seguros
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT 
+        f.locSource,
+        public."fnEquivalenceInterface"(v_interface_id, 10, 'OTR'),
+        'Otros',
+        COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0),
+        'OTR',
+        false
+    FROM (
+        SELECT locSource, NULLIF(TotalTax, '')::DOUBLE PRECISION AS TotalTax
+        FROM XMLTABLE('//Books/Book/Insurances/Insurance' PASSING v_xml
+            COLUMNS 
+                locSource VARCHAR PATH 'locSource',
+                TotalTax VARCHAR PATH 'fareInsurance/totalTax'
+        ) f_inner
+    ) f
+    LEFT JOIN (
+        SELECT product_consecutivo, SUM(tax_amount) AS sum_detailed_taxes
+        FROM temp_taxes
+        WHERE tax_type = 'TAX'
+        GROUP BY product_consecutivo
+    ) t ON t.product_consecutivo = f.locSource
+    WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
+
     -- Pagos (Payments) de Vuelos
     INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
     SELECT locSource, 
