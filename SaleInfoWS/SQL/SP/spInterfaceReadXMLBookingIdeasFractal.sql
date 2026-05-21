@@ -25,13 +25,13 @@ BEGIN
     WITH head_data AS (
         SELECT * FROM XMLTABLE('//Books/Book' PASSING v_xml_data
             COLUMNS 
-                InternalLocator VARCHAR(12) PATH 'InternalLocator',
-                dateLocator VARCHAR(10) PATH 'dateLocator',
-                AgencyCodeClient VARCHAR(25) PATH 'EntityBook/AgencyCodeClient',
-                AgencyCountry VARCHAR(5) PATH 'EntityBook/AgencyCountry',
-                codeEntity VARCHAR(5) PATH 'EntityBook/codeEntity',
-                loginBook VARCHAR(3) PATH 'UserBook/loginBook',
-                transactionCode VARCHAR(25) PATH 'transactionCode'
+                InternalLocator VARCHAR PATH 'InternalLocator',
+                dateLocator VARCHAR PATH 'dateLocator',
+                AgencyCodeClient VARCHAR PATH 'EntityBook/AgencyCodeClient',
+                AgencyCountry VARCHAR PATH 'EntityBook/AgencyCountry',
+                codeEntity VARCHAR PATH 'EntityBook/codeEntity',
+                loginBook VARCHAR PATH 'UserBook/loginBook',
+                transactionCode VARCHAR PATH 'transactionCode'
         )
     ),
     flights AS (
@@ -39,11 +39,11 @@ BEGIN
         FROM head_data h,
         XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml_data
             COLUMNS 
-                locSource VARCHAR(25) PATH 'locSource',
+                locSource VARCHAR PATH 'locSource',
                 totalTicket DOUBLE PRECISION PATH 'fare/totalTicket',
                 TotalTax DOUBLE PRECISION PATH 'fare/TotalTax',
                 totalAncillary DOUBLE PRECISION PATH 'fare/totalAncillary',
-                iataCode VARCHAR(25) PATH 'airCompanyIssue/iataCode',
+                iataCode VARCHAR PATH 'airCompanyIssue/iataCode',
                 route TEXT PATH 'route',
                 segments_xml XML PATH 'segments',
                 paxes_xml XML PATH 'Paxes'
@@ -54,17 +54,17 @@ BEGIN
         FROM head_data h,
         XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml_data
             COLUMNS 
-                locSource VARCHAR(25) PATH 'locSource',
-                status VARCHAR(25) PATH 'status',
-                sourceName VARCHAR(25) PATH 'sourceName',
+                locSource VARCHAR PATH 'locSource',
+                status VARCHAR PATH 'status',
+                sourceName VARCHAR PATH 'sourceName',
                 totalSellFare DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalSellFare',
                 totalTax DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalTax',
                 totalNetfare DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalNetfare',
                 feeValue DOUBLE PRECISION PATH 'InfoBook/fareHotel/feeValue',
                 numberNigths INTEGER PATH 'InfoBook/numberNigths',
-                dateCheckin VARCHAR(10) PATH 'InfoBook/dateCheckin',
-                dateCheckout VARCHAR(10) PATH 'InfoBook/dateCheckout',
-                Hotelcity VARCHAR(3) PATH 'InfoBook/Hotelcity',
+                dateCheckin VARCHAR PATH 'InfoBook/dateCheckin',
+                dateCheckout VARCHAR PATH 'InfoBook/dateCheckout',
+                Hotelcity VARCHAR PATH 'InfoBook/Hotelcity',
                 hotelName TEXT PATH 'InfoBook/hotelInfo/hotelName',
                 paxes_xml XML PATH 'InfoBook/rooms/room/paxes'
         ) hot

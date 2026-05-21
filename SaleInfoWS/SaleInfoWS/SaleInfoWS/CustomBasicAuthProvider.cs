@@ -1,6 +1,7 @@
-﻿using ServiceStack;
+using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.PostgreSQL;
 using System.Configuration;
 using System.Data;
 
@@ -15,7 +16,7 @@ namespace BackOfficeWS
         private IDbConnection Connect()
         {
             OrmLiteConnectionFactory dbFactory = new OrmLiteConnectionFactory(
-                ConfigurationManager.ConnectionStrings["FrontEndConnection"].ConnectionString, SqlServerDialect.Provider);
+                ConfigurationManager.ConnectionStrings["FrontEndConnection"].ConnectionString, PostgreSqlDialect.Provider);
 
             return dbFactory.OpenDbConnection();
         }

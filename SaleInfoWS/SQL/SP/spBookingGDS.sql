@@ -1,102 +1,108 @@
 CREATE OR REPLACE PROCEDURE public."spBookingGDS"(
-	p_Op varchar(15),
-	p_branch VARCHAR(5) = 'OFP',
-	p_implant VARCHAR(5) = NULL, 
+	p_Op varchar,
+	p_branch VARCHAR = 'OFP',
+	p_implant VARCHAR = NULL, 
 	p_external BOOLEAN = false,
 	p_bookingId INTEGER = NULL ,
 	p_gds INTEGER=1,
 	p_interfaces INTEGER=1,
-	p_code VARCHAR(12) = null,
-	p_date VARCHAR(8)  = null,
-	p_tiquetPrinter VARCHAR(6) = null,
-	p_seller VARCHAR(3) = null,
-	p_client VARCHAR(25) = null,
+	p_code VARCHAR = null,
+	p_date VARCHAR  = null,
+	p_tiquetPrinter VARCHAR = null,
+	p_seller VARCHAR = null,
+	p_client VARCHAR = null,
 	p_booking text = null,
-	p_typetransaction VARCHAR(1) = '1',
+	p_typetransaction VARCHAR = '1',
 	-- Parametros de Productos (BookingProductGDS)
 	p_amount DOUBLE PRECISION = null,
 	p_tax DOUBLE PRECISION = null,
 	p_perTax DOUBLE PRECISION = null,
 	p_fee DOUBLE PRECISION = null,
 	p_vat DOUBLE PRECISION = null,
-	p_provider VARCHAR(25) = null,
-	p_status VARCHAR(25) = null,
+	p_provider VARCHAR = null,
+	p_status VARCHAR = null,
 	-- Parametros de Tipificacion Adicional
-	p_productType VARCHAR(25) = null,
+	p_productType VARCHAR = null,
 	p_productService TEXT = null,
 	p_productDescription TEXT = null,
-	p_taxCode VARCHAR(25) = null,
-	p_taxName VARCHAR(50) = null,
-	p_taxType VARCHAR(25) = null,
+	p_taxCode VARCHAR = null,
+	p_taxName VARCHAR = null,
+	p_taxType VARCHAR = null,
 	p_taxismain  BOOLEAN = false,	
-	p_feeCode VARCHAR(25) = null,
-	p_feeName VARCHAR(50) = null,
-	p_feeType VARCHAR(25) = null,
+	p_feeCode VARCHAR = null,
+	p_feeName VARCHAR = null,
+	p_feeType VARCHAR = null,
 	p_feeDescription TEXT = null,
 	p_feeBillingConcept TEXT = null,
 	p_feeServiceType TEXT = null,
 	-- Parametros Adicionales (Pagos, Variables, etc)
 	p_bookingProductId INTEGER = null,
-	p_paymentCode VARCHAR(50) = null,
-	p_paymentName VARCHAR(50) = null,
-	p_paymentType VARCHAR(50) = null,
-	p_creditCardType VARCHAR(25) = null,
+	p_paymentCode VARCHAR = null,
+	p_paymentName VARCHAR = null,
+	p_paymentType VARCHAR = null,
+	p_creditCardType VARCHAR = null,
 	p_quotas INTEGER = null,
-	p_square VARCHAR(30) = null,
-	p_policy VARCHAR(25) = null,
-	p_policyAnnex VARCHAR(25) = null,
+	p_square VARCHAR = null,
+	p_policy VARCHAR = null,
+	p_policyAnnex VARCHAR = null,
 	p_varName TEXT = null,
 	p_varValue TEXT = null,
 
 	-- Parametros de Itinerario (BookingProductItineraryGDS)
 	p_orden INTEGER = null,
-	p_origin VARCHAR(3) = null,
-	p_destination VARCHAR(3) = null,
-	p_class VARCHAR(2) = null,
+	p_origin VARCHAR = null,
+	p_destination VARCHAR = null,
+	p_class VARCHAR = null,
 	p_checkInDate TIMESTAMP = null,
 	p_checkOutDate TIMESTAMP = null,
-	p_terminal VARCHAR(25) = null,
-	p_prestadoraCode VARCHAR(3) = null,
-	p_farebasis VARCHAR(25) = null,
-	p_Numflight VARCHAR(25) = null,
-	p_Typeflight VARCHAR(1) = null,
+	p_terminal VARCHAR = null,
+	p_prestadoraCode VARCHAR = null,
+	p_farebasis VARCHAR = null,
+	p_Numflight VARCHAR = null,
+	p_Typeflight VARCHAR = null,
 
 	-- Parametros de Pasajeros (BookingProductPassangerGDS)
-	p_firstName VARCHAR(50) = null,
-	p_lastName VARCHAR(50) = null,
-	p_documentType VARCHAR(25) = null,
-	p_identification VARCHAR(25) = null,
-	p_email VARCHAR(100) = null,
-	p_phone VARCHAR(25) = null,
-	p_type VARCHAR(25) = null,
+	p_firstName VARCHAR = null,
+	p_lastName VARCHAR = null,
+	p_documentType VARCHAR = null,
+	p_identification VARCHAR = null,
+	p_email VARCHAR = null,
+	p_phone VARCHAR = null,
+	p_type VARCHAR = null,
 
 	-- Parametros de Pagos (BookingProductPaymentGDS)
-	p_creditCard VARCHAR(2) = null,
-	p_creditCardNumber VARCHAR(16) = null,
-	p_expirationDate VARCHAR(5) = null,
+	p_creditCard VARCHAR = null,
+	p_creditCardNumber VARCHAR = null,
+	p_expirationDate VARCHAR = null,
 	p_feeNumber INTEGER = null,
-	p_bank VARCHAR(25) = null,
-	p_check VARCHAR(25) = null,
-	p_authorization VARCHAR(25) = null,
-	p_voucher VARCHAR(25) = null,
-	p_reference VARCHAR(50) = null,
+	p_bank VARCHAR = null,
+	p_check VARCHAR = null,
+	p_authorization VARCHAR = null,
+	p_voucher VARCHAR = null,
+	p_reference VARCHAR = null,
 	
 	-- Parametros de Productos (BookingProductGDS)
 	p_quantity INTEGER = 1,
 	p_cost DOUBLE PRECISION = 0,
-	p_prestadoraInitials VARCHAR(25) = NULL,
-	p_prestadoraDist VARCHAR(25) = NULL,
+	p_prestadoraInitials VARCHAR = NULL,
+	p_prestadoraDist VARCHAR = NULL,
 	p_nights INTEGER = NULL,
 	p_paxAdults INTEGER = NULL,
 	p_paxChildren INTEGER = NULL,
+	p_serviceType TEXT = NULL,
 	p_billingConcept TEXT = NULL,
 	p_sellerCom DOUBLE PRECISION = NULL,
 	p_ticketPrinterCom DOUBLE PRECISION = NULL,
 	p_inNationality INTEGER = NULL,
 	p_conjunction INTEGER = 0,
-	p_revised VARCHAR(25) = NULL,
-	p_typeproduct VARCHAR(25) = NULL,
-	p_penalty VARCHAR(25) = NULL,
+	p_revised VARCHAR = NULL,
+	p_typeproduct VARCHAR = NULL,
+	p_penalty VARCHAR = NULL,
+	p_currency VARCHAR = 'COP',
+	p_exchangeRate DOUBLE PRECISION = 1.0,
+	p_iata VARCHAR = NULL,
+	p_description TEXT = NULL,
+	p_observation TEXT = NULL,
 	
 	-- Extra (necesario para la firma pero obsoleto para la logica limpia)
 	p_Bookingxml TEXT = null,
@@ -107,10 +113,10 @@ DECLARE
 -- Obtiene el id de la Booking
 p_Id_BookingGDS INTEGER;
 	p_codeador_aux VARCHAR(6);
-	p_iata VARCHAR(25);
+	-- p_iata VARCHAR(25);
 	p_Bookingaux TEXT;
 p_AerolineaExterna VARCHAR(3);
-	p_CodAerolineaExterna VARCHAR(2);
+	p_CodAerolineaExterna VARCHAR(25);
 	p_bl_cliente BOOLEAN;
 	p_bl_tomarpccsucimp VARCHAR(1);
 	p_bl_IncluirCombaTarifa VARCHAR(1);
@@ -126,7 +132,7 @@ p_id_FormasPago INTEGER;
 p_RESPETARVALOR INTEGER;
 p_msgValoresGDS TEXT;
 	p_BookingsSabreUnicaNacionalidad Varchar(50);
-	p_cd_FormaPago VARCHAR(3);
+	p_cd_FormaPago VARCHAR(25);
 	p_in_nacionalidad INTEGER;
 	p_am_tarifa DOUBLE PRECISION := 0;
 	p_am_comb DOUBLE PRECISION := 0;
@@ -135,9 +141,9 @@ p_msgValoresGDS TEXT;
 	p_am_TarifaCredito DOUBLE PRECISION := 0;
 	p_am_OtrosContado DOUBLE PRECISION := 0;
 	p_am_OtrosCredito DOUBLE PRECISION := 0;
-	p_ds_cc_code VARCHAR(2);
-	p_PCC VARCHAR(10);
-	p_PCC_Emite VARCHAR(10);
+	p_ds_cc_code VARCHAR(25);
+	p_PCC VARCHAR(25);
+	p_PCC_Emite VARCHAR(25);
 	p_ds_cliid VARCHAR(25);
 	p_ds_clidir VARCHAR(100);
 	p_ds_clicity VARCHAR(50);
@@ -149,7 +155,7 @@ p_msgValoresGDS TEXT;
 	p_ds_contrato VARCHAR(50);
 	p_cd_tourcode VARCHAR(25);
 	p_cd_tourcode2 VARCHAR(25);
-	p_exchangeRate DOUBLE PRECISION := 1;
+	-- p_exchangeRate DOUBLE PRECISION := 1;
 	p_ds_cc_autorizacion VARCHAR(25);
 	p_ds_cc_voucher VARCHAR(25);
 	p_ds_cc_autorizacion2 VARCHAR(25);
@@ -157,9 +163,9 @@ p_msgValoresGDS TEXT;
 	p_ds_AutorizacionTarjetaTAO VARCHAR(25);
 	p_ds_VoucherTarjetaTAO VARCHAR(25);
 	p_in_cantpax INTEGER;
-	p_cd_Pseudo VARCHAR(10);
-	p_cd_conceptofacturacion VARCHAR(10);
-	p_cd_TipoServicio VARCHAR(10);
+	p_cd_Pseudo VARCHAR(25);
+	p_cd_conceptofacturacion VARCHAR(25);
+	p_cd_TipoServicio VARCHAR(25);
 	p_cd_Proveedores VARCHAR(25);
 	p_ds_Descrip TEXT;
 	p_ds_pax_firstnm VARCHAR(50);
@@ -167,41 +173,41 @@ p_msgValoresGDS TEXT;
 	p_cd_pax_cedula VARCHAR(25);
 	p_cd_licitacion VARCHAR(25);
 	p_cd_FormaPagoTAO VARCHAR(3);
-	p_cd_TarjetaCreditoTAO VARCHAR(2);
+	p_cd_TarjetaCreditoTAO VARCHAR(25);
 	p_cd_NumeroTarjetaTAO VARCHAR(16);
-	p_cd_VencimientoTarjetaTAO VARCHAR(5);
+	p_cd_VencimientoTarjetaTAO VARCHAR(25);
 	p_in_cuotasTarjetaTAO INTEGER;
-	p_observation TEXT;
-	p_cd_TarjetaCredito VARCHAR(2);
+	-- p_observation TEXT;
+	p_cd_TarjetaCredito VARCHAR(25);
 	p_cd_NumeroTarjeta VARCHAR(16);
-	p_cd_VencimientoTarjeta VARCHAR(5);
+	p_cd_VencimientoTarjeta VARCHAR(25);
 	p_in_CuotasTarjeta INTEGER;
-	p_codefp VARCHAR(10);
-	p_cd_tipotarjeta VARCHAR(2);
+	p_codefp VARCHAR(25);
+	p_cd_tipotarjeta VARCHAR(25);
 	p_ds_numerotarjeta VARCHAR(16);
 	p_ds_cc_number VARCHAR(16);
-	p_ds_expiraciontarjeta VARCHAR(5);
+	p_ds_expiraciontarjeta VARCHAR(25);
 	p_in_coutas INTEGER;
 	p_in_cc_cuotas INTEGER;
-	p_description TEXT;
-	p_currency VARCHAR(3) := 'COP';
+	-- p_description TEXT;
+	-- p_currency VARCHAR(25) := 'COP';
 	p_bl_usada INTEGER := 0;
 	p_bl_NotificacionMPD INTEGER := 0;
 	p_error INTEGER := 0;
 	p_bl_usado INTEGER := 0;
 	p_in_cc_cuotas2 INTEGER;
-	p_ds_cc_vence VARCHAR(5);
-	p_ds_cc_vence2 VARCHAR(5);
+	p_ds_cc_vence VARCHAR(25);
+	p_ds_cc_vence2 VARCHAR(25);
 	p_ds_cc_autorizacion_aux VARCHAR(25);
 	p_ds_cc_voucher_aux VARCHAR(25);
-	p_cd_citysalida VARCHAR(3);
-	p_cd_city VARCHAR(3);
+	p_cd_citysalida VARCHAR(25);
+	p_cd_city VARCHAR(25);
 	p_ds_fecha_salida VARCHAR(8);
 	p_ds_hora_salida VARCHAR(5);
 	p_ds_hora_llegada VARCHAR(5);
-	p_cd_aero_salida VARCHAR(3);
-	p_cd_aero_llegada VARCHAR(3);
-	p_cd_aero_siglas VARCHAR(3);
+	p_cd_aero_salida VARCHAR(25);
+	p_cd_aero_llegada VARCHAR(25);
+	p_cd_aero_siglas VARCHAR(25);
 	p_am_tarifa_aux DOUBLE PRECISION;
 	v_BookingProductId INTEGER;
 	v_Id_BookingProductItineraryGDS INTEGER;
@@ -393,10 +399,12 @@ BEGIN
 	--END IF;
 
 	--Obtenemos el codigo IATA - JARG - 2015/10/16
-	IF p_gds IN (6,8,9) THEN
-		p_iata := '';
-	ELSE
-		p_iata := replace(SUBSTRING(p_booking,46,10),' ','');
+	IF COALESCE(p_iata, '') = '' THEN
+		IF p_gds IN (6,8,9) THEN
+			p_iata := '';
+		ELSE
+			p_iata := replace(SUBSTRING(p_booking,46,10),' ','');
+		END IF;
 	END IF;
 
 	/*CREATE TABLE #CamposGDSValores	(Tiqueteador VARCHAR(6)
@@ -551,7 +559,7 @@ BEGIN
 			UPDATE public."BookingGDS" SET 
 				gds = p_gds, 
 				"date" = CAST(p_date AS TIMESTAMP), 
-				"tiquetPrinter" = p_tiquetPrinter, 
+				"tiquetPrinter" = COALESCE(p_tiquetPrinter, "tiquetPrinter"), 
 				seller = p_seller, 
 				client = p_client, 
 				booking = p_booking, 
@@ -582,11 +590,11 @@ BEGIN
 			--END IF;
 			-- Si la facturacion automatica de SABRE esta habilitada, insertamos el registro
 			IF (EXISTS(SELECT * FROM public."Branch" S
-					  INNER JOIN public."BranchGDSFacAuto" SG ON SG.id_Sucursal = S.id   
-					  WHERE S.code = p_branch and (SG.id_GDS = 1 and SG.bl_FacAuto = 1) and p_bl_NotificacionMPD = 0 AND p_bl_cliente = 1) 
+					  INNER JOIN public."BranchGDSFacAuto" SG ON SG."branchId" = S.id   
+					  WHERE S.code = p_branch and (SG."gdsId" = 1 and SG."EnvoiceAuto" = true) and p_bl_NotificacionMPD = 0 AND p_bl_cliente = true) 
 			  OR EXISTS( SELECT * FROM public."BookingGDS" r 
 					     INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
-						 WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1)) THEN
+						 WHERE r.code = p_code AND p_bl_CotizacionFacAuto = true)) THEN
 				p_state := 'USADA';
 				SELECT d."state" INTO p_state
 				FROM public."BookingProductGDS" p
@@ -626,10 +634,10 @@ BEGIN
 			If p_error<>0 THEN
 				RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS';
 				-- -- SELECT -1;
-				Return -1;
+				Return;
 			END IF;
 	
-			INSERT INTO public."BookingsGDSLog" (blanch,implant,"message",file,codebooking, booking,error)
+			INSERT INTO public."BookingsGDS_log" (blanch,implant,"message",file,codebooking, booking,error)
 			SELECT 
 				p_branch
 				,p_implant
@@ -639,23 +647,23 @@ BEGIN
 				,p_booking
 				,0;
 	
-			IF p_gds <> 6 THEN
-				SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_Id_BookingGDS, p_booking, p_msgValoresGDS);
-				IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-					PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
-				END IF;
-			END IF;
+			-- Sub-funciones no migradas (comentadas temporalmente)
+			-- IF p_gds <> 6 THEN
+			-- 	SELECT * INTO p_RetVal FROM spBookingsGDS_ObtenerEMDResiduales(p_Id_BookingGDS, p_booking, p_msgValoresGDS);
+			-- 	IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
+			-- 		PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			-- 	END IF;
+			-- END IF;
 			
-				SELECT * INTO p_RetVal FROM spBookingsGDS_ValoresGDS(p_Id_BookingGDS, p_msgValoresGDS);
-				IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-					PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
-				END IF;
-				p_msgValoresGDS := '';
-				SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_BookingGDS, p_msgValoresGDS);
-				IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
-					PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
-				END IF;
-			END IF;
+			-- 	SELECT * INTO p_RetVal FROM spBookingsGDS_ValoresGDS(p_Id_BookingGDS, p_msgValoresGDS);
+			-- 	IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
+			-- 		PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			-- 	END IF;
+			-- 	p_msgValoresGDS := '';
+			-- 	SELECT * INTO p_RetVal FROM spBookingsGDS_Remarks(p_Id_BookingGDS, p_msgValoresGDS);
+			-- 	IF p_RetVal <>  0 AND p_msgValoresGDS <> '' THEN
+			-- 		PERFORM public."spRegistrarLog"(696, 1, 0, p_msgValoresGDS);
+			-- 	END IF;
 		ELSE
 			INSERT INTO public."BookingGDS" (
 	            code,
@@ -687,7 +695,7 @@ BEGIN
 	            CURRENT_TIMESTAMP,
 	            COALESCE(p_currency, 'COP'),
 	            COALESCE(p_exchangeRate, 1),
-	            COALESCE(p_PCC_Emite, p_tiquetPrinter),
+	            COALESCE(p_PCC_Emite, p_tiquetPrinter, p_branch, 'UNKNOWN'),
 	            p_seller,
 	            p_client,
 	            p_booking,
@@ -727,73 +735,77 @@ BEGIN
 			--ELSE
 			--	p_bl_cliente := (CASE WHEN COALESCE(p_ds_cliid,'')<>'' OR COALESCE(p_client,'')<>'' THEN 1 ELSE 0 END);
 			--END IF;
-		IF EXISTS(
-						SELECT * 
-						FROM public."Branch" b
-						inner join public."BranchGDSInvoiceAuto" a ON a."branchId" = b.id  and id_GDS = 1 and bl_FacAuto = 1
-						WHERE code = p_branch 
-					) 
-					OR EXISTS( SELECT * FROM public."BookingGDS" r 
-								INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
-								WHERE r.code = p_code AND p_bl_CotizacionFacAuto = 1) THEN
-				p_state := 'USADA' ;
-				SELECT p."state" INTO p_state
-				FROM public."BookingProductGDS" p
-				INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
-				WHERE b.id = p_Id_BookingGDS
-				AND p.state = 'NUEVO';
-	
-				IF ((p_bl_usada = 0 AND NOT EXISTS (SELECT * FROM public."BookingsGDSEnvoiceAuto" where "bookingId" = p_Id_BookingGDS))
-					OR NOT EXISTS (SELECT *
-									FROM public."BookingProductGDS" p
-									INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
-									WHERE b.id = p_Id_BookingGDS))
-					AND p_gds = 1 THEN
-					INSERT INTO public."BookingsGDSEnvoiceAuto" (branch,implant,"bookingCode" ,"bookingId") 
-					VALUES(p_branch,p_implant,p_code, p_Id_BookingGDS);
+			IF EXISTS(
+							SELECT * 
+							FROM public."Branch" b
+							inner join public."BranchGDSInvoiceAuto" a ON a."branchId" = b.id  and a."gdsId" = 1 and a."EnvoiceAuto" = true
+							WHERE code = p_branch 
+						) 
+						OR EXISTS( SELECT * FROM public."BookingGDS" r 
+									INNER JOIN public."BookingProductGDS" s ON s."bookingId" = r.id
+									WHERE r.code = p_code AND p_bl_CotizacionFacAuto = true) THEN
+					p_state := 'USADA' ;
+					SELECT p."state" INTO p_state
+					FROM public."BookingProductGDS" p
+					INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
+					WHERE b.id = p_Id_BookingGDS
+					AND p.state = 'NUEVO';
+		
+					IF ((p_bl_usada = 0 AND NOT EXISTS (SELECT * FROM public."BookingsGDSEnvoiceAuto" where "bookingId" = p_Id_BookingGDS))
+						OR NOT EXISTS (SELECT *
+										FROM public."BookingProductGDS" p
+										INNER JOIN public."BookingGDS" b on b.id = p."bookingId"
+										WHERE b.id = p_Id_BookingGDS))
+						AND p_gds = 1 THEN
+						INSERT INTO public."BookingsGDSEnvoiceAuto" (branch,implant,"bookingCode" ,"bookingId") 
+						VALUES(p_branch,p_implant,p_code, p_Id_BookingGDS);
+					END IF;
+				-----------------------------------------------------------------------------------------
+				---------------------------------------------------------------------------------------------
+				IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN
+					   Delete From public."BookingProductItineraryGDS" WHERE "bookingId" = p_Id_BookingGDS;
+					END IF;
+				--------------------------------------------------------------------------------------------
+		
+				If p_error<>0 THEN
+					RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS';
+					-- -- SELECT -1;
+					Return;
 				END IF;
-			-----------------------------------------------------------------------------------------
-			---------------------------------------------------------------------------------------------
-			IF EXISTS (Select * From public."BookingProductItineraryGDS" Where "bookingId" = p_Id_BookingGDS) THEN
-				   Delete From public."BookingProductItineraryGDS" WHERE "bookingId" = p_Id_BookingGDS;
+				
+				------------------------------------------------------------------------------------------
+				-- Log de Bookings -----------------------------------------------------------------------
+				------------------------------------------------------------------------------------------
+				INSERT INTO public."BookingsGDS_log" (blanch,implant,message,"file","codebooking", "booking","error")
+				SELECT 
+					p_branch
+					,p_implant
+					,'Log Booking'
+					,p_code
+					,p_code
+					,p_booking
+					,0;
+		
+				IF p_gds NOT IN (6,8,9) THEN
+					p_id_out := p_Id_BookingGDS;
+					RETURN;
 				END IF;
-			--------------------------------------------------------------------------------------------
-	
-			If p_error<>0 THEN
-				RAISE EXCEPTION 'Error al Guardar los Datos de Cabecera de la Booking GDS';
-				-- -- SELECT -1;
-				Return -1;
-			END IF;
 			
-			------------------------------------------------------------------------------------------
-			-- Log de Bookings -----------------------------------------------------------------------
-			------------------------------------------------------------------------------------------
-			INSERT INTO public."BookingsGDS_log" (branch,implant,menssage,"file","codebooking", "booking","error")
-			SELECT 
-				p_branch
-				,p_implant
-				,'Log Booking'
-				,p_code
-				,p_code
-				,p_booking
-				,0;
-	
-			IF p_gds NOT IN (6,8,9) THEN
+				--IF EXISTS (SELECT * FROM public."SystemParameter" Where code = '565' AND LTRIM(RTRIM(value)) = 'S') THEN
+				--	UPDATE public."BookingGDS" SET cd_formapago_cliente = (SELECT c.code_fp 
+				--								  FROM public."Configuracion_remisiones_FPago" c
+				--								  INNER JOIN public."Configuracion_remisiones" e ON e.id_cliente = c.id_cliente
+				--								  WHERE (c.id_cliente = p_client OR c.id_cliente = p_ds_cliid)
+				--									AND e.bl_forma_pago = 1
+				--									AND c.bl_defecto = 1
+				--								  LIMIT 1)
+				--	WHERE id = p_Id_BookingGDS;
+				--END IF; 
+		
 				p_id_out := p_Id_BookingGDS;
 				RETURN;
 			END IF;
-		
-		--IF EXISTS (SELECT * FROM public."SystemParameter" Where code = '565' AND LTRIM(RTRIM(value)) = 'S') THEN
-		--	UPDATE public."BookingGDS" SET cd_formapago_cliente = (SELECT c.code_fp 
-		--								  FROM public."Configuracion_remisiones_FPago" c
-		--								  INNER JOIN public."Configuracion_remisiones" e ON e.id_cliente = c.id_cliente
-		--								  WHERE (c.id_cliente = p_client OR c.id_cliente = p_ds_cliid)
-		--									AND e.bl_forma_pago = 1
-		--									AND c.bl_defecto = 1
-		--								  LIMIT 1)
-		--	WHERE id = p_Id_BookingGDS;
-		--END IF; 
-	
+		END IF;
 		p_id_out := p_Id_BookingGDS;
 		RETURN;
 	END IF;
@@ -845,7 +857,7 @@ BEGIN
 			p_serviceType, 
 			p_billingConcept, 
 			p_destination, 
-			COALESCE(p_reservationCode, p_code), 
+			p_code, 
 			p_sellerCom, 
 			p_ticketPrinterCom, 
 			v_inNationality, 
@@ -909,13 +921,13 @@ BEGIN
 		) VALUES (
 			COALESCE(p_bookingProductId, (SELECT MAX(id) FROM public."BookingProductGDS" WHERE "bookingId" = p_bookingId)),
 			p_orden,
-			COALESCE(p_cd_aero_salida, p_origin),
-			p_cd_aero_llegada,
+			p_origin,
+			p_destination,
 			LEFT(p_class, 1),
 			v_checkIn,
 			v_checkOut,
-			p_cd_aero_llegada, -- terminal (mapeo legacy)
-			COALESCE(p_cd_aero_siglas, ''),
+			COALESCE(p_terminal, p_destination), -- terminal
+			COALESCE(p_prestadoraCode, ''),
 			COALESCE(p_farebasis, ''),
 			p_Numflight,
 			p_Typeflight,

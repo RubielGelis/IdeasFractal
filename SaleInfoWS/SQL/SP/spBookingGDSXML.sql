@@ -17,119 +17,136 @@ DECLARE
     
     v_bookingId INTEGER;
     v_bookingProductId INTEGER;
+    v_dummy_out INTEGER;
     v_processed_count INTEGER := 0;
+    v_err_context text;
+    v_interface_id INTEGER;
 BEGIN
     -- Intentamos parsear el XML
     BEGIN
         v_xml := XMLPARSE(DOCUMENT p_xml);
     EXCEPTION WHEN OTHERS THEN
-        p_result := json_build_object('status', 'error', 'message', 'Error parseando el XML: ' || SQLERRM);
+        GET STACKED DIAGNOSTICS v_err_context = PG_EXCEPTION_CONTEXT;
+        p_result := json_build_object('status', 'error', 'message', 'Error parseando el XML: ' || SQLERRM || ' [Contexto: ' || v_err_context || ']');
         RETURN;
     END;
+	--RAISE NOTICE 'xml: %', v_xml;
+    -- Obtener ID de la interfaz para la equivalencia de códigos
+    SELECT id INTO v_interface_id FROM public."Interfaces" WHERE code = 'IdeasFractal' LIMIT 1;
+    IF v_interface_id IS NULL THEN
+        v_interface_id := 3;
+    END IF;
 
     -- 1. Crear Tablas Temporales (ON COMMIT DROP asegura limpieza al finalizar la transacción)
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_head (
-        cd_codigo VARCHAR(12),
-        branch VARCHAR(5),
-        implant VARCHAR(5),
-        seller VARCHAR(3),
-        client VARCHAR(25),
-        booking_date VARCHAR(10),
+        cd_codigo VARCHAR,
+        branch VARCHAR,
+        implant VARCHAR,
+        seller VARCHAR,
+        client VARCHAR,
+        booking_date VARCHAR,
         gds INTEGER,
         interfaces INTEGER,
-        type_trans VARCHAR(1),
-        consecutivo VARCHAR(25)
+        type_trans VARCHAR,
+        consecutivo VARCHAR,
+        currency VARCHAR,
+        exchange_rate DOUBLE PRECISION,
+        booking TEXT,
+        iata VARCHAR,
+        description TEXT,
+        observation TEXT
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_products (
-        consecutivo VARCHAR(25),
-        cd_codigo VARCHAR(12),
-        op_type VARCHAR(15),
-        ds_tipoitem VARCHAR(25),
+        consecutivo VARCHAR,
+        cd_codigo VARCHAR,
+        parent_locator VARCHAR,
+        op_type VARCHAR,
+        ds_tipoitem VARCHAR,
         amount DOUBLE PRECISION,
         tax DOUBLE PRECISION,
         vat DOUBLE PRECISION,
         fee DOUBLE PRECISION,
-        provider VARCHAR(25),
-        status VARCHAR(25),
-        product_type VARCHAR(25),
+        provider VARCHAR,
+        status VARCHAR,
+        product_type VARCHAR,
         product_description TEXT,
-        prestadora_code VARCHAR(3),
+        prestadora_code VARCHAR,
         nights INTEGER,
         pax_adults INTEGER,
         pax_children INTEGER,
         quantity INTEGER,
         cost DOUBLE PRECISION,
-        check_in_date VARCHAR(10),
-        check_out_date VARCHAR(10),
-        city VARCHAR(3),
-        tiquet_printer VARCHAR(6),
-        revised VARCHAR(25),
-        penalty VARCHAR(25),
+        check_in_date VARCHAR,
+        check_out_date VARCHAR,
+        city VARCHAR,
+        tiquet_printer VARCHAR,
+        revised VARCHAR,
+        penalty VARCHAR,
         billing_concept TEXT
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_itinerary (
-        product_consecutivo VARCHAR(25),
+        product_consecutivo VARCHAR,
         orden INTEGER,
-        origin VARCHAR(3),
-        destination VARCHAR(3),
-        class VARCHAR(2),
-        check_in_date VARCHAR(20),
-        check_out_date VARCHAR(20),
-        terminal VARCHAR(25),
-        prestadora VARCHAR(3),
-        farebasis VARCHAR(25),
-        num_flight VARCHAR(25),
-        type_flight VARCHAR(1)
+        origin VARCHAR,
+        destination VARCHAR,
+        class VARCHAR,
+        check_in_date VARCHAR,
+        check_out_date VARCHAR,
+        terminal VARCHAR,
+        prestadora VARCHAR,
+        farebasis VARCHAR,
+        num_flight VARCHAR,
+        type_flight VARCHAR
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_passengers (
-        product_consecutivo VARCHAR(25),
-        first_name VARCHAR(50),
-        last_name VARCHAR(50),
-        doc_type VARCHAR(25),
-        identification VARCHAR(25),
-        email VARCHAR(100),
-        phone VARCHAR(25),
-        pax_type VARCHAR(25),
-        consecutivo VARCHAR(25)
+        product_consecutivo VARCHAR,
+        first_name VARCHAR,
+        last_name VARCHAR,
+        doc_type VARCHAR,
+        identification VARCHAR,
+        email VARCHAR,
+        phone VARCHAR,
+        pax_type VARCHAR,
+        consecutivo VARCHAR
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_variables (
-        product_consecutivo VARCHAR(25),
+        product_consecutivo VARCHAR,
         var_name TEXT,
         var_value TEXT
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_payments (
-        product_consecutivo VARCHAR(25),
-        pay_code VARCHAR(50),
-        pay_name VARCHAR(50),
+        product_consecutivo VARCHAR,
+        pay_code VARCHAR,
+        pay_name VARCHAR,
         pay_amount DOUBLE PRECISION,
-        cc_type VARCHAR(2),
-        cc_number VARCHAR(16),
-        exp_date VARCHAR(5),
-        auth VARCHAR(25),
-        voucher VARCHAR(25),
-        bank VARCHAR(25),
+        cc_type VARCHAR,
+        cc_number VARCHAR,
+        exp_date VARCHAR,
+        auth VARCHAR,
+        voucher VARCHAR,
+        bank VARCHAR,
         quotas INTEGER
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_fees (
-        product_consecutivo VARCHAR(25),
-        fee_code VARCHAR(25),
-        fee_name VARCHAR(50),
+        product_consecutivo VARCHAR,
+        fee_code VARCHAR,
+        fee_name VARCHAR,
         fee_amount DOUBLE PRECISION,
         fee_description TEXT
     ) ON COMMIT DROP;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS temp_taxes (
-        product_consecutivo VARCHAR(25),
-        tax_code VARCHAR(25),
-        tax_name VARCHAR(50),
+        product_consecutivo VARCHAR,
+        tax_code VARCHAR,
+        tax_name VARCHAR,
         tax_amount DOUBLE PRECISION,
-        tax_type VARCHAR(25),
+        tax_type VARCHAR,
         is_main BOOLEAN
     ) ON COMMIT DROP;
 
@@ -139,115 +156,165 @@ BEGIN
     -- 3. Poblar Tablas Temporales (Basado en el ejemplo booksReserva.xml)
 
     -- Cabecera
-    INSERT INTO temp_head (cd_codigo, branch, implant, seller, client, booking_date, gds, interfaces, type_trans, consecutivo)
-    SELECT InternalLocator, AgencyCountry, codeEntity, loginBook, AgencyCodeClient, dateLocator, 1, 1, '1', InternalLocator
+    INSERT INTO temp_head (
+        cd_codigo, branch, implant, seller, client, booking_date, gds, interfaces, type_trans, consecutivo,
+        currency, exchange_rate, booking, iata, description, observation
+    )
+    SELECT 
+        InternalLocator, AgencyCountry, codeEntity, loginBook, AgencyCodeClient, dateLocator, 1, 1, '1', InternalLocator,
+        COALESCE(flight_currency, hotel_currency, car_currency, insurance_currency, 'COP'),
+        COALESCE(NULLIF(flight_exrate, '')::DOUBLE PRECISION, NULLIF(hotel_exrate, '')::DOUBLE PRECISION, NULLIF(car_exrate, '')::DOUBLE PRECISION, NULLIF(insurance_exrate, '')::DOUBLE PRECISION, 1.0),
+        p_xml,
+        flight_iata,
+        'Reserva de GDS ' || InternalLocator,
+        COALESCE(observation, '')
     FROM XMLTABLE('//Books/Book' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH 'InternalLocator',
-            dateLocator VARCHAR(10) PATH 'dateLocator',
-            codeEntity VARCHAR(5) PATH 'EntityBook/codeEntity',
-            AgencyCountry VARCHAR(5) PATH 'EntityBook/AgencyCountry',
-            AgencyCodeClient VARCHAR(25) PATH 'EntityBook/AgencyCodeClient',
-            loginBook VARCHAR(3) PATH 'UserBook/loginBook'
+            InternalLocator VARCHAR PATH 'InternalLocator',
+            dateLocator VARCHAR PATH 'dateLocator',
+            codeEntity VARCHAR PATH 'EntityBook/codeEntity',
+            AgencyCountry VARCHAR PATH 'EntityBook/AgencyCountry',
+            AgencyCodeClient VARCHAR PATH 'EntityBook/AgencyCodeClient',
+            loginBook VARCHAR PATH 'UserBook/loginBook',
+            observation VARCHAR PATH 'observation',
+            
+            flight_currency VARCHAR PATH 'BookInfoFlights/BookInfoFlight[1]/Paxes/Pax[1]/fare/currencyFare',
+            hotel_currency VARCHAR PATH 'bookInfoHotels/bookInfoHotel[1]/InfoBook/fareHotel/currency',
+            car_currency VARCHAR PATH 'bookCars/bookCar[1]/fareCar/currency',
+            insurance_currency VARCHAR PATH 'Insurances/Insurance[1]/fareInsurance/currency',
+            
+            flight_exrate VARCHAR PATH 'BookInfoFlights/BookInfoFlight[1]/Paxes/Pax[1]/fare/ExchangeRate',
+            hotel_exrate VARCHAR PATH 'bookInfoHotels/bookInfoHotel[1]/InfoBook/fareHotel/ExchangeRate',
+            car_exrate VARCHAR PATH 'bookCars/bookCar[1]/fareCar/ExchangeRate',
+            insurance_exrate VARCHAR PATH 'Insurances/Insurance[1]/fareInsurance/ExchangeRate',
+            
+            flight_iata VARCHAR PATH 'BookInfoFlights/BookInfoFlight[1]/airCompanyIssue/iataCode'
     );
 
     -- Productos: Vuelos
-    INSERT INTO temp_products (consecutivo, cd_codigo, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, prestadora_code, nights, quantity, cost)
-    SELECT locSource, InternalLocator, 'flight', 'Vuelo', totalTicket, TotalTax, 0, totalAncillary, iataCode, 'OK', 'Vuelo', route, iataCode, 0, 1, totalTicket
+    INSERT INTO temp_products (consecutivo, cd_codigo, parent_locator, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, prestadora_code, nights, quantity, cost)
+    SELECT locSource, COALESCE(NULLIF(ticketNumber, ''), InternalLocator), InternalLocator, 'flight', 'flight', 
+           NULLIF(totalTicket, '')::DOUBLE PRECISION, 
+           NULLIF(TotalTax, '')::DOUBLE PRECISION, 
+           0, 
+           NULLIF(totalAncillary, '')::DOUBLE PRECISION, 
+           iataCode, 'NUEVO', 'flight', route, iataCode, 0, 1, 
+           NULLIF(totalTicket, '')::DOUBLE PRECISION
     FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH '../../InternalLocator',
-            locSource VARCHAR(25) PATH 'locSource',
-            totalTicket DOUBLE PRECISION PATH 'fare/totalTicket',
-            TotalTax DOUBLE PRECISION PATH 'fare/TotalTax',
-            totalAncillary DOUBLE PRECISION PATH 'fare/totalAncillary',
-            iataCode VARCHAR(25) PATH 'airCompanyIssue/iataCode',
+            InternalLocator VARCHAR PATH '../../InternalLocator',
+            locSource VARCHAR PATH 'locSource',
+            ticketNumber VARCHAR PATH 'Paxes/Pax/ticketNumber',
+            totalTicket VARCHAR PATH 'fare/totalTicket',
+            TotalTax VARCHAR PATH 'fare/TotalTax',
+            totalAncillary VARCHAR PATH 'fare/totalAncillary',
+            iataCode VARCHAR PATH 'airCompanyIssue/iataCode',
             route TEXT PATH 'route'
     );
 
     -- Productos: Hoteles
-    INSERT INTO temp_products (consecutivo, cd_codigo, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date, city)
-    SELECT locSource, InternalLocator, 'hotel', 'Hotel', totalSellFare, totalTax, 0, feeValue, sourceName, status, 'Hotel', hotelName, numberNigths, 1, totalNetfare, dateCheckin, dateCheckout, Hotelcity
+    INSERT INTO temp_products (consecutivo, cd_codigo, parent_locator, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date, city)
+    SELECT locSource, InternalLocator, InternalLocator, 'hotel', 'Hotel', 
+           NULLIF(totalSellFare, '')::DOUBLE PRECISION, 
+           NULLIF(totalTax, '')::DOUBLE PRECISION, 
+           0, 
+           NULLIF(feeValue, '')::DOUBLE PRECISION, 
+           sourceName, status, 'Hotel', hotelName, 
+           NULLIF(numberNigths, '')::INTEGER, 
+           1, 
+           NULLIF(totalNetfare, '')::DOUBLE PRECISION, 
+           dateCheckin, dateCheckout, Hotelcity
     FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH '../../InternalLocator',
-            locSource VARCHAR(25) PATH 'locSource',
-            status VARCHAR(25) PATH 'status',
-            sourceName VARCHAR(25) PATH 'sourceName',
-            totalSellFare DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalSellFare',
-            totalTax DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalTax',
-            totalNetfare DOUBLE PRECISION PATH 'InfoBook/fareHotel/totalNetfare',
-            feeValue DOUBLE PRECISION PATH 'InfoBook/fareHotel/feeValue',
-            numberNigths INTEGER PATH 'InfoBook/numberNigths',
-            dateCheckin VARCHAR(10) PATH 'InfoBook/dateCheckin',
-            dateCheckout VARCHAR(10) PATH 'InfoBook/dateCheckout',
-            Hotelcity VARCHAR(3) PATH 'InfoBook/Hotelcity',
+            InternalLocator VARCHAR PATH '../../InternalLocator',
+            locSource VARCHAR PATH 'locSource',
+            status VARCHAR PATH 'status',
+            sourceName VARCHAR PATH 'sourceName',
+            totalSellFare VARCHAR PATH 'InfoBook/fareHotel/totalSellFare',
+            totalTax VARCHAR PATH 'InfoBook/fareHotel/totalTax',
+            totalNetfare VARCHAR PATH 'InfoBook/fareHotel/totalNetfare',
+            feeValue VARCHAR PATH 'InfoBook/fareHotel/feeValue',
+            numberNigths VARCHAR PATH 'InfoBook/numberNigths',
+            dateCheckin VARCHAR PATH 'InfoBook/dateCheckin',
+            dateCheckout VARCHAR PATH 'InfoBook/dateCheckout',
+            Hotelcity VARCHAR PATH 'InfoBook/Hotelcity',
             hotelName TEXT PATH 'InfoBook/hotelInfo/hotelName'
     );
 
     -- Productos: Autos
-    INSERT INTO temp_products (consecutivo, cd_codigo, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date, city)
-    SELECT locSource, InternalLocator, 'car', 'Auto', totalSellFare, totalTax, 0, feeValue, nameRentaCar, status, 'Auto', vehiculeType, 0, 1, totalNetfare, pickUpDate, DropOffDate, iataCodePickup
+    INSERT INTO temp_products (consecutivo, cd_codigo, parent_locator, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date, city)
+    SELECT locSource, InternalLocator, InternalLocator, 'car', 'Auto', 
+           NULLIF(totalSellFare, '')::DOUBLE PRECISION, 
+           NULLIF(totalTax, '')::DOUBLE PRECISION, 
+           0, 
+           NULLIF(feeValue, '')::DOUBLE PRECISION, 
+           nameRentaCar, status, 'Auto', vehiculeType, 0, 1, 
+           NULLIF(totalNetfare, '')::DOUBLE PRECISION, 
+           pickUpDate, DropOffDate, iataCodePickup
     FROM XMLTABLE('//Books/Book/bookCars/bookCar' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH '../../InternalLocator',
-            locSource VARCHAR(25) PATH 'locSource',
-            status VARCHAR(25) PATH 'status',
-            nameRentaCar VARCHAR(25) PATH 'nameRentaCar',
-            totalSellFare DOUBLE PRECISION PATH 'fareCar/totalSellFare',
-            totalTax DOUBLE PRECISION PATH 'fareCar/totalTax',
-            totalNetfare DOUBLE PRECISION PATH 'fareCar/totalNetfare',
-            feeValue DOUBLE PRECISION PATH 'fareCar/feeValue',
-            pickUpDate VARCHAR(10) PATH 'pickUpDate',
-            DropOffDate VARCHAR(10) PATH 'DropOffDate',
-            iataCodePickup VARCHAR(3) PATH 'pickupLocation/iataCodePickup',
+            InternalLocator VARCHAR PATH '../../InternalLocator',
+            locSource VARCHAR PATH 'locSource',
+            status VARCHAR PATH 'status',
+            nameRentaCar VARCHAR PATH 'nameRentaCar',
+            totalSellFare VARCHAR PATH 'fareCar/totalSellFare',
+            totalTax VARCHAR PATH 'fareCar/totalTax',
+            totalNetfare VARCHAR PATH 'fareCar/totalNetfare',
+            feeValue VARCHAR PATH 'fareCar/feeValue',
+            pickUpDate VARCHAR PATH 'pickUpDate',
+            DropOffDate VARCHAR PATH 'DropOffDate',
+            iataCodePickup VARCHAR PATH 'pickupLocation/iataCodePickup',
             vehiculeType TEXT PATH 'fareCar/vehiculeType'
     );
 
     -- Productos: Seguros
-    INSERT INTO temp_products (consecutivo, cd_codigo, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date)
-    SELECT locSource, InternalLocator, 'insurance', 'Seguro', totaSellFare, 0, 0, 0, sourceName, status, 'Seguro', 'Seguro de Viaje', 0, 1, totaNetFare, dateStarService, dateFinalService
+    INSERT INTO temp_products (consecutivo, cd_codigo, parent_locator, op_type, ds_tipoitem, amount, tax, vat, fee, provider, status, product_type, product_description, nights, quantity, cost, check_in_date, check_out_date)
+    SELECT locSource, InternalLocator, InternalLocator, 'insurance', 'Seguro', 
+           NULLIF(totaSellFare, '')::DOUBLE PRECISION, 
+           0, 0, 0, sourceName, status, 'Seguro', 'Seguro de Viaje', 0, 1, 
+           NULLIF(totaNetFare, '')::DOUBLE PRECISION, 
+           dateStarService, dateFinalService
     FROM XMLTABLE('//Books/Book/Insurances/Insurance' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH '../../InternalLocator',
-            locSource VARCHAR(25) PATH 'locSource',
-            status VARCHAR(25) PATH 'status',
-            sourceName VARCHAR(25) PATH 'sourceName',
-            totaSellFare DOUBLE PRECISION PATH 'fareInsurance/totaSellFare',
-            totaNetFare DOUBLE PRECISION PATH 'fareInsurance/totaNetFare',
-            dateStarService VARCHAR(10) PATH 'dateStarService',
-            dateFinalService VARCHAR(10) PATH 'dateFinalService'
+            InternalLocator VARCHAR PATH '../../InternalLocator',
+            locSource VARCHAR PATH 'locSource',
+            status VARCHAR PATH 'status',
+            sourceName VARCHAR PATH 'sourceName',
+            totaSellFare VARCHAR PATH 'fareInsurance/totaSellFare',
+            totaNetFare VARCHAR PATH 'fareInsurance/totaNetFare',
+            dateStarService VARCHAR PATH 'dateStarService',
+            dateFinalService VARCHAR PATH 'dateFinalService'
     );
 
     -- Itinerario (Vuelos)
     INSERT INTO temp_itinerary (product_consecutivo, orden, origin, destination, class, check_in_date, check_out_date, terminal, prestadora, farebasis, num_flight, type_flight)
-    SELECT locSource, segmentNumber, DepartureIata, ArrivalIata, Class, DepartureDate, ArrivalDate, terminalDeparture, airlineOperator, fareBase, Record, 'D'
+    SELECT locSource, NULLIF(segmentNumber, '')::INTEGER, DepartureIata, ArrivalIata, Class, DepartureDate, ArrivalDate, terminalDeparture, airlineOperator, fareBase, Record, 'D'
     FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight/segments/segment' PASSING v_xml
         COLUMNS 
-            locSource VARCHAR(25) PATH '../../locSource',
-            segmentNumber INTEGER PATH 'segmentNumber',
-            DepartureIata VARCHAR(3) PATH 'DepartureIata',
-            ArrivalIata VARCHAR(3) PATH 'ArrivalIata',
-            Class VARCHAR(2) PATH 'Class',
-            DepartureDate VARCHAR(20) PATH 'DepartureDate',
-            ArrivalDate VARCHAR(20) PATH 'ArrivalDate',
-            terminalDeparture VARCHAR(25) PATH 'terminalDeparture',
-            airlineOperator VARCHAR(3) PATH 'airlineOperator',
-            fareBase VARCHAR(25) PATH 'fareBase',
-            Record VARCHAR(25) PATH 'Record'
+            locSource VARCHAR PATH '../../locSource',
+            segmentNumber VARCHAR PATH 'segmentNumber',
+            DepartureIata VARCHAR PATH 'DepartureIata',
+            ArrivalIata VARCHAR PATH 'ArrivalIata',
+            Class VARCHAR PATH 'Class',
+            DepartureDate VARCHAR PATH 'DepartureDate',
+            ArrivalDate VARCHAR PATH 'ArrivalDate',
+            terminalDeparture VARCHAR PATH 'terminalDeparture',
+            airlineOperator VARCHAR PATH 'airlineOperator',
+            fareBase VARCHAR PATH 'fareBase',
+            Record VARCHAR PATH 'Record'
     );
 
     -- Pasajeros (Vuelos)
     INSERT INTO temp_passengers (product_consecutivo, first_name, last_name, identification, email, pax_type, consecutivo)
     SELECT locSource, name, lastName, identification, email, paxtype, identification
-    FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight/Paxes/pax' PASSING v_xml
+    FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight/Paxes/Pax' PASSING v_xml
         COLUMNS 
-            locSource VARCHAR(25) PATH '../../locSource',
-            name VARCHAR(50) PATH 'name',
-            lastName VARCHAR(50) PATH 'lastName',
-            identification VARCHAR(25) PATH 'identification',
-            email VARCHAR(100) PATH 'email',
-            paxtype VARCHAR(25) PATH 'paxtype'
+            locSource VARCHAR PATH '../../locSource',
+            name VARCHAR PATH 'name',
+            lastName VARCHAR PATH 'lastName',
+            identification VARCHAR PATH 'identification',
+            email VARCHAR PATH 'email',
+            paxtype VARCHAR PATH 'paxtype'
     );
 
     -- Pasajeros (Hoteles)
@@ -255,12 +322,12 @@ BEGIN
     SELECT locSource, name, lastName, identification, mailPax, typePax, identification
     FROM XMLTABLE('//Books/Book/bookInfoHotels/bookInfoHotel/InfoBook/rooms/room/paxes/pax' PASSING v_xml
         COLUMNS 
-            locSource VARCHAR(25) PATH '../../../../locSource',
-            name VARCHAR(50) PATH 'name',
-            lastName VARCHAR(50) PATH 'lastName',
-            identification VARCHAR(25) PATH 'identification',
-            mailPax VARCHAR(100) PATH 'mailPax',
-            typePax VARCHAR(25) PATH 'typePax'
+            locSource VARCHAR PATH '../../../../locSource',
+            name VARCHAR PATH 'name',
+            lastName VARCHAR PATH 'lastName',
+            identification VARCHAR PATH 'identification',
+            mailPax VARCHAR PATH 'mailPax',
+            typePax VARCHAR PATH 'typePax'
     );
 
     -- Pasajeros (Autos)
@@ -268,23 +335,23 @@ BEGIN
     SELECT locSource, name, lastName, mailPax, name || lastName
     FROM XMLTABLE('//Books/Book/bookCars/bookCar/pax' PASSING v_xml
         COLUMNS 
-            locSource VARCHAR(25) PATH '../locSource',
-            name VARCHAR(50) PATH 'name',
-            lastName VARCHAR(50) PATH 'lastName',
-            mailPax VARCHAR(100) PATH 'mailPax'
+            locSource VARCHAR PATH '../locSource',
+            name VARCHAR PATH 'name',
+            lastName VARCHAR PATH 'lastName',
+            mailPax VARCHAR PATH 'mailPax'
     );
 
     -- Pasajeros (Seguros)
     INSERT INTO temp_passengers (product_consecutivo, first_name, last_name, identification, email, pax_type, consecutivo)
     SELECT locSource, name, lastName, identification, mailPax, typePax, identification
-    FROM XMLTABLE('//Books/Book/Insurances/Insurance/fareInsurance/Paxes/pax' PASSING v_xml
+    FROM XMLTABLE('//Books/Book/Insurances/Insurance/fareInsurance/Paxes/Pax' PASSING v_xml
         COLUMNS 
-            locSource VARCHAR(25) PATH '../../../locSource',
-            name VARCHAR(50) PATH 'name',
-            lastName VARCHAR(50) PATH 'lastName',
-            identification VARCHAR(25) PATH 'identification',
-            mailPax VARCHAR(100) PATH 'mailPax',
-            typePax VARCHAR(25) PATH 'typePax'
+            locSource VARCHAR PATH '../../../locSource',
+            name VARCHAR PATH 'name',
+            lastName VARCHAR PATH 'lastName',
+            identification VARCHAR PATH 'identification',
+            mailPax VARCHAR PATH 'mailPax',
+            typePax VARCHAR PATH 'typePax'
     );
 
     -- Variables (UDIDS)
@@ -292,13 +359,94 @@ BEGIN
     SELECT InternalLocator, name, value
     FROM XMLTABLE('//Books/Book/CorporateInfo/UDIDS/udid' PASSING v_xml
         COLUMNS 
-            InternalLocator VARCHAR(12) PATH '../../../../InternalLocator',
+            InternalLocator VARCHAR PATH '../../../../InternalLocator',
             name TEXT PATH 'name',
             value TEXT PATH 'value'
     );
 
-    -- 4. Procesamiento mediante ciclos
-    
+    -- Cargo Tarifa (TAR) de Vuelos (extraído de fare/localfare) con equivalencia
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT locSource, 
+           public."fnEquivalenceInterface"(v_interface_id, 10, 'TAR'), 
+           'Tarifa', 
+           SUM(NULLIF(localfare, '')::DOUBLE PRECISION), 
+           'TAR', 
+           true
+    FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            paxes_xml XML PATH 'Paxes'
+    ) f,
+    XMLTABLE('//Paxes/Pax' PASSING f.paxes_xml
+        COLUMNS
+            localfare VARCHAR PATH 'fare/localfare'
+    ) p
+    WHERE localfare IS NOT NULL AND localfare != ''
+    GROUP BY locSource;
+
+    -- Impuestos (Taxes) de Vuelos con equivalencia
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT locSource, 
+           public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           'Impuesto ' || public."fnEquivalenceInterface"(v_interface_id, 10, codeTax), 
+           SUM(NULLIF(valtax, '')::DOUBLE PRECISION), 
+           'TAX', 
+           false
+    FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
+        COLUMNS 
+            locSource VARCHAR PATH 'locSource',
+            taxes_xml XML PATH 'Paxes/Pax/fare/taxes'
+    ) f,
+    XMLTABLE('//taxes/tax' PASSING f.taxes_xml
+        COLUMNS
+            codeTax VARCHAR PATH 'codeTax',
+            valtax VARCHAR PATH 'valtax'
+    ) t
+    WHERE valtax IS NOT NULL AND valtax != ''
+    GROUP BY locSource, codeTax;
+
+    -- Cargo Otros (OTR) de Vuelos (TotalTax - suma de los demás impuestos) con equivalencia
+    INSERT INTO temp_taxes (product_consecutivo, tax_code, tax_name, tax_amount, tax_type, is_main)
+    SELECT 
+        f.locSource,
+        public."fnEquivalenceInterface"(v_interface_id, 10, 'OTR'),
+        'Otros',
+        COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0),
+        'OTR',
+        false
+    FROM (
+        SELECT locSource, SUM(NULLIF(TotalTax, '')::DOUBLE PRECISION) AS TotalTax
+        FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
+            COLUMNS 
+                locSource VARCHAR PATH 'locSource',
+                paxes_xml XML PATH 'Paxes'
+        ) f_inner,
+        XMLTABLE('//Paxes/Pax' PASSING f_inner.paxes_xml
+            COLUMNS
+                TotalTax VARCHAR PATH 'fare/TotalTax'
+        ) p_inner
+        GROUP BY locSource
+    ) f
+    LEFT JOIN (
+        SELECT product_consecutivo, SUM(tax_amount) AS sum_detailed_taxes
+        FROM temp_taxes
+        WHERE tax_type = 'TAX'
+        GROUP BY product_consecutivo
+    ) t ON t.product_consecutivo = f.locSource
+    WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
+
+    -- Eliminar reserva existente y sus dependencias si ya existe para evitar duplicación
+    DELETE FROM public."BookingProductItineraryGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingProductPassangerGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingProductTaxGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingProductPaymentGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingProductVariableGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingProductFEEGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
+    DELETE FROM public."BookingsGDSInvoiceAuto" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head));
+    DELETE FROM public."BookingGDSInvoiceAutoLog" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head));
+    DELETE FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head));
+    DELETE FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head);
+
     FOR r_head IN (SELECT * FROM temp_head) LOOP
         -- Paso 1: Crear Cabecera
         BEGIN
@@ -313,18 +461,27 @@ BEGIN
                 p_gds := r_head.gds,
                 p_interfaces := r_head.interfaces,
                 p_typetransaction := r_head.type_trans,
+                p_currency := r_head.currency,
+                p_exchangeRate := r_head.exchange_rate,
+                p_booking := r_head.booking,
+                p_iata := r_head.iata,
+                p_description := r_head.description,
+                p_observation := r_head.observation,
                 p_id_out := v_bookingId
             );
         EXCEPTION WHEN OTHERS THEN
-            CONTINUE;
+            RAISE;
         END;
 
         -- Paso 2: Procesar Productos
-        FOR r_product IN (SELECT * FROM temp_products WHERE cd_codigo = r_head.cd_codigo) LOOP
+        FOR r_product IN (SELECT * FROM temp_products WHERE parent_locator = r_head.cd_codigo) LOOP
+            DECLARE
+                v_temp_product_id INTEGER;
             BEGIN
                 CALL public."spBookingGDS"(
                     p_Op := r_product.op_type,
                     p_bookingId := v_bookingId,
+                    p_code := r_product.cd_codigo,
                     p_amount := r_product.amount,
                     p_tax := r_product.tax,
                     p_vat := r_product.vat,
@@ -341,10 +498,11 @@ BEGIN
                     p_revised := r_product.revised,
                     p_penalty := r_product.penalty,
                     p_billingConcept := r_product.billing_concept,
-                    p_id_out := v_bookingProductId
+                    p_id_out := v_temp_product_id
                 );
+                v_bookingProductId := v_temp_product_id;
             EXCEPTION WHEN OTHERS THEN
-                CONTINUE;
+                RAISE;
             END;
 
             -- Paso 3: Sub-ítems
@@ -361,12 +519,13 @@ BEGIN
                     p_identification := r_passenger.identification,
                     p_email := r_passenger.email,
                     p_phone := r_passenger.phone,
-                    p_type := r_passenger.pax_type
+                    p_type := r_passenger.pax_type,
+                    p_id_out := v_dummy_out
                 );
             END LOOP;
 
             -- Itinerario
-            FOR r_itinerary IN (SELECT * FROM temp_itinerary WHERE product_consecutivo = r_product.consecutivo) LOOP
+             FOR r_itinerary IN (SELECT * FROM temp_itinerary WHERE product_consecutivo = r_product.consecutivo) LOOP
                 CALL public."spBookingGDS"(
                     p_Op := 'itinerary',
                     p_bookingId := v_bookingId,
@@ -381,7 +540,8 @@ BEGIN
                     p_prestadoraCode := r_itinerary.prestadora,
                     p_farebasis := r_itinerary.farebasis,
                     p_Numflight := r_itinerary.num_flight,
-                    p_Typeflight := r_itinerary.type_flight
+                    p_Typeflight := r_itinerary.type_flight,
+                    p_id_out := v_dummy_out
                 );
             END LOOP;
 
@@ -392,7 +552,23 @@ BEGIN
                     p_bookingId := v_bookingId,
                     p_bookingProductId := v_bookingProductId,
                     p_varName := r_var.var_name,
-                    p_varValue := r_var.var_value
+                    p_varValue := r_var.var_value,
+                    p_id_out := v_dummy_out
+                );
+            END LOOP;
+
+            -- Impuestos (Taxes)
+            FOR r_tax IN (SELECT * FROM temp_taxes WHERE product_consecutivo = r_product.consecutivo) LOOP
+                CALL public."spBookingGDS"(
+                    p_Op := 'tax',
+                    p_bookingId := v_bookingId,
+                    p_bookingProductId := v_bookingProductId,
+                    p_taxCode := r_tax.tax_code,
+                    p_taxName := r_tax.tax_name,
+                    p_taxType := r_tax.tax_type,
+                    p_taxismain := r_tax.is_main,
+                    p_tax := r_tax.tax_amount,
+                    p_id_out := v_dummy_out
                 );
             END LOOP;
 

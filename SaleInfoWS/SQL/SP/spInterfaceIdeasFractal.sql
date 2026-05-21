@@ -22,6 +22,7 @@ DECLARE
     v_msg text;
     v_archivo VARCHAR(250);
     v_ResultadoJSON JSON;
+    v_err_context text;
 BEGIN
     v_cd_interfaces := 'IdeasFractal';
     SELECT id INTO v_id_Interfaces FROM public."Interfaces" WHERE code = v_cd_interfaces;
@@ -33,22 +34,23 @@ BEGIN
         -- Convertir JSON a XML si es necesario (asumiendo que viene en formato JSON si empieza con {)
         IF p_XML LIKE '{%' THEN
 			BEGIN
-                v_XMLI := public."fnzafnjsonaxml"(p_XML);
+                v_XMLI := public."fnjsonaxml"(p_XML);
             EXCEPTION WHEN OTHERS THEN
                 v_XMLI := p_XML;
             END;
 		ELSE
             v_XMLI := p_XML;
         END IF;
-
+		--RAISE NOTICE 'XML: %', v_XMLI;
         -- 1. Llamar a spInterfaceReadXMLBookingIdeasFractal para transformar el XML al formato interno
 		BEGIN
             CALL public."spInterfaceReadXMLBookingIdeasFractal"(p_Op, v_XMLI, v_XMLR);
         EXCEPTION WHEN OTHERS THEN
-            v_ResultadoError := 'Error al transformar el XML: ' || SQLERRM;
+            GET STACKED DIAGNOSTICS v_err_context = PG_EXCEPTION_CONTEXT;
+            v_ResultadoError := 'Error al transformar el XML: ' || SQLERRM || ' [Contexto: ' || v_err_context || ']';
             v_Error := 1;
         END;
-
+		--RAISE NOTICE 'XML: %', v_XMLR;
         -- 2. Validar que la transformación generó contenido
         IF v_Error = 0 AND (v_XMLR IS NULL OR v_XMLR = '') THEN
             v_ResultadoError := 'Error: La transformación del XML devolvió un resultado vacío.';
@@ -67,14 +69,17 @@ BEGIN
                 v_archivo := v_CodigoBooking;
                 v_msg := 'Booking xml procesado exitosamente';
 
-                INSERT INTO public."BookingGDS_log" (ds_mensaje, ds_archivo, cd_Booking, ds_Booking, bl_error)
-                VALUES (v_msg, v_archivo, v_CodigoBooking, v_XMLI, false);
+                INSERT INTO public."BookingsGDS_log" (message, file, codebooking, booking, error)
+                VALUES (v_msg, v_archivo, v_CodigoBooking, v_XMLI, 0);
 
                 -- Llamada al procedimiento central de procesamiento
+				
                 CALL public."spBookingGDSXML"(v_XMLR, v_ResultadoJSON);
                 v_Resultado := v_ResultadoJSON::text;
+				
             EXCEPTION WHEN OTHERS THEN
-                v_ResultadoError := 'Error en spBookingGDSXML: ' || SQLERRM;
+                GET STACKED DIAGNOSTICS v_err_context = PG_EXCEPTION_CONTEXT;
+                v_ResultadoError := 'Error en spBookingGDSXML: ' || SQLERRM || ' [Contexto: ' || v_err_context || ']';
                 v_Error := 1;
             END;
         END IF;
@@ -83,7 +88,8 @@ BEGIN
 		BEGIN
             CALL public."spza_InterfaceXmlResponse_IdeasFractral"(p_Op, v_XMLI, p_Codigo, v_ResultadoError, v_Respuesta);
         EXCEPTION WHEN OTHERS THEN
-            v_Respuesta := '<Response><Status>Error</Status><Message>' || SQLERRM || '</Message></Response>';
+            GET STACKED DIAGNOSTICS v_err_context = PG_EXCEPTION_CONTEXT;
+            v_Respuesta := '<Response><Status>Error</Status><Message>' || SQLERRM || ' [Contexto: ' || v_err_context || ']</Message></Response>';
         END;
 
         -- 5. Registrar el log de la transacción de la interfaz
@@ -103,7 +109,8 @@ BEGIN
     p_Respuesta := '';
     RETURN;
 EXCEPTION WHEN OTHERS THEN
-    v_ResultadoError := 'Error inesperado en spInterfaceIdeasFractal: ' || SQLERRM;
+    GET STACKED DIAGNOSTICS v_err_context = PG_EXCEPTION_CONTEXT;
+    v_ResultadoError := 'Error inesperado en spInterfaceIdeasFractal: ' || SQLERRM || ' [Contexto: ' || v_err_context || ']';
     BEGIN
         INSERT INTO public."EquivalenciasInterfaces_Log" (
             "Id_Interfaces", cd_maestro, cd_codigo, "cd_codigoInte", cd_operacion, 
