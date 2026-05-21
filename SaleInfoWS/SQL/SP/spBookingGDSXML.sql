@@ -123,6 +123,7 @@ BEGIN
         product_consecutivo VARCHAR,
         pay_code VARCHAR,
         pay_name VARCHAR,
+        pay_type VARCHAR,
         pay_amount DOUBLE PRECISION,
         cc_type VARCHAR,
         cc_number VARCHAR,
@@ -436,11 +437,19 @@ BEGIN
     WHERE (COALESCE(f.TotalTax, 0) - COALESCE(t.sum_detailed_taxes, 0)) > 0;
 
     -- Pagos (Payments) de Vuelos
-    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_amount)
+    INSERT INTO temp_payments (product_consecutivo, pay_code, pay_name, pay_type, pay_amount, cc_type, cc_number, exp_date, auth, voucher, bank, quotas)
     SELECT locSource, 
-           fop, 
-           'Pago ' || fop, 
-           NULLIF(valuePay, '')::DOUBLE PRECISION
+           pay_code, 
+           pay_name, 
+           pay_type, 
+           pay_amount, 
+           cc_type, 
+           cc_number, 
+           exp_date, 
+           auth, 
+           voucher, 
+           bank, 
+           quotas
     FROM XMLTABLE('//Books/Book/BookInfoFlights/BookInfoFlight' PASSING v_xml
         COLUMNS 
             locSource VARCHAR PATH 'locSource',
@@ -448,10 +457,19 @@ BEGIN
     ) f,
     XMLTABLE('//Paxes/Pax/payments/payment' PASSING f.paxes_xml
         COLUMNS
-            fop VARCHAR PATH 'fop',
-            valuePay VARCHAR PATH 'valuePay'
+            pay_code VARCHAR PATH 'fop',
+            pay_name VARCHAR PATH 'fop',
+            pay_type VARCHAR PATH 'fop',
+            pay_amount DOUBLE PRECISION PATH 'valuePay',
+            cc_type VARCHAR PATH 'creditCardInfo/flag',
+            cc_number VARCHAR PATH 'creditCardInfo/lastCreditDigit',
+            exp_date VARCHAR DEFAULT '__/__',
+            auth VARCHAR PATH 'creditCardInfo/approvalCode',
+            voucher VARCHAR PATH 'creditCardInfo/AdditionalCode',
+            bank VARCHAR DEFAULT '',
+            quotas INTEGER DEFAULT 0
     ) p
-    WHERE valuePay IS NOT NULL AND valuePay != '';
+    WHERE pay_amount IS NOT NULL AND pay_amount > 0;
 
     -- Eliminar reserva existente y sus dependencias si ya existe para evitar duplicación
     DELETE FROM public."BookingProductItineraryGDS" WHERE "bookingProductId" IN (SELECT id FROM public."BookingProductGDS" WHERE "bookingId" IN (SELECT id FROM public."BookingGDS" WHERE code IN (SELECT cd_codigo FROM temp_head)));
@@ -598,7 +616,7 @@ BEGIN
                     p_bookingProductId := v_bookingProductId,
                     p_paymentCode := r_payment.pay_code,
                     p_paymentName := r_payment.pay_name,
-                    p_paymentType := 'EFECTIVO',
+                    p_paymentType := r_payment.pay_type,
                     p_amount := r_payment.pay_amount,
                     p_creditCardType := r_payment.cc_type,
                     p_creditCardNumber := r_payment.cc_number,
