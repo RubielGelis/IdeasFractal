@@ -22,7 +22,7 @@ BEGIN
             SELECT 
                 p.id,
                 p.type,
-                COALESCE(p.consecutive, p."reservationCode", p_Codigo) AS loc_provider,
+                p.consecutive AS loc_provider,
                 ROW_NUMBER() OVER (ORDER BY p.id) as rn
             FROM public."BookingProductGDS" p
             INNER JOIN public."BookingGDS" b ON b.id = p."bookingId"
@@ -79,7 +79,7 @@ BEGIN
 
     -- Si el estado es OK, inyectamos la marca de éxito para que el C# la reconozca
     IF v_Status = 'OK' THEN
-        p_Respuesta := '<!-- <Status>Success</Status> -->' || p_Respuesta;
+        p_Respuesta := p_Respuesta;
     END IF;
 END;
 $BODY$;
