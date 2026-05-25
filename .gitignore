@@ -15,3 +15,6 @@ obj/
 # Miscellaneous
 nuget.exe
 *.docx
+
+# Installer
+Instalador_*.exe
