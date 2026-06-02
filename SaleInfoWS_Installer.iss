@@ -33,59 +33,110 @@ Filename: "{sys}\inetsrv\appcmd.exe"; Parameters: "add app /site.name:""Default 
 
 [Code]
 var
+  DBTypePage: TInputOptionWizardPage;
   DBPage: TInputQueryWizardPage;
 
 procedure InitializeWizard;
 begin
-  // Creamos una nueva página en el asistente que aparecerá después de elegir el directorio (wpSelectDir)
-  DBPage := CreateInputQueryPage(wpSelectDir,
-    'Configuración de la Base de Datos', 'Conexión a PostgreSQL',
-    'Por favor ingrese los datos de conexión para la base de datos PostgreSQL de SaleinfoWS.');
+  // Página para seleccionar el tipo de base de datos
+  DBTypePage := CreateInputOptionPage(wpSelectDir,
+    'Tipo de Base de Datos', 'Seleccione el motor de base de datos',
+    'Seleccione el motor de base de datos al cual se conectará el servicio:',
+    True, False);
+  DBTypePage.Add('PostgreSQL');
+  DBTypePage.Add('SQL Server');
+  DBTypePage.SelectedValueIndex := 0;
 
-  // Agregamos los campos de texto
-  DBPage.Add('Servidor (Host):', False);
-  DBPage.Add('Puerto:', False);
+  // Página para los datos de conexión
+  DBPage := CreateInputQueryPage(DBTypePage.ID,
+    'Configuración de la Base de Datos', 'Conexión a la Base de Datos',
+    'Por favor ingrese los datos de conexión.');
+
+  DBPage.Add('Servidor / Host:', False);
+  DBPage.Add('Puerto (dejar vacío si no aplica):', False);
   DBPage.Add('Base de Datos:', False);
   DBPage.Add('Usuario:', False);
-  DBPage.Add('Contraseña:', True); // True indica que es un campo de contraseña (se ocultan los caracteres)
+  DBPage.Add('Contraseña:', True);
+end;
 
-  // Valores por defecto
-  DBPage.Values[0] := 'localhost';
-  DBPage.Values[1] := '5432';
-  DBPage.Values[2] := 'agencias_new';
-  DBPage.Values[3] := 'postgres';
-  DBPage.Values[4] := '';
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurPageID = DBPage.ID then
+  begin
+    if DBTypePage.SelectedValueIndex = 0 then
+    begin
+      // Configuración PostgreSQL
+      DBPage.Caption := 'Conexión a PostgreSQL';
+      DBPage.Description := 'Por favor ingrese los datos de conexión para la base de datos PostgreSQL.';
+      if (DBPage.Values[0] = '') or (DBPage.Values[0] = 'RUBIEL-PC\SQLEXPRESS') then
+      begin
+        DBPage.Values[0] := 'localhost';
+        DBPage.Values[1] := '5432';
+        DBPage.Values[2] := 'agencias_new';
+        DBPage.Values[3] := 'postgres';
+        DBPage.Values[4] := '';
+      end;
+    end
+    else
+    begin
+      // Configuración SQL Server
+      DBPage.Caption := 'Conexión a SQL Server';
+      DBPage.Description := 'Por favor ingrese los datos de conexión para la base de datos SQL Server.';
+      if (DBPage.Values[0] = '') or (DBPage.Values[0] = 'localhost') then
+      begin
+        DBPage.Values[0] := 'RUBIEL-PC\SQLEXPRESS';
+        DBPage.Values[1] := '';
+        DBPage.Values[2] := 'Agencias';
+        DBPage.Values[3] := 'sa';
+        DBPage.Values[4] := '111985';
+      end;
+    end;
+  end;
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   ConnectionString: String;
+  ProviderName: String;
+  DatabaseType: String;
   ConfigFile: String;
   FileContentAnsi: AnsiString;
   FileContentStr: String;
 begin
-  // ssPostInstall ocurre justo después de que la barra de progreso termina de copiar los archivos
   if CurStep = ssPostInstall then
   begin
-    // Construimos la cadena de conexión basada en lo que el usuario ingresó
-    ConnectionString := 'Host=' + DBPage.Values[0] + ';' +
-                        'Port=' + DBPage.Values[1] + ';' +
-                        'Database=' + DBPage.Values[2] + ';' +
-                        'Username=' + DBPage.Values[3] + ';' +
-                        'Password=' + DBPage.Values[4] + ';';
+    if DBTypePage.SelectedValueIndex = 0 then
+    begin
+      DatabaseType := 'PostgreSQL';
+      ProviderName := 'Npgsql';
+      ConnectionString := 'Host=' + DBPage.Values[0] + ';' +
+                          'Port=' + DBPage.Values[1] + ';' +
+                          'Database=' + DBPage.Values[2] + ';' +
+                          'Username=' + DBPage.Values[3] + ';' +
+                          'Password=' + DBPage.Values[4] + ';';
+    end
+    else
+    begin
+      DatabaseType := 'SqlServer';
+      ProviderName := 'System.Data.SqlClient';
+      ConnectionString := 'Server=' + DBPage.Values[0] + ';' +
+                          'Database=' + DBPage.Values[2] + ';' +
+                          'User Id=' + DBPage.Values[3] + ';' +
+                          'Password=' + DBPage.Values[4] + ';';
+    end;
                         
-    // Guardamos la cadena de conexión en el Web.config
     ConfigFile := ExpandConstant('{app}\Web.config');
     if LoadStringFromFile(ConfigFile, FileContentAnsi) then
     begin
       FileContentStr := String(FileContentAnsi);
-      StringChange(FileContentStr, 'Host=localhost;Port=5432;Database=agencias_new;Username=postgres;Password=111985;', ConnectionString);
+      StringChange(FileContentStr, 'DB_TYPE_PLACEHOLDER', DatabaseType);
+      StringChange(FileContentStr, 'DB_PROVIDER_PLACEHOLDER', ProviderName);
+      StringChange(FileContentStr, 'DB_CONNECTION_STRING_PLACEHOLDER', ConnectionString);
       FileContentAnsi := AnsiString(FileContentStr);
       SaveStringToFile(ConfigFile, FileContentAnsi, False);
     end;
     
-    // Mensaje de confirmación (opcional, puedes quitarlo)
     MsgBox('Los archivos se han copiado exitosamente en: ' + ExpandConstant('{app}') + #13#10 + #13#10 +
-           'Los datos de la base de datos se han procesado correctamente.', mbInformation, MB_OK);
+           'La base de datos se ha configurado como ' + DatabaseType + '.', mbInformation, MB_OK);
   end;
 end;

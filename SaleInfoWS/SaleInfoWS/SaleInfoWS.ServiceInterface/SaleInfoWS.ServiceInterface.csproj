@@ -48,6 +48,9 @@
     <Reference Include="ServiceStack.OrmLite.PostgreSQL, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceStack.OrmLite.PostgreSQL.5.5.0\lib\net45\ServiceStack.OrmLite.PostgreSQL.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceStack.OrmLite.SqlServer.5.5.0\lib\net45\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql, Version=4.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Npgsql.4.0.5\lib\net45\Npgsql.dll</HintPath>
     </Reference>

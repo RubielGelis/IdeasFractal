@@ -3,6 +3,7 @@ using SaleInfoWS.ServiceModel;
 using System.Data;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.PostgreSQL;
+using ServiceStack.OrmLite.SqlServer;
 using System.Configuration;
 using System;
 using System.Collections.Generic;
@@ -30,18 +31,36 @@ namespace SaleInfoWS.ServiceInterface
             {
                 try
                 {
-                    // Llamada al procedimiento almacenado de PostgreSQL "spInterfaceIdeasFractal".
-                    // Este procedimiento recibe el JSON (enviado en request.Payload) y orquesta la transformación e inserción.
-                    // Al ser un PROCEDURE con un parámetro INOUT, se usa CALL y se captura el resultado.
-                    var responseXml = db.SqlScalar<string>(
-                        "CALL public.\"spInterfaceIdeasFractal\"(@op, @codigo, @xml, @pet, @res)",
-                        new { 
-                            op = "Booking", 
-                            codigo = request.Loc, 
-                            xml = request.Payload, 
-                            pet = "API-REQUEST", // Identificador de petición
-                            res = (string)null   // El parámetro INOUT se recibe como resultado del escalar
-                        });
+                    string responseXml = null;
+                    string dbType = ConfigurationManager.AppSettings["DatabaseType"] ?? "PostgreSQL";
+
+                    if (dbType.Equals("SqlServer", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Llamada al procedimiento almacenado de SQL Server "spza_Interface_IdeasFractral"
+                        responseXml = db.SqlScalar<string>(
+                            "EXEC dbo.spza_Interface_IdeasFractral @Op, @Codigo, @XML, @PET",
+                            new { 
+                                Op = "Reserva", 
+                                Codigo = request.Loc, 
+                                XML = request.Payload, 
+                                PET = "API-REQUEST"
+                            });
+                    }
+                    else
+                    {
+                        // Llamada al procedimiento almacenado de PostgreSQL "spInterfaceIdeasFractal".
+                        // Este procedimiento recibe el JSON (enviado en request.Payload) y orquesta la transformación e inserción.
+                        // Al ser un PROCEDURE con un parámetro INOUT, se usa CALL y se captura el resultado.
+                        responseXml = db.SqlScalar<string>(
+                            "CALL public.\"spInterfaceIdeasFractal\"(@op, @codigo, @xml, @pet, @res)",
+                            new { 
+                                op = "Booking", 
+                                codigo = request.Loc, 
+                                xml = request.Payload, 
+                                pet = "API-REQUEST", // Identificador de petición
+                                res = (string)null   // El parámetro INOUT se recibe como resultado del escalar
+                            });
+                    }
 
                     // Se determina el estado basado en la respuesta XML generada por el SP de respuesta.
                     bool isSuccess = responseXml != null && responseXml.Contains("<Status>Success</Status>");
@@ -103,8 +122,18 @@ namespace SaleInfoWS.ServiceInterface
             var SessionToken = this.GetSession().Id;
             base.Response.AddHeader("Session-Id", SessionToken);
 
-            OrmLiteConnectionFactory dbFactory = new OrmLiteConnectionFactory(
-                ConfigurationManager.ConnectionStrings["FrontEndConnection"].ConnectionString, PostgreSqlDialect.Provider);
+            string connectionString = ConfigurationManager.ConnectionStrings["FrontEndConnection"].ConnectionString;
+            string dbType = ConfigurationManager.AppSettings["DatabaseType"] ?? "PostgreSQL";
+
+            OrmLiteConnectionFactory dbFactory;
+            if (dbType.Equals("SqlServer", StringComparison.OrdinalIgnoreCase))
+            {
+                dbFactory = new OrmLiteConnectionFactory(connectionString, SqlServerDialect.Provider);
+            }
+            else
+            {
+                dbFactory = new OrmLiteConnectionFactory(connectionString, PostgreSqlDialect.Provider);
+            }
 
             return dbFactory.OpenDbConnection();
         }

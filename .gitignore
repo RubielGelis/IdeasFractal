@@ -18,3 +18,5 @@ nuget.exe
 
 # Installer
 Instalador_*.exe
+*.rar
+*.zip
