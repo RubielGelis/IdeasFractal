@@ -1,4 +1,4 @@
-﻿using Funq;
+using Funq;
 using ServiceStack;
 using SaleInfoWS.ServiceInterface;
 using BackOfficeWS;
@@ -31,6 +31,24 @@ namespace SaleInfoWS
               new IAuthProvider[] { 
                 new CustomBasicAuthProvider()//,  new IFOpenID()
               }));
+
+            // Interceptor global de licenciamiento (KOR1)
+            GlobalRequestFilters.Add((req, res, requestDto) =>
+            {
+                var validation = LicenseValidator.ValidateLicense();
+                if (!validation.IsValid)
+                {
+                    res.StatusCode = (int)System.Net.HttpStatusCode.PaymentRequired;
+                    res.ContentType = "application/json; charset=utf-8";
+                    res.WriteToResponse(req, new
+                    {
+                        Status = "Error",
+                        Code = "LICENSE_EXPIRED_OR_INVALID",
+                        Message = validation.ErrorMessage
+                    });
+                    res.EndRequest();
+                }
+            });
         }
     }
 }

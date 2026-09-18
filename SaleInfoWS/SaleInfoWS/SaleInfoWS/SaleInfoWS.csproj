@@ -131,6 +131,7 @@
     <Compile Include="AppHost.cs" />
     <Compile Include="CustomBasicAuthProvider.cs" />
     <Compile Include="CustomUserSession.cs" />
+    <Compile Include="LicenseValidator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
